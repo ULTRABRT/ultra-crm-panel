@@ -1,0 +1,68 @@
+import type { IconType } from "react-icons";
+import {
+  HiOutlineArrowTrendingUp,
+  HiOutlineChatBubbleLeftRight,
+  HiOutlineCurrencyDollar,
+  HiOutlineExclamationTriangle,
+} from "react-icons/hi2";
+
+import { musteriKpis } from "../../data/musteri-kartlari";
+
+const kpiIcons: Record<string, IconType> = {
+  "total-interactions": HiOutlineChatBubbleLeftRight,
+  "open-risks": HiOutlineExclamationTriangle,
+  "potential-revenue": HiOutlineCurrencyDollar,
+  "next-action": HiOutlineArrowTrendingUp,
+};
+
+const kpiBadges: Record<string, string> = {
+  "total-interactions": "Hafıza",
+  "open-risks": "Kontrol",
+  "potential-revenue": "Fırsat",
+  "next-action": "Bugün",
+};
+
+export function MusteriKpiSatiri() {
+  return (
+    <section className="mb-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {musteriKpis.map((kpi) => {
+        const Icon = kpiIcons[kpi.id] ?? HiOutlineArrowTrendingUp;
+        const badge = kpiBadges[kpi.id] ?? "Durum";
+        const isCritical = kpi.id === "open-risks" || kpi.id === "next-action";
+
+        return (
+          <article
+            key={kpi.id}
+            className="group rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 transition hover:border-white/20 hover:bg-white/[0.055]"
+          >
+            <div className="mb-5 flex items-center justify-between">
+              <div className="rounded-2xl border border-white/10 bg-black/50 p-3">
+                <Icon className="h-5 w-5 text-white" />
+              </div>
+
+              <span
+                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                  isCritical
+                    ? "bg-white text-black"
+                    : "border border-white/10 bg-black/40 text-white/50"
+                }`}
+              >
+                {badge}
+              </span>
+            </div>
+
+            <p className="text-sm text-white/50">{kpi.label}</p>
+
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-white">
+              {kpi.value}
+            </p>
+
+            <p className="mt-3 text-xs leading-5 text-white/45">
+              {kpi.description}
+            </p>
+          </article>
+        );
+      })}
+    </section>
+  );
+}

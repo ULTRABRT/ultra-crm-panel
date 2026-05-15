@@ -1,0 +1,281 @@
+import type { MusteriKartDetay, MusteriKpi } from "../types/musteri-kartlari";
+
+export const musteriKpis: MusteriKpi[] = [
+  {
+    id: "total-interactions",
+    label: "Toplam Etkileşim",
+    value: "14",
+    description: "Müşteriyle tüm kanallarda oluşan temas",
+  },
+  {
+    id: "open-risks",
+    label: "Açık Risk",
+    value: "3",
+    description: "Satış kaybı oluşmadan çözülmeli",
+  },
+  {
+    id: "potential-revenue",
+    label: "Potansiyel Ciro",
+    value: "₺185.000",
+    description: "Güneş paneli + batarya fırsatı",
+  },
+  {
+    id: "next-action",
+    label: "Sıradaki Aksiyon",
+    value: "Bugün",
+    description: "Telefonla aranıp keşif netleşmeli",
+  },
+];
+
+export const aktifMusteriKarti: MusteriKartDetay = {
+  id: "customer-mehmet-akgun",
+  ozet: {
+    id: "summary-mehmet-akgun",
+    customerName: "Mehmet Akgün",
+    companyName: undefined,
+    phone: "0532 000 12 45",
+    email: "mehmet.akgun@example.com",
+    city: "Hatay",
+    district: "Antakya",
+    addressNote: "Müstakil ev, çatı GES için ön keşif bekliyor.",
+    customerType: "detachedHouse",
+    customerTypeLabel: "Müstakil Ev Sahibi",
+    firstSourceLabel: "Instagram Organik",
+    lastSourceLabel: "Instagram DM",
+    activeChannels: ["instagram", "whatsapp", "phone"],
+    ownerLabel: "Satış Ekibi",
+    createdAtLabel: "Bugün 10:18",
+    lastUpdateLabel: "12 dk önce",
+    badges: [
+      "veryHot",
+      "urgent",
+      "offerWaiting",
+      "discoveryWaiting",
+      "batteryInterest",
+      "risk",
+    ],
+  },
+  aiSummary: {
+    title: "AI Müşteri Özeti",
+    summary:
+      "Mehmet Akgün, Hatay / Antakya’da müstakil evi için güneş paneli ve lityum batarya sistemiyle ilgileniyor. Aylık elektrik faturası yaklaşık ₺4.800. Müşteri açık şekilde fiyat ve teklif bekliyor; batarya ihtiyacı teklif notuna ayrıca eklenmeli.",
+    recommendedAction:
+      "Bugün telefonla aranmalı, çatı bilgisi ve keşif uygunluğu netleştirilmeli. Ardından batarya dahil teklif hazırlama süreci başlatılmalı.",
+    reason:
+      "Müşteri hem fiyat istiyor hem batarya ilgisi belirtiyor. Çok sıcak lead 2 saatten fazla beklerse kaybolma riski artar.",
+    confidenceLabel: "%94 güven",
+  },
+  enerjiTalep: {
+    interestedService: "Güneş paneli + lityum batarya",
+    structureType: "Müstakil ev",
+    roofType: "Kiremit çatı",
+    roofDirection: "Güney / Güneybatı kontrol edilmeli",
+    roofAreaLabel: "Yaklaşık 85 m²",
+    monthlyBillLabel: "₺4.800",
+    monthlyConsumptionLabel: "620 kWh",
+    requestedSystemCapacity: "8-10 kW arası sistem",
+    batteryNeed: true,
+    lithiumBatteryInterest: true,
+    landGesInterest: false,
+    roofGesInterest: true,
+    savingQuestion: true,
+    amortizationQuestion: true,
+    technicalSupportTopic: "Teknik destek talebi yok",
+    missingInfo: [
+      "Çatı yönü netleşmeli",
+      "Keşif tarihi alınmalı",
+      "Batarya kapasitesi tercihi sorulmalı",
+    ],
+  },
+  satisSureci: {
+    leadStatus: "offerPreparing",
+    leadStatusLabel: "Teklif Hazırlanmalı",
+    temperature: "veryHot",
+    priority: "urgent",
+    lastAction: "Teklif talebi oluşturuldu",
+    offerStatus: "preparing",
+    offerStatusLabel: "Teklif hazırlanıyor",
+    offerDateLabel: "Bugün hazırlanmalı",
+    offerAmountLabel: "Henüz girilmedi",
+    salesStatus: "proposal",
+    salesStatusLabel: "Teklif aşaması",
+    lostReason: undefined,
+    potentialRevenueLabel: "₺185.000",
+    actualRevenueLabel: "Henüz satış yok",
+    followUpDateLabel: "Bugün",
+    ownerLabel: "Satış Ekibi",
+  },
+  kesifRandevu: {
+    discoveryStatus: "dateWaiting",
+    discoveryStatusLabel: "Keşif tarihi bekleniyor",
+    appointmentStatus: "waiting",
+    appointmentStatusLabel: "Randevu netleşmedi",
+    appointmentDateLabel: "Tarih alınmadı",
+    appointmentTimeLabel: "Saat alınmadı",
+    appointmentTypeLabel: "Yerinde keşif",
+    discoveryNote:
+      "Müşteri çatı GES için keşif yapılabileceğini söyledi. Uygun gün/saat sorulmalı.",
+    appointmentNote:
+      "Telefon görüşmesinde keşif randevusu netleştirilecek.",
+    discoveryOwnerLabel: "Keşif Ekibi",
+    planningStatusLabel: "Planlama bekliyor",
+  },
+  timeline: [
+    {
+      id: "timeline-001",
+      type: "leadCreated",
+      channel: "instagram",
+      channelLabel: "Instagram",
+      title: "Lead oluşturuldu",
+      description:
+        "Instagram üzerinden güneş paneli ve batarya sistemi için talep geldi.",
+      timeLabel: "Bugün 10:18",
+      ownerLabel: "AI Kayıt",
+      sourceLabel: "Instagram Organik",
+    },
+    {
+      id: "timeline-002",
+      type: "instagramMessage",
+      channel: "instagram",
+      channelLabel: "Instagram",
+      title: "Müşteri fiyat sordu",
+      description:
+        "Müşteri aylık elektrik faturasının yüksek olduğunu ve batarya dahil fiyat istediğini belirtti.",
+      timeLabel: "Bugün 10:23",
+      ownerLabel: "Müşteri",
+      sourceLabel: "Instagram DM",
+    },
+    {
+      id: "timeline-003",
+      type: "botReply",
+      channel: "instagram",
+      channelLabel: "Instagram",
+      title: "AI ön cevap önerdi",
+      description:
+        "AI, çatı tipi, lokasyon, aylık fatura ve telefon bilgisi istenmesini önerdi.",
+      timeLabel: "Bugün 10:25",
+      ownerLabel: "AI Asistan",
+      sourceLabel: "Yanıt Motoru",
+    },
+    {
+      id: "timeline-004",
+      type: "humanReply",
+      channel: "instagram",
+      channelLabel: "Instagram",
+      title: "Satış ekibi dönüş yaptı",
+      description:
+        "Müşteriden telefon ve fatura bilgisi alındı. Batarya ilgisi satış notuna eklendi.",
+      timeLabel: "Bugün 10:41",
+      ownerLabel: "Satış Ekibi",
+      sourceLabel: "İnsan Yanıtı",
+    },
+    {
+      id: "timeline-005",
+      type: "offerNote",
+      channel: "manual",
+      channelLabel: "Manuel",
+      title: "Teklif notu açıldı",
+      description:
+        "Güneş paneli + lityum batarya dahil teklif hazırlanması için kayıt oluşturuldu.",
+      timeLabel: "Bugün 11:05",
+      ownerLabel: "Satış Ekibi",
+      sourceLabel: "Teklif Notu",
+    },
+    {
+      id: "timeline-006",
+      type: "riskAlert",
+      channel: "manual",
+      channelLabel: "Sistem",
+      title: "No Lost Lead uyarısı",
+      description:
+        "Müşteri çok sıcak ve teklif bekliyor. Bugün aranmazsa satış kaybı riski oluşabilir.",
+      timeLabel: "12 dk önce",
+      ownerLabel: "No Lost Lead Engine",
+      sourceLabel: "Risk Motoru",
+    },
+  ],
+  risks: [
+    {
+      id: "risk-001",
+      title: "Teklif istedi ama teklif tamamlanmadı",
+      description:
+        "Müşteri açık fiyat ve teklif talebi bıraktı. Teklif süreci bugün başlatılmalı.",
+      level: "critical",
+      actionLabel: "Teklif hazırla",
+    },
+    {
+      id: "risk-002",
+      title: "Keşif istedi ama tarih yok",
+      description:
+        "Müşteri keşfe açık görünüyor fakat tarih/saat bilgisi henüz netleşmedi.",
+      level: "high",
+      actionLabel: "Keşif planla",
+    },
+    {
+      id: "risk-003",
+      title: "Batarya ilgisi teklif notuna eklenmeli",
+      description:
+        "Batarya talebi yüksek değerli satış fırsatı oluşturuyor. Teklifte ayrıca işaretlenmeli.",
+      level: "medium",
+      actionLabel: "Batarya notu ekle",
+    },
+  ],
+  actions: [
+    {
+      id: "action-call",
+      label: "Ara",
+      description: "Müşteriyi telefonla ara ve keşif uygunluğunu netleştir.",
+      type: "call",
+    },
+    {
+      id: "action-whatsapp",
+      label: "WhatsApp gönder",
+      description: "Fatura, çatı ve keşif bilgileri için WhatsApp mesajı gönder.",
+      type: "whatsapp",
+    },
+    {
+      id: "action-mail",
+      label: "Mail gönder",
+      description: "Teklif ön bilgilendirme maili gönder.",
+      type: "mail",
+    },
+    {
+      id: "action-follow-up",
+      label: "Takip oluştur",
+      description: "Bugün için satış takip görevi oluştur.",
+      type: "followUp",
+    },
+    {
+      id: "action-appointment",
+      label: "Randevu planla",
+      description: "Keşif randevusu için tarih ve saat belirle.",
+      type: "appointment",
+    },
+    {
+      id: "action-offer",
+      label: "Teklif oluştur",
+      description: "Güneş paneli + batarya dahil teklif sürecini başlat.",
+      type: "offer",
+    },
+    {
+      id: "action-assign",
+      label: "Sorumlu ata",
+      description: "Satış veya keşif ekibinden sorumlu kişi ata.",
+      type: "assign",
+    },
+    {
+      id: "action-note",
+      label: "İç not ekle",
+      description: "Satış görüşmesi için iç operasyon notu ekle.",
+      type: "note",
+    },
+    {
+      id: "action-human-review",
+      label: "İnsan kontrolüne al",
+      description: "AI kararını satış yöneticisi kontrolüne gönder.",
+      type: "humanReview",
+    },
+  ],
+};
+
+export const musteriKartlari: MusteriKartDetay[] = [aktifMusteriKarti];
