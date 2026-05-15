@@ -43,3 +43,5 @@ next-env.d.ts
 ultra-crm-codebase.txt
 ultra-crm-panel-clean.zip
 .claude/settings.local.json
+
+.claude/
