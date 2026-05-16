@@ -24,3 +24,366 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.boot-screen-grid {
+  opacity: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 54px 54px;
+  animation: boot-fade-in 0.4s ease-out forwards;
+}
+
+.boot-screen-vignette {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(0, 0, 0, 0.12));
+  animation: boot-fade-in 0.4s ease-out forwards;
+}
+
+.boot-logo-wrap {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.9);
+  animation: boot-logo-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+.boot-core-dot {
+  opacity: 0;
+  animation: boot-fade-in 0.35s ease-out 1.12s forwards;
+}
+
+.boot-letter {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  animation: boot-letter-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.boot-tagline {
+  opacity: 0;
+  animation: boot-fade-in 0.38s ease-out 1.8s forwards;
+}
+
+.boot-loader {
+  width: min(100%, 26rem);
+  opacity: 0;
+  animation: boot-fade-in 0.38s ease-out 1.88s forwards;
+}
+
+.boot-loader-bar {
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: boot-scale-x 0.4s cubic-bezier(0.22, 1, 0.36, 1) 1.92s forwards;
+}
+
+@keyframes boot-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes boot-logo-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes boot-letter-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes boot-scale-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes boot-stroke-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-screen-grid,
+  .boot-screen-vignette,
+  .boot-logo-wrap,
+  .boot-core-dot,
+  .boot-letter,
+  .boot-tagline,
+  .boot-loader,
+  .boot-loader-bar {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* =========================================================
+   ARQON — BOOT SCREEN (Master)
+   Bu blogu app/globals.css dosyasinin SONUNA ekle.
+   Codex'in ekledigi eski "boot-screen-*" / "boot-stroke-draw"
+   class'larini SILMENE GEREK YOK — yeni dosya "arqon-" onekini
+   kullanir, eskiler olu kalir (zarari yok, istersen sonra sil).
+   ========================================================= */
+
+/* ---- KATMAN 1: Atmosfer ---- */
+
+.arqon-boot-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 42%,
+    #000 0%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 42%,
+    #000 0%,
+    transparent 78%
+  );
+  opacity: 0;
+  animation: arqon-fade-in 1s ease forwards;
+}
+
+.arqon-boot-glow {
+  background: radial-gradient(
+    ellipse 50% 45% at 50% 40%,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: arqon-glow-in 2.4s ease forwards;
+}
+
+.arqon-boot-vignette {
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.arqon-boot-scanline {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.015) 50%,
+    transparent 100%
+  );
+  background-size: 100% 6px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- KATMAN 2: Cekirdek ---- */
+
+/* Dis halkanin cok yavas donusu */
+.arqon-orbit {
+  animation: arqon-orbit-spin 48s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+/* Cekirdegin nefes alisi (cok hafif) */
+.arqon-core-breathe {
+  animation: arqon-breathe 5.5s ease-in-out 2.2s infinite;
+  transform-origin: 50% 50%;
+}
+
+/* Merkez parlakligin yanip sonmesi */
+.arqon-core-glow {
+  transform-origin: 100px 100px;
+  animation: arqon-core-glow-pulse 4s ease-in-out 2.4s infinite;
+}
+
+/* Devre dugum noktasinin atisi */
+.arqon-node-pulse {
+  transform-origin: 100px 128px;
+  animation: arqon-node-beat 2.6s ease-in-out 2.6s infinite;
+}
+
+/* ---- Wordmark ---- */
+
+.arqon-letter {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: arqon-letter-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.arqon-letter--static {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+/* ---- Tagline ---- */
+
+.arqon-tagline {
+  opacity: 0;
+  animation: arqon-fade-in 0.9s ease 3.2s forwards;
+}
+.arqon-tagline--static {
+  opacity: 1;
+  animation: none;
+}
+
+/* ---- Yukleme cizgisi ---- */
+
+.arqon-loader {
+  opacity: 0;
+  animation: arqon-fade-in 0.8s ease 3.4s forwards;
+}
+.arqon-loader--static {
+  opacity: 1;
+  animation: none;
+}
+
+.arqon-loader-bar {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: arqon-loader-fill 2.6s cubic-bezier(0.4, 0, 0.2, 1) 3.5s forwards;
+}
+.arqon-loader-bar--static {
+  transform: scaleX(1);
+  animation: none;
+}
+
+.arqon-loader-status {
+  animation: arqon-status-blink 1.6s ease-in-out 3.6s infinite;
+}
+
+/* ---- KEYFRAMES ---- */
+
+@keyframes arqon-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes arqon-glow-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes arqon-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes arqon-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes arqon-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes arqon-core-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes arqon-node-beat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0.6;
+  }
+}
+
+@keyframes arqon-letter-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arqon-loader-fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes arqon-status-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ---- Erisilebilirlik: hareket azaltma ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .arqon-boot-grid,
+  .arqon-boot-glow,
+  .arqon-tagline,
+  .arqon-loader,
+  .arqon-letter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .arqon-orbit,
+  .arqon-core-breathe,
+  .arqon-core-glow,
+  .arqon-node-pulse,
+  .arqon-loader-status {
+    animation: none !important;
+  }
+  .arqon-loader-bar {
+    transform: scaleX(1) !important;
+    animation: none !important;
+  }
+}
