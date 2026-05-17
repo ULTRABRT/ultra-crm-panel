@@ -101,22 +101,6 @@ body {
   --arqon-grid-min: 15.5rem;
 }
 
-.arqon-dashboard-grid {
-  display: grid;
-  align-items: start;
-  grid-auto-rows: auto;
-  gap: clamp(1rem, 1.2vw, 1.25rem);
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, var(--arqon-dashboard-grid-min, 24rem)), 1fr)
-  );
-}
-
-.arqon-dashboard-card {
-  align-self: start;
-  min-width: 0;
-}
-
 .arqon-dashboard-hero {
   container-type: inline-size;
 }
