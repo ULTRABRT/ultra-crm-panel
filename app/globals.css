@@ -126,6 +126,23 @@ body {
   );
 }
 
+.arqon-dashboard-columns {
+  display: grid;
+  align-items: start;
+  gap: clamp(1rem, 1.4vw, 1.5rem);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--arqon-dashboard-column-min, 28rem)), 1fr)
+  );
+}
+
+.arqon-dashboard-column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: clamp(1rem, 1.4vw, 1.5rem);
+}
+
 .arqon-action-row {
   display: flex;
   flex-wrap: wrap;

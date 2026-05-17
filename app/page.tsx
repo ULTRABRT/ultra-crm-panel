@@ -1,5 +1,9 @@
 import { ChannelStatus } from "../components/ChannelStatus";
-import { CommandInsights } from "../components/CommandInsights";
+import {
+  ActivityLogPanel,
+  DnaOperationsPanel,
+  SourcePerformancePanel,
+} from "../components/CommandInsights";
 import { DashboardHero } from "../components/DashboardHero";
 import { ExecutiveSummary } from "../components/ExecutiveSummary";
 import { Header } from "../components/Header";
@@ -30,33 +34,28 @@ export default function Home() {
                 <ExecutiveSummary />
               </section>
 
-              <section className="arqon-section-gap">
-                <CommandInsights />
-              </section>
+              <section className="arqon-section-gap arqon-dashboard-columns">
+                <div className="arqon-dashboard-column">
+                  <SourcePerformancePanel />
+                  <RequestsTable />
+                  <NoLostLead />
+                </div>
 
-              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:24rem]">
-                <RequestsTable />
-                <ChannelStatus />
-              </section>
+                <div className="arqon-dashboard-column">
+                  <DnaOperationsPanel />
+                  <ActivityLogPanel />
+                  <ChannelStatus />
+                  <RevenueRadar />
 
-              <section className="arqon-section-gap">
-                <NoLostLead />
-              </section>
-
-              <section className="arqon-section-gap">
-                <RevenueRadar />
-              </section>
-
-              {/* ── YENİ: DNA Sektörel KPI Bloku ─────────────────────────── */}
-              <section className="arqon-section-gap">
-                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur-xl">
-                  <SectorKpiGroup
-                    zone="boardroom_right_column"
-                    eyebrow="DNA Test Alanı"
-                    title="Sektörel KPI'lar (Enerji DNA)"
-                    description="Bu blok yeni DNA mimarisinden besleniyor. Mevcut Solify DNA Kartları üstte hâlâ duruyor — ikisi karşılaştırılabilir."
-                    columns={4}
-                  />
+                  <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur-xl">
+                    <SectorKpiGroup
+                      zone="boardroom_right_column"
+                      eyebrow="DNA Test Alanı"
+                      title="Sektörel KPI'lar (Enerji DNA)"
+                      description="Bu blok yeni DNA mimarisinden besleniyor. Mevcut Solify DNA Kartları üstte hâlâ duruyor — ikisi karşılaştırılabilir."
+                      columns={4}
+                    />
+                  </div>
                 </div>
               </section>
             </div>
