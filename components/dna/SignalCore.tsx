@@ -258,20 +258,22 @@ export function SignalCore() {
             </g>
           </g>
 
-          <g className="fill-white text-center">
+          <g className="text-center">
             <text
+              fill="rgba(255,255,255,0.32)"
               x={coreX}
               y="350"
               textAnchor="middle"
-              className="arqon-signal-brand text-[13px] font-bold tracking-[0.24em]"
+              className="arqon-signal-label text-[11px] font-semibold tracking-[0.2em]"
             >
               SIGNAL CORE
             </text>
             <text
+              fill="rgba(255,255,255,0.28)"
               x={coreX}
               y="376"
               textAnchor="middle"
-              className="arqon-signal-label fill-white/40 text-[11px] font-medium uppercase tracking-[0.2em]"
+              className="arqon-signal-label text-[10px] font-medium uppercase tracking-[0.18em]"
             >
               Sector DNA
             </text>

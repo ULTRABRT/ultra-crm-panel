@@ -86,13 +86,17 @@ export function Sidebar() {
       <div className="flex min-h-0 w-full flex-col">
         <div className="shrink-0 px-6 pb-5 pt-8">
           <div>
-            <ArqonLockup emblemSize={34} />
-            <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/35">
+            <ArqonLockup
+              className="-ml-1"
+              emblemSize={44}
+              wordmarkClassName="h-7 w-[10.75rem]"
+            />
+            <p className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.24em] text-white/30">
               Intelligence OS
             </p>
           </div>
 
-          <div className="mt-8 flex items-center gap-4 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-3">
+          <div className="mt-7 flex items-center gap-4 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-3">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-lg font-semibold text-black">
               S
             </div>

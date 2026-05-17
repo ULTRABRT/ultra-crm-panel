@@ -77,13 +77,13 @@ export function Header() {
     <header className="relative z-10 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
       <div className="flex min-h-[104px] flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-          <div className="shrink-0">
+          <div className="min-w-[12.5rem] shrink-0">
             <ArqonWordmark
-              className="h-7 w-40"
+              className="h-8 w-52"
               decorative={false}
               label="Arqon"
             />
-            <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/35">
+            <div className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.24em] text-white/30">
               Operation Intelligence
             </div>
           </div>
