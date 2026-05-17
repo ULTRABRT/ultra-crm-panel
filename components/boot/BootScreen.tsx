@@ -1,5 +1,8 @@
 import type { CSSProperties } from "react";
 
+import { ArqonEmblem } from "../brand/ArqonEmblem";
+import { ArqonWordmark } from "../brand/ArqonWordmark";
+
 /**
  * Arqon — Boot Screen (Master)
  *
@@ -21,7 +24,6 @@ type BootScreenProps = {
   onSkip: () => void;
 };
 
-const WORDMARK = "ARQON".split("");
 const SIGNAL_TEXT = "Operasyon merkezi hazirlaniyor";
 
 /** SVG path "kalemle ciziliyor" efekti — gecikmeli stroke reveal */
@@ -271,25 +273,28 @@ export function BootScreen({
                 />
               </svg>
             </div>
+
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <ArqonEmblem
+                className="h-24 w-24 opacity-95 drop-shadow-[0_0_28px_rgba(255,255,255,0.12)]"
+                decorative
+                size={96}
+              />
+            </div>
           </div>
 
           {/* ---- Wordmark ---- */}
-          <div className="mb-5 flex items-center justify-center">
-            {WORDMARK.map((letter, index) => (
-              <span
-                key={`${letter}-${index}`}
-                className={`arqon-letter inline-block text-[clamp(2.6rem,5vw,4.25rem)] font-semibold tracking-[0.52em] text-white ${
-                  reducedMotion ? "arqon-letter--static" : ""
-                }`}
-                style={{
-                  animationDelay: `${2.6 + index * 0.09}s`,
-                  fontFamily: "var(--font-geist-sans), sans-serif",
-                  paddingLeft: index === 0 ? "0.52em" : undefined,
-                }}
-              >
-                {letter}
-              </span>
-            ))}
+          <div
+            className={`arqon-letter mb-5 flex items-center justify-center ${
+              reducedMotion ? "arqon-letter--static" : ""
+            }`}
+            style={{ animationDelay: "2.6s" }}
+          >
+            <ArqonWordmark
+              className="h-16 w-[21rem] max-w-[82vw]"
+              decorative={false}
+              label="Arqon"
+            />
           </div>
 
           {/* ---- Tagline ---- */}
@@ -297,7 +302,7 @@ export function BootScreen({
             className={`arqon-tagline mb-12 text-[0.78rem] uppercase tracking-[0.42em] text-white/45 ${
               reducedMotion ? "arqon-tagline--static" : ""
             }`}
-            style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             Intelligence, Sharpened.
           </p>
@@ -328,7 +333,7 @@ export function BootScreen({
         type="button"
         onClick={onSkip}
         className="absolute right-6 bottom-6 z-20 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-[0.7rem] font-medium uppercase tracking-[0.28em] text-white/55 backdrop-blur-md transition-[transform,color,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
-        style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+        style={{ fontFamily: "var(--font-inter), sans-serif" }}
       >
         Atla
       </button>

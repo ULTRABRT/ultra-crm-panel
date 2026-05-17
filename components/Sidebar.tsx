@@ -14,6 +14,7 @@ import {
   HiOutlineSquares2X2,
   HiOutlineUserGroup,
 } from "react-icons/hi2";
+import { ArqonLockup } from "./brand/ArqonLockup";
 
 type SidebarItem = {
   label: string;
@@ -84,20 +85,26 @@ export function Sidebar() {
     <aside className="sticky top-0 hidden h-screen w-[292px] shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl lg:flex">
       <div className="flex min-h-0 w-full flex-col">
         <div className="shrink-0 px-6 pb-5 pt-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.55em] text-white/45">
-            Ultra CRM
-          </p>
+          <div>
+            <ArqonLockup emblemSize={34} />
+            <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/35">
+              Intelligence OS
+            </p>
+          </div>
 
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-lg font-semibold text-black">
+          <div className="mt-8 flex items-center gap-4 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-3">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-lg font-semibold text-black">
               S
             </div>
 
             <div className="min-w-0">
-              <h2 className="truncate text-2xl font-semibold tracking-tight text-white">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/35">
+                Tenant
+              </p>
+              <h2 className="mt-1 truncate text-xl font-semibold tracking-tight text-white">
                 Solify Panel
               </h2>
-              <p className="mt-1 text-sm text-white/38">Operasyon Sistemi</p>
+              <p className="mt-1 text-xs text-white/38">Enerji Paketi</p>
             </div>
           </div>
         </div>
