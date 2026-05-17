@@ -172,21 +172,18 @@ export function resolveLabel<T extends string>(
     return value;
   }
 
-  const localized = (value as Record<string, T | undefined>)[locale];
+  const localized = value[locale];
   if (localized !== undefined) {
     return localized;
   }
 
   // Fallback: tr varsa onu kullan
-  const trValue = (value as Record<string, T | undefined>)["tr"];
-  if (trValue !== undefined) {
-    return trValue;
+  if (value.tr !== undefined) {
+    return value.tr;
   }
 
   // Son care: ilk dolu degeri don
-  const firstFilled = Object.values(value as Record<string, unknown>).find(
-    (v) => v !== undefined,
-  );
+  const firstFilled = Object.values(value).find((v) => v !== undefined);
   if (firstFilled !== undefined) {
     return firstFilled as T;
   }

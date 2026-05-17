@@ -6,6 +6,8 @@
  * config olarak verir. Boylece SOC2 / ISO27001 hazirligi DNA seviyesinde olur.
  *
  * V1'de tipte tam olarak yer alir; tum motorlari Adim sonrasi fazlarda aktive edilir.
+ * Ama type-driven olmasi sayesinde yarin enterprise satislarinda
+ * "biz role-based access control'i config ile yonetiyoruz" denilebilir.
  */
 
 import type { DnaFieldKey, DnaRoleId } from "./DnaKey";

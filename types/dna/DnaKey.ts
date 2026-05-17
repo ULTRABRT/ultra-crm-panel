@@ -40,10 +40,10 @@ export type DnaSegmentId = Brand<string, "DnaSegmentId">;
 /** Persona */
 export type DnaPersonaId = Brand<string, "DnaPersonaId">;
 
-/** Validation kurali */
+/** Validation kuralı */
 export type DnaValidationRuleId = Brand<string, "DnaValidationRuleId">;
 
-/** Field dependency kurali */
+/** Field dependency kuralı */
 export type DnaFieldDependencyId = Brand<string, "DnaFieldDependencyId">;
 
 /** Sektor DNA'sinin kendisi */

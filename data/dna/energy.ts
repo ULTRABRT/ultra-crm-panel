@@ -1,0 +1,435 @@
+/**
+ * Ultra CRM — Yenilenebilir Enerji DNA (Mock v0.1)
+ *
+ * Bu DNA dosyasi V1 tip iskeletinin gercek bir sektor data ile sinamasidir.
+ * Mevcut panelde hardcoded olan tum enerji-ozel icerik (Solify referansli)
+ * buraya migrate edildi.
+ *
+ * Bu dosya ilk SectorDna ornegi olarak gorulmeli.
+ * Klinik, Sanayi, Emlak gibi diger sektorler ayni sablonu kullanacak.
+ *
+ * NOT: Bu mock yalnizca tip dogrulamasi icindir. Panele baglanmasi
+ * Adim 2 (atom + Kontrol Merkezi koseli swap) ile baslayacak.
+ */
+
+import {
+  createDnaFieldKey,
+  createDnaId,
+  createDnaKpiId,
+  createDnaSectionId,
+} from "../../lib/dna/keys";
+import type { SectorDna } from "../../types/dna/SectorDna";
+
+const SECTOR_SLUG = "energy";
+
+// ===== FIELD KEYS =====
+// Tum key'leri once tanimliyoruz ki section ve KPI'lar referans alabilsin.
+
+const fieldKeys = {
+  aylik_fatura: createDnaFieldKey(SECTOR_SLUG, "basics", "aylik_fatura"),
+  aylik_tuketim: createDnaFieldKey(SECTOR_SLUG, "basics", "aylik_tuketim"),
+  cati_tipi: createDnaFieldKey(SECTOR_SLUG, "basics", "cati_tipi"),
+  cati_alani: createDnaFieldKey(SECTOR_SLUG, "basics", "cati_alani"),
+  cati_yonu: createDnaFieldKey(SECTOR_SLUG, "basics", "cati_yonu"),
+  yapi_tipi: createDnaFieldKey(SECTOR_SLUG, "basics", "yapi_tipi"),
+  sistem_kapasitesi: createDnaFieldKey(SECTOR_SLUG, "basics", "sistem_kapasitesi"),
+  ilgilendigi_hizmet: createDnaFieldKey(SECTOR_SLUG, "basics", "ilgilendigi_hizmet"),
+  batarya_ihtiyaci: createDnaFieldKey(SECTOR_SLUG, "signals", "batarya_ihtiyaci"),
+  lityum_batarya_ilgisi: createDnaFieldKey(SECTOR_SLUG, "signals", "lityum_batarya_ilgisi"),
+  arazi_ges_ilgisi: createDnaFieldKey(SECTOR_SLUG, "signals", "arazi_ges_ilgisi"),
+  cati_ges_ilgisi: createDnaFieldKey(SECTOR_SLUG, "signals", "cati_ges_ilgisi"),
+  tasarruf_sorusu: createDnaFieldKey(SECTOR_SLUG, "signals", "tasarruf_sorusu"),
+  amortisman_sorusu: createDnaFieldKey(SECTOR_SLUG, "signals", "amortisman_sorusu"),
+  teknik_destek_konusu: createDnaFieldKey(SECTOR_SLUG, "support", "teknik_destek_konusu"),
+} as const;
+
+// ===== DNA EXPORT =====
+
+export const energyDna: SectorDna = {
+  meta: {
+    id: createDnaId("energy_renewable_v1"),
+    name: "Yenilenebilir Enerji",
+    slug: SECTOR_SLUG,
+    packageLabel: "Enerji Paketi",
+    industryGroup: "energy",
+    icon: "HiOutlineBolt",
+    version: "1.0.0",
+    description:
+      "Gunes paneli, batarya, GES projeleri ve enerji tasarrufu odakli satis operasyonu.",
+    status: "active",
+    releaseDate: "2026-05-14",
+    author: "Ultra CRM",
+  },
+
+  vocabulary: {
+    lead: {
+      singular: "Lead",
+      plural: "Leadler",
+      lowercase: "lead",
+    },
+    customer: {
+      singular: "Musteri",
+      plural: "Musteriler",
+      lowercase: "musteri",
+    },
+    request: {
+      singular: "Talep",
+      plural: "Talepler",
+      lowercase: "talep",
+    },
+    deal: {
+      singular: "Teklif",
+      plural: "Teklifler",
+      lowercase: "teklif",
+    },
+    discoveryStage: {
+      singular: "Kesif",
+      plural: "Kesifler",
+      lowercase: "kesif",
+    },
+    pipeline: {
+      singular: "Satis Sureci",
+      plural: "Satis Surecleri",
+    },
+  },
+
+  customFields: [
+    {
+      key: fieldKeys.ilgilendigi_hizmet,
+      label: "Ilgilendigi Hizmet",
+      type: "select",
+      group: "energy_basics",
+      scope: "customer",
+      required: false,
+      options: [
+        { value: "panel_battery", label: "Gunes paneli + lityum batarya" },
+        { value: "panel_only", label: "Gunes paneli" },
+        { value: "battery_only", label: "Sadece batarya" },
+        { value: "ges_industrial", label: "Sanayi tipi GES" },
+        { value: "ges_land", label: "Arazi GES" },
+        { value: "energy_saving", label: "Genel enerji tasarrufu" },
+      ],
+      sortOrder: 10,
+      aiExtractable: true,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.yapi_tipi,
+      label: "Yapi Tipi",
+      type: "select",
+      group: "energy_basics",
+      scope: "customer",
+      options: [
+        { value: "detached_house", label: "Mustakil ev" },
+        { value: "apartment", label: "Apartman" },
+        { value: "industrial", label: "Sanayi tesisi" },
+        { value: "agricultural", label: "Tarimsal alan" },
+        { value: "commercial", label: "Ticari yapi" },
+      ],
+      sortOrder: 20,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.cati_tipi,
+      label: "Cati Tipi",
+      type: "select",
+      group: "energy_basics",
+      scope: "customer",
+      options: [
+        { value: "tile", label: "Kiremit cati" },
+        { value: "sandwich", label: "Sandvic panel" },
+        { value: "concrete", label: "Beton teras" },
+        { value: "metal", label: "Trapez metal" },
+        { value: "land", label: "Arazi (cati yok)" },
+      ],
+      sortOrder: 30,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.cati_alani,
+      label: "Cati Alani",
+      type: "number",
+      group: "energy_basics",
+      scope: "customer",
+      unit: "m2",
+      sortOrder: 40,
+      visibility: "advanced",
+      precision: 0,
+    },
+    {
+      key: fieldKeys.cati_yonu,
+      label: "Cati Yonu",
+      type: "select",
+      group: "energy_basics",
+      scope: "customer",
+      options: [
+        { value: "south", label: "Guney" },
+        { value: "southwest", label: "Guneybati" },
+        { value: "southeast", label: "Guneydogu" },
+        { value: "east", label: "Dogu" },
+        { value: "west", label: "Bati" },
+        { value: "needs_check", label: "Kontrol edilmeli" },
+      ],
+      sortOrder: 50,
+      visibility: "advanced",
+    },
+    {
+      key: fieldKeys.aylik_fatura,
+      label: "Aylik Fatura",
+      type: "currency",
+      group: "energy_basics",
+      scope: "customer",
+      unit: "TL/ay",
+      placeholder: "Ornek: 4800",
+      helpText: "Musterinin son aylik elektrik faturasi.",
+      sortOrder: 60,
+      aiExtractable: true,
+      visibility: "always",
+      numericMin: 0,
+      precision: 0,
+    },
+    {
+      key: fieldKeys.aylik_tuketim,
+      label: "Aylik Tuketim",
+      type: "number",
+      group: "energy_basics",
+      scope: "customer",
+      unit: "kWh",
+      placeholder: "Ornek: 620",
+      sortOrder: 70,
+      aiExtractable: true,
+      visibility: "always",
+      numericMin: 0,
+      precision: 0,
+    },
+    {
+      key: fieldKeys.sistem_kapasitesi,
+      label: "Sistem Kapasitesi",
+      type: "text",
+      group: "energy_basics",
+      scope: "customer",
+      placeholder: "Ornek: 8-10 kW arasi sistem",
+      sortOrder: 80,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.batarya_ihtiyaci,
+      label: "Batarya Ihtiyaci",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 100,
+      aiExtractable: true,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.lityum_batarya_ilgisi,
+      label: "Lityum Batarya Ilgisi",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 110,
+      aiExtractable: true,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.arazi_ges_ilgisi,
+      label: "Arazi GES Ilgisi",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 120,
+      aiExtractable: true,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.cati_ges_ilgisi,
+      label: "Cati GES Ilgisi",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 130,
+      aiExtractable: true,
+      visibility: "always",
+    },
+    {
+      key: fieldKeys.tasarruf_sorusu,
+      label: "Tasarruf Sorusu",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 140,
+      aiExtractable: true,
+      visibility: "advanced",
+    },
+    {
+      key: fieldKeys.amortisman_sorusu,
+      label: "Amortisman Sorusu",
+      type: "boolean",
+      group: "energy_signals",
+      scope: "customer",
+      sortOrder: 150,
+      aiExtractable: true,
+      visibility: "advanced",
+    },
+    {
+      key: fieldKeys.teknik_destek_konusu,
+      label: "Teknik Destek Konusu",
+      type: "longtext",
+      group: "energy_support",
+      scope: "customer",
+      sortOrder: 200,
+      visibility: "advanced",
+    },
+  ],
+
+  customerCardSections: [
+    {
+      id: createDnaSectionId(SECTOR_SLUG, "card", "basics"),
+      title: "Enerji Talep Bilgileri",
+      description: "Musterinin enerji ihtiyaci, cati bilgisi ve fatura seviyesi.",
+      icon: "HiOutlineBolt",
+      layout: "fieldGrid",
+      fields: [
+        fieldKeys.ilgilendigi_hizmet,
+        fieldKeys.yapi_tipi,
+        fieldKeys.cati_tipi,
+        fieldKeys.cati_yonu,
+        fieldKeys.cati_alani,
+        fieldKeys.aylik_fatura,
+        fieldKeys.aylik_tuketim,
+        fieldKeys.sistem_kapasitesi,
+      ],
+      priority: 10,
+      collapsible: true,
+      defaultCollapsed: false,
+      showInCompactMode: true,
+    },
+    {
+      id: createDnaSectionId(SECTOR_SLUG, "card", "signals"),
+      title: "Enerji Sinyalleri",
+      description: "Satis ve teklif surecini etkileyen ozel alanlar.",
+      icon: "HiOutlineSparkles",
+      layout: "signalGrid",
+      fields: [
+        fieldKeys.batarya_ihtiyaci,
+        fieldKeys.lityum_batarya_ilgisi,
+        fieldKeys.arazi_ges_ilgisi,
+        fieldKeys.cati_ges_ilgisi,
+        fieldKeys.tasarruf_sorusu,
+        fieldKeys.amortisman_sorusu,
+      ],
+      priority: 20,
+      collapsible: true,
+      defaultCollapsed: false,
+      showInCompactMode: false,
+    },
+    {
+      id: createDnaSectionId(SECTOR_SLUG, "card", "support"),
+      title: "Teknik Destek",
+      description: "Servis ve teknik destek talepleri.",
+      icon: "HiOutlineWrenchScrewdriver",
+      layout: "fieldList",
+      fields: [fieldKeys.teknik_destek_konusu],
+      priority: 30,
+      collapsible: true,
+      defaultCollapsed: true,
+      showInCompactMode: false,
+    },
+  ],
+
+  kpiCards: [
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "dashboard", "battery_opportunities"),
+      label: "Batarya Firsatlari",
+      description: "Lityum batarya ilgisi tasiyan musteriler.",
+      icon: "HiOutlineBatteryCharging",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "fieldOp",
+          field: fieldKeys.lityum_batarya_ilgisi,
+          comparator: "isTrue",
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_right_column",
+      priority: 10,
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "dashboard", "high_bill"),
+      label: "Yuksek Fatura",
+      description: "Aylik fatura 4000 TL uzeri musteriler.",
+      icon: "HiOutlineArrowTrendingUp",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "fieldOp",
+          field: fieldKeys.aylik_fatura,
+          comparator: "gte",
+          value: 4000,
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_right_column",
+      priority: 20,
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "dashboard", "discovery_waiting"),
+      label: "Kesif Bekleyen",
+      description: "Cati / lokasyon bilgisi tamamlanmasi gereken kayitlar.",
+      icon: "HiOutlineMapPin",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "or",
+          expressions: [
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_tipi,
+              comparator: "isEmpty",
+            },
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_yonu,
+              comparator: "eq",
+              value: "needs_check",
+            },
+          ],
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_right_column",
+      priority: 30,
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "dashboard", "land_ges_opportunities"),
+      label: "Arazi GES Talepleri",
+      description: "Arazi GES ilgisi olan kurumsal musteri sayisi.",
+      icon: "HiOutlineMapPin",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "fieldOp",
+          field: fieldKeys.arazi_ges_ilgisi,
+          comparator: "isTrue",
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_right_column",
+      priority: 40,
+    },
+  ],
+
+  // Security policy V1'de bos birakildi.
+  // Adim 5 (Sektor Modulleri sayfasi) ile birlikte enerji-ozel rol/onay/audit kurallari eklenecek.
+  // securityPolicy: undefined,
+};
