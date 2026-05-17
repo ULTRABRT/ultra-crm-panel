@@ -21,7 +21,7 @@ export function PanelCard({
 }: PanelCardProps) {
   return (
     <div
-      className={`rounded-[2rem] border backdrop-blur-xl ${variants[variant]} ${className}`}
+      className={`arqon-card-hover rounded-[2rem] border backdrop-blur-xl ${variants[variant]} ${className}`}
     >
       {children}
     </div>

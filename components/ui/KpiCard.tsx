@@ -25,11 +25,9 @@ export function KpiCard({
   return (
     <div
       className={`
-        group relative
+        arqon-card-hover group relative
         rounded-3xl border border-white/10 ${baseBg}
         p-5 shadow-2xl shadow-black/20
-        transition-all duration-200
-        hover:border-white/20 hover:bg-white/[0.055]
         ${className}
       `}
     >
