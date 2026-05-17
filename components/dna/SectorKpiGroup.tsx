@@ -58,6 +58,9 @@ export function SectorKpiGroup({
           const formattedValue = result.isUnavailable
             ? "—"
             : formatKpiValue(result.value, kpi.format);
+          const displayValue = result.isUnavailable
+            ? formattedValue
+            : result.value;
           const Icon = resolveIcon(kpi.icon);
           const labelText = resolveLabel(kpi.label);
           const descText =
@@ -67,7 +70,10 @@ export function SectorKpiGroup({
             <KpiCard
               key={String(kpi.id)}
               label={labelText}
-              value={formattedValue}
+              value={displayValue}
+              valueFormatter={(nextValue) =>
+                formatKpiValue(nextValue, kpi.format)
+              }
               icon={Icon}
               description={descText}
             />

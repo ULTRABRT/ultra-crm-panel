@@ -1,5 +1,6 @@
 import { stats } from "../data/dashboard";
 import { PanelCard } from "./PanelCard";
+import { CountUpValue } from "./ui/CountUpValue";
 
 const operationFlow = [
   "Talep alındı",
@@ -7,6 +8,13 @@ const operationFlow = [
   "Öncelik verildi",
   "Takip aksiyonu hazır",
 ];
+
+function getSafeIntegerValue(value: string): number | null {
+  if (!/^\d+$/.test(value)) return null;
+
+  const numericValue = Number(value);
+  return Number.isSafeInteger(numericValue) ? numericValue : null;
+}
 
 export function DashboardHero() {
   return (
@@ -75,22 +83,30 @@ export function DashboardHero() {
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="group rounded-3xl border border-white/10 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.055]"
-            >
-              <p className="text-sm text-white/45">{stat.label}</p>
-              <p className="mt-3 text-4xl font-semibold tracking-tight">
-                {stat.value}
-              </p>
-              <p className="mt-2 text-sm text-white/45">{stat.note}</p>
+          {stats.map((stat) => {
+            const numericValue = getSafeIntegerValue(stat.value);
 
-              <div className="mt-5 h-1 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-2/3 rounded-full bg-white transition group-hover:w-full" />
+            return (
+              <div
+                key={stat.label}
+                className="group rounded-3xl border border-white/10 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.055]"
+              >
+                <p className="text-sm text-white/45">{stat.label}</p>
+                <p className="mt-3 text-4xl font-semibold tracking-tight">
+                  {numericValue === null ? (
+                    stat.value
+                  ) : (
+                    <CountUpValue value={numericValue} />
+                  )}
+                </p>
+                <p className="mt-2 text-sm text-white/45">{stat.note}</p>
+
+                <div className="mt-5 h-1 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full w-2/3 rounded-full bg-white transition group-hover:w-full" />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </PanelCard>

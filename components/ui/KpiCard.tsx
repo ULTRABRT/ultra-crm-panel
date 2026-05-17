@@ -1,13 +1,17 @@
+"use client";
+
 import type { IconType } from "react-icons";
+import { CountUpValue } from "./CountUpValue";
 
 type KpiCardProps = {
   label: string;
-  value: string;
+  value: string | number;
   icon?: IconType;
   description?: string;
   badge?: string;
   variant?: "default" | "highlight";
   className?: string;
+  valueFormatter?: (value: number) => string;
 };
 
 export function KpiCard({
@@ -18,9 +22,11 @@ export function KpiCard({
   badge,
   variant = "default",
   className = "",
+  valueFormatter,
 }: KpiCardProps) {
   const baseBg =
     variant === "highlight" ? "bg-white/[0.055]" : "bg-white/[0.035]";
+  const shouldCountUp = typeof value === "number" && Number.isFinite(value);
 
   return (
     <div
@@ -55,7 +61,11 @@ export function KpiCard({
 
       {/* Value */}
       <p className="mt-2 text-4xl font-semibold tracking-tight text-white">
-        {value}
+        {shouldCountUp ? (
+          <CountUpValue value={value} formatter={valueFormatter} />
+        ) : (
+          value
+        )}
       </p>
 
       {/* Description */}
