@@ -35,7 +35,7 @@ export function TalepCard({ talep }: TalepCardProps) {
 
   return (
     <article className="rounded-[1.7rem] border border-white/10 bg-black/35 p-4 transition hover:border-white/20 hover:bg-white/[0.035]">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+      <div className="arqon-split-grid [--arqon-split-min:18rem]">
         <div className="flex min-w-0 gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
             <SourceIcon className="h-5 w-5 text-white" />
@@ -70,7 +70,7 @@ export function TalepCard({ talep }: TalepCardProps) {
               {talep.requestDetail}
             </p>
 
-            <div className="mt-4 grid gap-2 md:grid-cols-3">
+            <div className="arqon-card-grid mt-4 gap-2 [--arqon-grid-min:9rem]">
               <div className="rounded-2xl border border-white/10 bg-white/[0.025] px-3 py-2">
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
                   Durum
@@ -101,7 +101,7 @@ export function TalepCard({ talep }: TalepCardProps) {
           </div>
         </div>
 
-        <div className="flex shrink-0 flex-row items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.025] px-4 py-3 lg:min-w-[150px] lg:flex-col lg:items-start">
+        <div className="flex flex-row items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.025] px-4 py-3">
           <div>
             <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
               AI Skor
@@ -111,7 +111,7 @@ export function TalepCard({ talep }: TalepCardProps) {
             </p>
           </div>
 
-          <div className="text-right lg:text-left">
+          <div className="text-right">
             <p className="text-xs text-white/45">{talep.timeLabel}</p>
 
             <button className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-black transition hover:bg-white/85">

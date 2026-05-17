@@ -37,7 +37,7 @@ const statHighlights: Record<string, string> = {
 
 export function LeadStats() {
   return (
-    <section className="mb-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-8">
+    <section className="arqon-section-gap arqon-kpi-grid [--arqon-grid-min:11.5rem]">
       {leadStats.map((stat) => {
         const Icon = statIcons[stat.id] ?? HiOutlineInboxStack;
         const highlight = statHighlights[stat.id] ?? "Operasyon verisi";

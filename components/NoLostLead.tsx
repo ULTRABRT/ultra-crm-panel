@@ -58,7 +58,7 @@ export function NoLostLead() {
         {lostLeadAlerts.map((alert) => (
           <div
             key={alert.customer}
-            className="grid gap-4 rounded-3xl border border-white/10 bg-black/55 p-5 transition hover:border-white/25 hover:bg-white/[0.04] lg:grid-cols-[1.1fr_1.6fr_0.7fr_0.8fr_1fr]"
+            className="arqon-card-grid rounded-3xl border border-white/10 bg-black/55 p-5 transition hover:border-white/25 hover:bg-white/[0.04] [--arqon-grid-min:10rem]"
           >
             <div>
               <p className="font-semibold">{alert.customer}</p>

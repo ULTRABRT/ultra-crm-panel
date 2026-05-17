@@ -10,7 +10,7 @@ import { TalepCard } from "./TalepCard";
 export function TalepAkisi() {
   return (
     <section className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20">
-      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-5 flex flex-col gap-4">
         <div>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
             <HiOutlineInboxStack className="h-4 w-4 text-white/70" />
@@ -29,7 +29,7 @@ export function TalepAkisi() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="arqon-action-row">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-xs text-white/55">
             <HiOutlineInboxStack className="h-3.5 w-3.5" />
             Tümü

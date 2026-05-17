@@ -74,12 +74,12 @@ export function Header() {
   const sectorInitial = activeSectorName.trim().charAt(0).toUpperCase() || "S";
 
   return (
-    <header className="relative z-10 shrink-0 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
-      <div className="grid min-h-[104px] gap-3 px-5 py-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:px-6 2xl:grid-cols-[minmax(0,1fr)_minmax(280px,430px)_auto] 2xl:items-center 2xl:gap-4 2xl:px-8">
+    <header className="arqon-header relative z-10 shrink-0 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
+      <div className="arqon-header-inner">
         <div className="flex min-w-0 items-center gap-4 sm:gap-5">
-          <div className="w-[11.5rem] shrink-0 sm:w-[12.5rem]">
+          <div className="arqon-header-brand shrink-0">
             <ArqonWordmark
-              className="h-7 w-48 sm:h-8 sm:w-52"
+              className="h-auto w-full"
               decorative={false}
               label="Arqon"
             />
@@ -95,14 +95,14 @@ export function Header() {
               {config.eyebrow}
             </p>
 
-            <h1 className="mt-1 whitespace-nowrap text-xl font-semibold tracking-tight text-white sm:mt-2 lg:text-2xl">
+            <h1 className="arqon-header-title mt-1 font-semibold tracking-tight text-white sm:mt-2">
               {config.title}
             </h1>
           </div>
         </div>
 
-        <div className="order-3 min-w-0 lg:col-span-2 2xl:order-none 2xl:col-span-1">
-          <div className="flex h-11 min-w-0 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45 lg:h-12">
+        <div className="arqon-header-search">
+          <div className="flex h-[clamp(2.75rem,4cqi,3rem)] min-w-0 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45">
             <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
 
             <input
@@ -112,17 +112,17 @@ export function Header() {
           </div>
         </div>
 
-        <div className="order-2 flex shrink-0 flex-wrap items-center justify-start gap-2 lg:justify-end 2xl:order-none 2xl:flex-nowrap">
-            <div className="inline-flex h-11 items-center rounded-full border border-white/10 bg-black/45 px-3 text-sm font-semibold text-white xl:h-12 xl:px-4">
+        <div className="arqon-header-actions shrink-0">
+            <div className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center rounded-full border border-white/10 bg-black/45 px-3 text-sm font-semibold text-white">
               <span className="text-white/55">Sistem:</span>
               <span className="ml-1 text-white">Aktif</span>
             </div>
 
-            <button className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/45 text-white transition hover:bg-white/[0.06] xl:h-12 xl:w-12">
+            <button className="flex h-[clamp(2.75rem,4cqi,3rem)] w-[clamp(2.75rem,4cqi,3rem)] items-center justify-center rounded-full border border-white/10 bg-black/45 text-white transition hover:bg-white/[0.06]">
               <HiOutlineBellAlert className="h-5 w-5" />
             </button>
 
-            <div className="hidden h-11 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-3 pr-4 xl:flex xl:h-12">
+            <div className="arqon-header-sector h-[clamp(2.75rem,4cqi,3rem)] items-center gap-3 rounded-full border border-white/10 bg-black/45 px-3 pr-4">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
                 {sectorInitial}
               </div>
@@ -137,7 +137,7 @@ export function Header() {
               </div>
             </div>
 
-            <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/85 xl:h-12 xl:px-5">
+            <button className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center justify-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/85">
               <HiOutlinePlus className="h-4 w-4" />
               Yeni Talep
             </button>

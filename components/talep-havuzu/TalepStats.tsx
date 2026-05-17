@@ -17,7 +17,7 @@ const statIcons: Record<string, IconType> = {
 
 export function TalepStats() {
   return (
-    <section className="mb-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <section className="arqon-section-gap arqon-kpi-grid">
       {talepStats.map((stat) => {
         const Icon = statIcons[stat.id] ?? HiOutlineInboxStack;
 

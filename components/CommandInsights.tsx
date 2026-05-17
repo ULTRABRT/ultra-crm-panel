@@ -70,7 +70,7 @@ const activities = [
 
 export function CommandInsights() {
   return (
-    <section className="mb-5 grid gap-5 xl:grid-cols-[0.95fr_1.05fr]">
+    <section className="arqon-section-gap arqon-split-grid [--arqon-split-min:24rem]">
       <div className="rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-2xl shadow-black/40">
         <div className="mb-6 flex items-center justify-between">
           <div>
@@ -143,7 +143,7 @@ export function CommandInsights() {
             <FiRadio className="text-xl text-white/50" />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="arqon-card-grid [--arqon-grid-min:13.5rem]">
             {operationCards.map((card) => {
               const Icon = card.icon;
 

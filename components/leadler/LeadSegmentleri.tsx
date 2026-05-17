@@ -70,7 +70,7 @@ export function LeadSegmentleri() {
         </div>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
+      <div className="arqon-card-grid [--arqon-grid-min:10.5rem]">
         {leadSegments
           .filter((segment) => primarySegments.includes(segment.id))
           .map((segment) => {

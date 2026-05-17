@@ -224,10 +224,10 @@ export function InboxWorkspace() {
   const aiReply = aiReplies[0];
 
   return (
-    <section className="h-full min-h-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#06111d] shadow-2xl shadow-black/45">
+    <section className="arqon-inbox-workspace h-full min-h-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#06111d] shadow-2xl shadow-black/45">
       <div className="flex h-full min-h-0 flex-col">
         <header className="shrink-0 border-b border-white/10 bg-[#071522]">
-          <div className="flex h-auto min-h-[66px] flex-col gap-3 px-4 py-3 xl:flex-row xl:items-center xl:justify-between xl:px-5">
+          <div className="arqon-inbox-top">
             <div className="flex min-w-0 items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-black">
                 <HiOutlineInboxStack className="h-5 w-5" />
@@ -249,8 +249,8 @@ export function InboxWorkspace() {
               </div>
             </div>
 
-            <div className="flex min-w-0 items-center gap-2 self-stretch xl:self-auto">
-              <div className="hidden h-10 min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-white/45 xl:flex xl:w-[280px] 2xl:w-[420px]">
+            <div className="arqon-inbox-actions">
+              <div className="arqon-inbox-search h-10 min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-white/45">
                 <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
                 <input
                   className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
@@ -285,7 +285,7 @@ export function InboxWorkspace() {
           </div>
         </header>
 
-        <div className="grid min-h-0 flex-1 grid-cols-[260px_minmax(0,1fr)] overflow-hidden xl:grid-cols-[280px_minmax(0,1fr)] 2xl:grid-cols-[320px_minmax(0,1fr)_260px]">
+        <div className="arqon-inbox-grid">
           <aside className="flex min-h-0 flex-col overflow-hidden border-r border-white/10 bg-[#071522]">
             <div className="shrink-0 border-b border-white/10 px-4 py-4">
               <div className="mb-4 flex items-start justify-between gap-3">
@@ -449,7 +449,7 @@ export function InboxWorkspace() {
             </footer>
           </section>
 
-          <aside className="hidden min-h-0 flex-col overflow-hidden border-l border-white/10 bg-[#071522] 2xl:flex">
+          <aside className="arqon-inbox-detail min-h-0 flex-col overflow-hidden border-l border-white/10 bg-[#071522]">
             <div className="shrink-0 border-b border-white/10 px-5 py-5">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sm font-bold text-black">

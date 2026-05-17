@@ -42,7 +42,7 @@ export function LeadCard({ lead }: LeadCardProps) {
 
   return (
     <article className="rounded-[1.7rem] border border-white/10 bg-black/35 p-4 transition hover:border-white/20 hover:bg-white/[0.035]">
-      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+      <div className="arqon-split-grid [--arqon-split-min:18rem]">
         <div className="flex min-w-0 gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
             <ChannelIcon className="h-5 w-5 text-white" />
@@ -86,7 +86,7 @@ export function LeadCard({ lead }: LeadCardProps) {
               {lead.lastMessageSummary}
             </p>
 
-            <div className="mt-4 grid gap-2 md:grid-cols-2 xl:grid-cols-4">
+            <div className="arqon-card-grid mt-4 gap-2 [--arqon-grid-min:9rem]">
               <div className="rounded-2xl border border-white/10 bg-white/[0.025] px-3 py-2">
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
                   Durum
@@ -124,7 +124,7 @@ export function LeadCard({ lead }: LeadCardProps) {
               </div>
             </div>
 
-            <div className="mt-3 grid gap-2 md:grid-cols-3">
+            <div className="arqon-card-grid mt-3 gap-2 [--arqon-grid-min:9rem]">
               <div className="rounded-2xl border border-white/10 bg-white/[0.025] px-3 py-2">
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
                   Telefon
@@ -170,7 +170,7 @@ export function LeadCard({ lead }: LeadCardProps) {
           </div>
         </div>
 
-        <aside className="grid shrink-0 gap-3 rounded-[1.4rem] border border-white/10 bg-white/[0.025] p-3 xl:w-[190px]">
+        <aside className="grid gap-3 rounded-[1.4rem] border border-white/10 bg-white/[0.025] p-3">
           <div className="rounded-2xl border border-white/10 bg-black/40 p-3">
             <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
               AI Skor

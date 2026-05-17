@@ -80,7 +80,7 @@ export function RequestsTable() {
         {requests.map((request, index) => (
           <div
             key={request.customer}
-            className={`grid gap-4 px-5 py-4 text-sm md:grid-cols-[1fr_1.45fr_0.8fr_1fr] ${
+            className={`arqon-card-grid px-5 py-4 text-sm [--arqon-grid-min:10rem] ${
               index !== requests.length - 1 ? "border-b border-white/10" : ""
             }`}
           >
@@ -108,7 +108,7 @@ export function RequestsTable() {
         ))}
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="arqon-card-grid mt-6 [--arqon-grid-min:12rem]">
         {actionQueue.map((item) => (
           <div
             key={item.title}

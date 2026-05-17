@@ -14,41 +14,41 @@ import { SectorKpiGroup } from "../components/dna/SectorKpiGroup";
 export default function Home() {
   return (
     <DnaProvider dna={energyDna}>
-      <main className="h-dvh min-h-dvh overflow-hidden bg-black text-white">
-        <div className="flex h-full min-h-0 overflow-hidden">
+      <main className="arqon-app-shell">
+        <div className="arqon-app-frame">
           <Sidebar />
 
-          <section className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+          <section className="arqon-main-panel">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_30%)]" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
             <Header />
 
-            <div className="relative min-h-0 flex-1 overflow-y-auto p-4 pb-14 sm:p-5 lg:p-6 lg:pb-16 2xl:p-8 2xl:pb-20">
-              <section className="mb-6 grid gap-5 2xl:mb-8 2xl:grid-cols-[1.4fr_0.8fr]">
+            <div className="arqon-page-scroll">
+              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:24rem]">
                 <DashboardHero />
                 <ExecutiveSummary />
               </section>
 
-              <section className="mb-5">
+              <section className="arqon-section-gap">
                 <CommandInsights />
               </section>
 
-              <section className="mb-5 grid gap-5 xl:grid-cols-[1fr_0.75fr]">
+              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:24rem]">
                 <RequestsTable />
                 <ChannelStatus />
               </section>
 
-              <section className="mb-5">
+              <section className="arqon-section-gap">
                 <NoLostLead />
               </section>
 
-              <section className="mb-5">
+              <section className="arqon-section-gap">
                 <RevenueRadar />
               </section>
 
               {/* ── YENİ: DNA Sektörel KPI Bloku ─────────────────────────── */}
-              <section className="mb-5">
+              <section className="arqon-section-gap">
                 <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl">
                   <SectorKpiGroup
                     zone="boardroom_right_column"

@@ -12,25 +12,25 @@ import { SatisSureciKarti } from "../../components/musteri-kartlari/SatisSureciK
 
 export default function MusteriKartlariPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="flex min-h-screen overflow-hidden">
+    <main className="arqon-app-shell">
+      <div className="arqon-app-frame">
         <Sidebar />
 
-        <section className="relative flex min-w-0 flex-1 flex-col">
+        <section className="arqon-main-panel">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_30%)]" />
 
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
           <Header />
 
-          <div className="relative flex-1 overflow-auto p-6 lg:p-8">
+          <div className="arqon-page-scroll">
             <MusteriKartlariHero />
 
             <MusteriKpiSatiri />
 
             <MusteriOzetBar />
 
-            <section className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(340px,0.72fr)]">
+            <section className="arqon-split-grid [--arqon-split-min:24rem]">
               <div className="space-y-5">
                 <AiMusteriOzeti />
 

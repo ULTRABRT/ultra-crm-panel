@@ -59,7 +59,7 @@ export function RevenueRadar() {
         </button>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="arqon-card-grid [--arqon-grid-min:12rem]">
         {revenueCards.map((card) => (
           <div
             key={card.label}
@@ -78,7 +78,7 @@ export function RevenueRadar() {
             key={deal.name}
             className="rounded-3xl border border-white/10 bg-black/50 p-5"
           >
-            <div className="grid gap-5 lg:grid-cols-[1.2fr_0.6fr_0.7fr_0.7fr] lg:items-center">
+            <div className="arqon-card-grid items-center [--arqon-grid-min:12rem]">
               <div>
                 <p className="text-lg font-semibold">{deal.name}</p>
                 <p className="mt-1 text-sm text-white/45">{deal.segment}</p>
