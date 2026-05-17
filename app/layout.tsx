@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="tr" translate="no">
       <body
-        className={`${inter.variable} ${manrope.variable} min-h-screen antialiased`}
+        className={`${inter.variable} ${manrope.variable} min-h-dvh overflow-x-hidden antialiased`}
       >
         <BootGate>{children}</BootGate>
       </body>

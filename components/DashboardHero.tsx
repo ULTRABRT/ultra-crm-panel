@@ -18,7 +18,7 @@ function getSafeIntegerValue(value: string): number | null {
 
 export function DashboardHero() {
   return (
-    <PanelCard className="relative overflow-hidden p-8 md:p-10">
+    <PanelCard className="relative overflow-hidden p-6 md:p-8 2xl:p-10">
       <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/[0.08] blur-3xl" />
       <div className="pointer-events-none absolute -bottom-28 right-10 h-80 w-80 rounded-full bg-white/[0.055] blur-3xl" />
 
@@ -31,13 +31,13 @@ export function DashboardHero() {
           AI Boardroom · Canlı brifing · Gelir riski · Öncelikli aksiyon
         </div>
 
-        <div className="mt-8 grid gap-8 xl:grid-cols-[1fr_0.72fr]">
+        <div className="mt-7 grid gap-6 2xl:mt-8 2xl:grid-cols-[1fr_0.72fr] 2xl:gap-8">
           <div>
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.05em] md:text-6xl">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.07] tracking-[-0.05em] md:text-5xl 2xl:text-6xl">
               Bugün 32 sıcak müşteri, ₺701K açık fırsat ve 9 insan onayı bekliyor.
             </h1>
 
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/55">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-white/55 2xl:mt-7 2xl:text-lg 2xl:leading-8">
               İlk aksiyon: 2 saattir bekleyen çok sıcak talepleri satış ekibine
               aktar, teklif isteyen müşterileri aynı gün içinde kapatma masasına al.
             </p>

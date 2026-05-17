@@ -27,6 +27,12 @@ body {
   letter-spacing: -0.01em;
 }
 
+html,
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
 h1,
 h2,
 h3,

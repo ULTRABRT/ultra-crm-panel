@@ -82,21 +82,21 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-[292px] shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl lg:flex">
+    <aside className="sticky top-0 hidden h-dvh w-[88px] shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl lg:flex xl:w-[248px] 2xl:w-[292px]">
       <div className="flex min-h-0 w-full flex-col">
-        <div className="shrink-0 px-6 pb-5 pt-8">
-          <div>
+        <div className="shrink-0 px-3 pb-4 pt-6 xl:px-5 xl:pb-5 xl:pt-7 2xl:px-6 2xl:pt-8">
+          <div className="flex flex-col items-center xl:items-start">
             <ArqonLockup
-              className="-ml-1"
-              emblemSize={44}
-              wordmarkClassName="h-7 w-[10.75rem]"
+              className="xl:-ml-1"
+              emblemSize={42}
+              wordmarkClassName="hidden h-6 w-[8.75rem] xl:block 2xl:h-7 2xl:w-[10.75rem]"
             />
-            <p className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.24em] text-white/30">
+            <p className="mt-1.5 hidden text-[9px] font-semibold uppercase tracking-[0.24em] text-white/30 xl:block">
               Intelligence OS
             </p>
           </div>
 
-          <div className="mt-7 flex items-center gap-4 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-3">
+          <div className="mt-6 hidden items-center gap-3 rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-3 xl:flex 2xl:mt-7 2xl:gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-lg font-semibold text-black">
               S
             </div>
@@ -113,7 +113,7 @@ export function Sidebar() {
           </div>
         </div>
 
-        <nav className="min-h-0 flex-1 overflow-y-auto px-5 pb-6 pt-2">
+        <nav className="min-h-0 flex-1 overflow-y-auto px-3 pb-5 pt-2 xl:px-4 2xl:px-5 2xl:pb-6">
           <div className="space-y-2">
             {menuItems.map((item) => {
               const Icon = item.icon;
@@ -123,7 +123,7 @@ export function Sidebar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`group flex items-center gap-3 rounded-2xl px-4 py-3.5 text-sm font-medium transition ${
+                  className={`group flex items-center justify-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition xl:justify-start xl:px-3.5 xl:py-3.5 2xl:px-4 ${
                     active
                       ? "bg-white text-black shadow-2xl shadow-white/10"
                       : "text-white/58 hover:bg-white/[0.055] hover:text-white"
@@ -139,13 +139,13 @@ export function Sidebar() {
                     <Icon className="h-5 w-5" />
                   </span>
 
-                  <span className="truncate">{item.label}</span>
+                  <span className="hidden truncate xl:block">{item.label}</span>
                 </Link>
               );
             })}
           </div>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 hidden space-y-4 2xl:block">
             <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4">
               <p className="text-xs text-white/40">Sektörel DNA</p>
 

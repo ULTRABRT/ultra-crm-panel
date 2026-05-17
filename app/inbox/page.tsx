@@ -4,8 +4,8 @@ import { InboxWorkspace } from "../../components/inbox/InboxWorkspace";
 
 export default function InboxPage() {
   return (
-    <main className="h-screen overflow-hidden bg-black text-white">
-      <div className="flex h-full overflow-hidden">
+    <main className="h-dvh min-h-dvh overflow-hidden bg-black text-white">
+      <div className="flex h-full min-h-0 overflow-hidden">
         <Sidebar />
 
         <section className="relative flex min-w-0 flex-1 flex-col overflow-hidden">
@@ -14,7 +14,7 @@ export default function InboxPage() {
 
           <Header />
 
-          <div className="relative min-h-0 flex-1 overflow-hidden px-5 py-5 lg:px-7">
+          <div className="relative min-h-0 flex-1 overflow-hidden p-4 sm:p-5 lg:px-6 2xl:px-7">
             <InboxWorkspace />
           </div>
         </section>
