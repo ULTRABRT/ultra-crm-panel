@@ -14,7 +14,7 @@ export default function InboxPage() {
 
           <Header />
 
-          <div className="relative min-h-0 flex-1 overflow-hidden p-[clamp(0.85rem,1.2vw,1.75rem)]">
+          <div className="relative h-dvh overflow-hidden p-[clamp(0.85rem,1.2vw,1.75rem)]">
             <InboxWorkspace />
           </div>
         </section>

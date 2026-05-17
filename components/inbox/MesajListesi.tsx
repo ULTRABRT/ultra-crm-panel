@@ -246,11 +246,11 @@ export function MesajListesi() {
           </div>
         </div>
 
-        <div className="mb-3 flex h-10 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-3 text-white/42">
+        <div className="arqon-search-field mb-3 flex h-10 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-3 text-white/42">
           <HiOutlineMagnifyingGlass className="h-4 w-4 shrink-0" />
 
           <input
-            className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+            className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
             placeholder="Konuşma ara..."
           />
         </div>

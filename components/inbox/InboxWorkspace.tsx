@@ -250,10 +250,10 @@ export function InboxWorkspace() {
             </div>
 
             <div className="arqon-inbox-actions">
-              <div className="arqon-inbox-search h-10 min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-white/45">
+              <div className="arqon-search-field arqon-inbox-search h-10 min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-white/45">
                 <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
                 <input
-                  className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+                  className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
                   placeholder="Mesaj, müşteri veya kanal ara..."
                 />
               </div>
@@ -311,10 +311,10 @@ export function InboxWorkspace() {
                 </div>
               </div>
 
-              <div className="mb-3 flex h-10 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-3 text-white/42">
+              <div className="arqon-search-field mb-3 flex h-10 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-3 text-white/42">
                 <HiOutlineMagnifyingGlass className="h-4 w-4 shrink-0" />
                 <input
-                  className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+                  className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
                   placeholder="Konuşma ara..."
                 />
               </div>
@@ -431,13 +431,13 @@ export function InboxWorkspace() {
                 </div>
               ) : null}
 
-              <div className="flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-black/25 p-2.5">
+              <div className="arqon-search-field flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-black/25 p-2.5">
                 <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/55">
                   <HiOutlinePaperClip className="h-5 w-5" />
                 </button>
 
                 <input
-                  className="h-10 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+                  className="arqon-search-input h-10 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
                   placeholder="Mesajınızı yazın..."
                 />
 

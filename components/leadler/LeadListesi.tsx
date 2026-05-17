@@ -51,10 +51,10 @@ export function LeadListesi() {
       </div>
 
       <div className="arqon-fluid-grid mb-5 [--arqon-grid-min:18rem]">
-        <div className="flex h-12 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45">
+        <div className="arqon-search-field flex h-12 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45">
           <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
           <input
-            className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+            className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
             placeholder="Müşteri, telefon, kaynak, kampanya veya durum ara..."
           />
         </div>

@@ -102,11 +102,11 @@ export function Header() {
         </div>
 
         <div className="arqon-header-search">
-          <div className="flex h-[clamp(2.75rem,4cqi,3rem)] min-w-0 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45">
+          <div className="arqon-search-field flex h-[clamp(2.75rem,4cqi,3rem)] min-w-0 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 text-white/45">
             <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
 
             <input
-              className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+              className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
               placeholder={config.searchPlaceholder}
             />
           </div>

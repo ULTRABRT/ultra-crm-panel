@@ -179,13 +179,13 @@ export function MesajDetayPaneli() {
             </div>
           ) : null}
 
-          <div className="flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-black/25 p-2.5">
+          <div className="arqon-search-field flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-black/25 p-2.5">
             <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/55 transition hover:bg-white/[0.08] hover:text-white">
               <HiOutlinePaperClip className="h-5 w-5" />
             </button>
 
             <input
-              className="h-10 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+              className="arqon-search-input h-10 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
               placeholder="Mesajınızı yazın..."
             />
 
