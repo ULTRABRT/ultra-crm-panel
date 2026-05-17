@@ -70,7 +70,7 @@ const activities = [
 
 export function CommandInsights() {
   return (
-    <section className="arqon-section-gap arqon-split-grid [--arqon-split-min:24rem]">
+    <section className="arqon-section-gap arqon-split-grid items-start [--arqon-split-min:24rem]">
       <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
         <div className="mb-4 flex items-center justify-between gap-4">
           <div>

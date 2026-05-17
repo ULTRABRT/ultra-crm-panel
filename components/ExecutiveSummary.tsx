@@ -3,7 +3,7 @@ import { PanelCard } from "./PanelCard";
 
 export function ExecutiveSummary() {
   return (
-    <PanelCard className="p-[clamp(1.15rem,1.4cqi,1.55rem)]">
+    <PanelCard className="self-start p-[clamp(1.15rem,1.4cqi,1.55rem)]">
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-medium text-white/40">AI Yönetici Masası</p>

@@ -101,6 +101,22 @@ body {
   --arqon-grid-min: 15.5rem;
 }
 
+.arqon-dashboard-hero {
+  container-type: inline-size;
+}
+
+.arqon-hero-kpi-grid {
+  display: grid;
+  gap: clamp(0.75rem, 1cqi, 1rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@container (max-width: 28rem) {
+  .arqon-hero-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .arqon-split-grid {
   display: grid;
   gap: clamp(1rem, 1.4vw, 1.5rem);

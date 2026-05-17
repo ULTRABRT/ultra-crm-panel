@@ -18,7 +18,7 @@ function getSafeIntegerValue(value: string): number | null {
 
 export function DashboardHero() {
   return (
-    <PanelCard className="relative overflow-hidden p-[clamp(1.15rem,1.55cqi,2rem)]">
+    <PanelCard className="arqon-dashboard-hero relative overflow-hidden p-[clamp(1.15rem,1.55cqi,2rem)]">
       <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/[0.08] blur-3xl" />
       <div className="pointer-events-none absolute -bottom-28 right-10 h-80 w-80 rounded-full bg-white/[0.055] blur-3xl" />
 
@@ -81,7 +81,7 @@ export function DashboardHero() {
           </div>
         </div>
 
-        <div className="arqon-kpi-grid mt-5 [--arqon-grid-min:10.75rem]">
+        <div className="arqon-hero-kpi-grid mt-5">
           {stats.map((stat) => {
             const numericValue = getSafeIntegerValue(stat.value);
 
