@@ -107,7 +107,7 @@ body {
 
 .arqon-hero-kpi-grid {
   display: grid;
-  gap: clamp(0.75rem, 1cqi, 1rem);
+  gap: clamp(0.85rem, 1.05cqi, 1rem);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 

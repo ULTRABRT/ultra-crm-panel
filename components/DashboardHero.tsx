@@ -31,13 +31,13 @@ export function DashboardHero() {
           AI Boardroom · Canlı brifing · Gelir riski · Öncelikli aksiyon
         </div>
 
-        <div className="arqon-split-grid mt-5 [--arqon-split-min:21rem]">
+        <div className="arqon-split-grid mt-4 [--arqon-split-min:21rem]">
           <div>
-            <h1 className="max-w-4xl text-[clamp(1.8rem,3.15cqi,3.05rem)] font-semibold leading-[1.06] tracking-[-0.05em]">
+            <h1 className="max-w-4xl text-[clamp(2rem,3.45cqi,3.35rem)] font-semibold leading-[1.04] tracking-[-0.05em]">
               Bugün 32 sıcak müşteri, ₺701K açık fırsat ve 9 insan onayı bekliyor.
             </h1>
 
-            <p className="mt-4 max-w-3xl text-[clamp(0.95rem,1.15cqi,1.05rem)] leading-6 text-white/55">
+            <p className="mt-3 max-w-3xl text-[clamp(0.95rem,1.15cqi,1.05rem)] leading-6 text-white/55">
               İlk aksiyon: 2 saattir bekleyen çok sıcak talepleri satış ekibine
               aktar, teklif isteyen müşterileri aynı gün içinde kapatma masasına al.
             </p>
@@ -81,7 +81,7 @@ export function DashboardHero() {
           </div>
         </div>
 
-        <div className="arqon-hero-kpi-grid mt-5">
+        <div className="arqon-hero-kpi-grid mt-4">
           {stats.map((stat) => {
             const numericValue = getSafeIntegerValue(stat.value);
 
