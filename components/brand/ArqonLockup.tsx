@@ -7,6 +7,7 @@ type ArqonLockupProps = HTMLAttributes<HTMLDivElement> & {
   emblemSize?: number | string;
   label?: string;
   variant?: "dark" | "light";
+  wordmarkClassName?: string;
 };
 
 export function ArqonLockup({
@@ -14,6 +15,7 @@ export function ArqonLockup({
   emblemSize = 36,
   label = "Arqon",
   variant = "dark",
+  wordmarkClassName = "h-5 w-[7.25rem]",
   ...props
 }: ArqonLockupProps) {
   return (
@@ -25,7 +27,7 @@ export function ArqonLockup({
     >
       <ArqonEmblem decorative size={emblemSize} variant={variant} />
       <ArqonWordmark
-        className="h-5 w-[7.25rem]"
+        className={wordmarkClassName}
         decorative
         variant={variant}
       />

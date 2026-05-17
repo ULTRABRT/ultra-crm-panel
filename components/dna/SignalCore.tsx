@@ -265,7 +265,7 @@ export function SignalCore() {
               textAnchor="middle"
               className="arqon-signal-brand text-[13px] font-bold tracking-[0.24em]"
             >
-              ARQON CORE
+              SIGNAL CORE
             </text>
             <text
               x={coreX}

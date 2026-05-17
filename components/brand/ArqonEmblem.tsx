@@ -7,6 +7,40 @@ type ArqonEmblemProps = Omit<SVGProps<SVGSVGElement>, "role"> & {
   variant?: "dark" | "light";
 };
 
+const darkFacets = [
+  { points: "32,36 60,14 60,28 44,42", fill: "#EDEEF0" },
+  { points: "60,14 88,36 76,42 60,28", fill: "#BFC3C9" },
+  { points: "32,84 32,36 44,42 44,78", fill: "#9398A1" },
+  { points: "88,36 88,84 76,78 76,42", fill: "#26282D" },
+  { points: "60,106 32,84 44,78 60,92", fill: "#4C4F56" },
+  { points: "88,84 60,106 60,92 76,78", fill: "#161719" },
+  { points: "60,28 44,42 44,78 60,92", fill: "#6A6E76" },
+  { points: "60,28 76,42 76,78 60,92", fill: "#34373D" },
+  {
+    points: "60,49 71,60 60,71 49,60",
+    fill: "#F4F4F2",
+    stroke: "#16181B",
+    strokeWidth: 0.8,
+  },
+] as const;
+
+const lightFacets = [
+  { points: "32,36 60,14 60,28 44,42", fill: "#6A6E76" },
+  { points: "60,14 88,36 76,42 60,28", fill: "#3A3D43" },
+  { points: "32,84 32,36 44,42 44,78", fill: "#555A62" },
+  { points: "88,36 88,84 76,78 76,42", fill: "#0B0C0E" },
+  { points: "60,106 32,84 44,78 60,92", fill: "#2C2F35" },
+  { points: "88,84 60,106 60,92 76,78", fill: "#050506" },
+  { points: "60,28 44,42 44,78 60,92", fill: "#7E828A" },
+  { points: "60,28 76,42 76,78 60,92", fill: "#2C2F35" },
+  {
+    points: "60,49 71,60 60,71 49,60",
+    fill: "#0E0F12",
+    stroke: "#EDEDEA",
+    strokeWidth: 0.8,
+  },
+] as const;
+
 export function ArqonEmblem({
   decorative = true,
   label = "Arqon",
@@ -15,69 +49,29 @@ export function ArqonEmblem({
   className = "",
   ...props
 }: ArqonEmblemProps) {
-  const tone = variant === "light" ? "text-black" : "text-white";
+  const facets = variant === "light" ? lightFacets : darkFacets;
 
   return (
     <svg
       aria-hidden={decorative || undefined}
       aria-label={decorative ? undefined : label}
-      className={`${tone} ${className}`}
-      fill="none"
+      className={className}
       height={size}
       role={decorative ? undefined : "img"}
-      viewBox="0 0 96 96"
+      viewBox="0 0 120 120"
       width={size}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M48 6 78.5 23.5 88 48 78.5 72.5 48 90 17.5 72.5 8 48 17.5 23.5 48 6Z"
-        fill="currentColor"
-        opacity="0.055"
-      />
-      <path
-        d="M48 6 78.5 23.5 88 48 78.5 72.5 48 90 17.5 72.5 8 48 17.5 23.5 48 6Z"
-        stroke="currentColor"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        opacity="0.62"
-      />
-      <path
-        d="M48 18 68 29.5 76 48 68 66.5 48 78 28 66.5 20 48 28 29.5 48 18Z"
-        stroke="currentColor"
-        strokeLinejoin="round"
-        strokeWidth="1.4"
-        opacity="0.26"
-      />
-      <path
-        d="M48 27 61.5 34.8 67 48 61.5 61.2 48 69 34.5 61.2 29 48 34.5 34.8 48 27Z"
-        fill="currentColor"
-        opacity="0.075"
-      />
-      <path
-        d="M28 48H39.6L48 29.5 56.4 66.5 61.8 48H68"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="3.2"
-        opacity="0.86"
-      />
-      <path
-        d="M38.8 38.4 48 28.8 57.2 38.4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.2"
-        opacity="0.72"
-      />
-      <circle cx="48" cy="48" fill="currentColor" opacity="0.84" r="2.7" />
-      <path
-        d="M48 6V0M48 96v-6M90 48h6M0 48h6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.3"
-        opacity="0.24"
-      />
+      {facets.map((facet, index) => (
+        <polygon
+          fill={facet.fill}
+          key={`${facet.points}-${index}`}
+          points={facet.points}
+          stroke={"stroke" in facet ? facet.stroke : undefined}
+          strokeWidth={"strokeWidth" in facet ? facet.strokeWidth : undefined}
+        />
+      ))}
     </svg>
   );
 }
