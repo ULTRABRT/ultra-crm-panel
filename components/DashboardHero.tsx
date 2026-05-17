@@ -31,7 +31,7 @@ export function DashboardHero() {
           AI Boardroom · Canlı brifing · Gelir riski · Öncelikli aksiyon
         </div>
 
-        <div className="arqon-split-grid mt-4 [--arqon-split-min:21rem]">
+        <div className="arqon-split-grid mt-4 items-start [--arqon-split-min:21rem]">
           <div>
             <h1 className="max-w-4xl text-[clamp(2rem,3.45cqi,3.35rem)] font-semibold leading-[1.04] tracking-[-0.05em]">
               Bugün 32 sıcak müşteri, ₺701K açık fırsat ve 9 insan onayı bekliyor.
@@ -43,7 +43,7 @@ export function DashboardHero() {
             </p>
           </div>
 
-          <div className="rounded-[1.65rem] border border-white/10 bg-black/45 p-4">
+          <div className="self-start rounded-[1.65rem] border border-white/10 bg-black/45 p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-white/40">Yönetici Brifingi</p>

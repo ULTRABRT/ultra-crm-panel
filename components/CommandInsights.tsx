@@ -131,7 +131,7 @@ export function SourcePerformancePanel() {
 
 export function DnaOperationsPanel() {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+    <div className="self-start rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-medium text-white/40">
@@ -143,14 +143,14 @@ export function DnaOperationsPanel() {
         <FiRadio className="text-xl text-white/50" />
       </div>
 
-      <div className="arqon-card-grid [--arqon-grid-min:13.5rem]">
+      <div className="arqon-card-grid items-start [--arqon-grid-min:13.5rem]">
         {operationCards.map((card) => {
           const Icon = card.icon;
 
           return (
             <div
               key={card.title}
-              className="rounded-[1.5rem] border border-white/10 bg-black/55 p-4"
+              className="self-start rounded-[1.5rem] border border-white/10 bg-black/55 p-4"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06]">
                 <Icon className="text-lg" />
@@ -171,7 +171,7 @@ export function DnaOperationsPanel() {
 
 export function ActivityLogPanel() {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+    <div className="self-start rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-medium text-white/40">
