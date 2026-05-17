@@ -200,3 +200,16 @@ export function ActivityLogPanel() {
     </div>
   );
 }
+
+export function CommandInsights() {
+  return (
+    <div className="space-y-[clamp(1rem,1.4vw,1.5rem)]">
+      <div className="arqon-fluid-grid items-start [--arqon-grid-min:24rem]">
+        <SourcePerformancePanel />
+        <DnaOperationsPanel />
+      </div>
+
+      <ActivityLogPanel />
+    </div>
+  );
+}
