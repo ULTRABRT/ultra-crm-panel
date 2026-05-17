@@ -6,7 +6,7 @@ export function ExecutiveSummary() {
     <PanelCard className="p-6">
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <p className="text-sm text-white/40">Yönetici Özeti</p>
+          <p className="text-sm text-white/40">AI Yönetici Masası</p>
           <h3 className="mt-1 text-2xl font-semibold">Bugünkü Riskler</h3>
         </div>
 

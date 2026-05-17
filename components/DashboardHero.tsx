@@ -3,10 +3,10 @@ import { PanelCard } from "./PanelCard";
 import { CountUpValue } from "./ui/CountUpValue";
 
 const operationFlow = [
-  "Talep alındı",
-  "Sıcaklık ölçüldü",
-  "Öncelik verildi",
-  "Takip aksiyonu hazır",
+  "2 saati aşan sıcak talepleri sıraya al",
+  "Teklif isteyen müşterileri kilitle",
+  "9 insan onayını kapat",
+  "Geciken takipleri satışa ata",
 ];
 
 function getSafeIntegerValue(value: string): number | null {
@@ -28,27 +28,26 @@ export function DashboardHero() {
 
       <div className="relative">
         <div className="inline-flex rounded-full border border-white/10 bg-black/45 px-4 py-2 text-sm text-white/60">
-          CRM Çekirdeği · Talep Yönetimi · Teklif Takibi · Yönetici Özeti
+          AI Boardroom · Canlı brifing · Gelir riski · Öncelikli aksiyon
         </div>
 
         <div className="mt-8 grid gap-8 xl:grid-cols-[1fr_0.72fr]">
           <div>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.05em] md:text-6xl">
-              Her kanaldan gelen talebi tek merkezde yakalayan akıllı CRM.
+              Bugün 32 sıcak müşteri, ₺701K açık fırsat ve 9 insan onayı bekliyor.
             </h1>
 
             <p className="mt-7 max-w-3xl text-lg leading-8 text-white/55">
-              Mail, sosyal medya, web sohbet ve manuel formlardan gelen talepler
-              analiz edilir, önceliklendirilir, doğru aksiyona yönlendirilir ve
-              satış süreci görünür hale gelir.
+              İlk aksiyon: 2 saattir bekleyen çok sıcak talepleri satış ekibine
+              aktar, teklif isteyen müşterileri aynı gün içinde kapatma masasına al.
             </p>
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-white/40">Canlı Operasyon Akışı</p>
-                <h3 className="mt-1 text-xl font-semibold">Talep Motoru</h3>
+                <p className="text-sm text-white/40">Yönetici Brifingi</p>
+                <h3 className="mt-1 text-xl font-semibold">Öncelik Sırası</h3>
               </div>
 
               <span className="flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-black">

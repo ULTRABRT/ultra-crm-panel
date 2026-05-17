@@ -11,24 +11,24 @@ export const menuItems = [
 
 export const stats = [
   {
-    label: "Toplam Talep",
-    value: "248",
-    note: "+18 bugün",
+    label: "Açık Fırsat",
+    value: "₺701K",
+    note: "bugün takipte olan hacim",
   },
   {
-    label: "Çok Sıcak",
+    label: "Sıcak Talep",
     value: "32",
-    note: "öncelikli takip",
+    note: "öncelikli müşteri bekliyor",
   },
   {
-    label: "Cevaplanan",
-    value: "186",
-    note: "%75 cevap oranı",
-  },
-  {
-    label: "İnsan Kontrolü",
+    label: "İnsan Onayı",
     value: "9",
-    note: "onay bekliyor",
+    note: "hassas karar masasında",
+  },
+  {
+    label: "Geciken Takip",
+    value: "4",
+    note: "para kaçırma riski",
   },
 ];
 
@@ -127,16 +127,24 @@ export const channels = [
 
 export const executiveNotes = [
   {
-    title: "Kayıp Talep Önleme",
-    description: "3 sıcak müşteri talebi için takip aksiyonu gecikiyor.",
+    title: "Kayıp talep riski",
+    description:
+      "3 sıcak müşteri iki saati aştı; bugün aranmazsa teklif masası soğuyabilir.",
   },
   {
-    title: "İnsan Kontrolü",
-    description: "9 kayıt hassas bilgi nedeniyle onay bekliyor.",
+    title: "Takip gecikmesi",
+    description:
+      "4 takip satış ekibine atanmadı; açık fırsat hacminde ₺186K risk görünüyor.",
   },
   {
-    title: "Teklif Fırsatı",
-    description: "Batarya taleplerinde dönüş oranı yükseliyor.",
+    title: "Teklif fırsatı",
+    description:
+      "Batarya ilgisi yükseldi; 6 kayıt aynı gün teklif akışına alınmalı.",
+  },
+  {
+    title: "İnsan kontrolü",
+    description:
+      "9 hassas kayıt otomasyon yerine yönetici onayı bekliyor.",
   },
 ];
 
