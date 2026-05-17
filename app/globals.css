@@ -387,3 +387,27 @@ body {
     animation: none !important;
   }
 }
+
+.arqon-page-transition {
+  animation: arqon-page-transition-in 200ms ease-out both;
+  will-change: opacity, transform;
+}
+
+@keyframes arqon-page-transition-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arqon-page-transition {
+    animation: none !important;
+    transform: none !important;
+  }
+}
