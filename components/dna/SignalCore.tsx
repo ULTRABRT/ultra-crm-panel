@@ -1,3 +1,5 @@
+import { ArqonEmblem } from "../brand/ArqonEmblem";
+
 type SignalChannel = {
   id: string;
   label: string;
@@ -177,11 +179,6 @@ export function SignalCore() {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
-            <radialGradient id="arqon-core-surface" cx="50%" cy="45%" r="62%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
-              <stop offset="46%" stopColor="rgba(255,255,255,0.075)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0.025)" />
-            </radialGradient>
           </defs>
 
           <g opacity="0.2">
@@ -251,28 +248,14 @@ export function SignalCore() {
             ))}
           </g>
 
-          <g className="arqon-signal-core">
-            <polygon
-              points="360,144 438,186 438,274 360,316 282,274 282,186"
-              fill="url(#arqon-core-surface)"
-              stroke="rgba(255,255,255,0.64)"
-              strokeWidth="1.35"
-            />
-            <polygon
-              points="360,176 408,203 408,257 360,284 312,257 312,203"
-              fill="rgba(0,0,0,0.62)"
-              stroke="rgba(255,255,255,0.26)"
-              strokeWidth="1"
-            />
-            <path
-              d="M330 230 H350 L360 209 L370 251 L382 230 H394"
-              fill="none"
-              stroke="rgba(255,255,255,0.74)"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.8"
-            />
-            <circle cx={coreX} cy={coreY} r="3.2" fill="white" opacity="0.86" />
+          <g transform="translate(312 182)">
+            <g className="arqon-signal-core">
+              <ArqonEmblem
+                className="h-24 w-24 opacity-95 drop-shadow-[0_0_24px_rgba(255,255,255,0.14)]"
+                decorative
+                size={96}
+              />
+            </g>
           </g>
 
           <g className="fill-white text-center">
@@ -280,9 +263,9 @@ export function SignalCore() {
               x={coreX}
               y="350"
               textAnchor="middle"
-              className="arqon-signal-brand text-[18px] font-bold tracking-[0.26em]"
+              className="arqon-signal-brand text-[13px] font-bold tracking-[0.24em]"
             >
-              ARQON
+              ARQON CORE
             </text>
             <text
               x={coreX}
