@@ -25,7 +25,7 @@ export default function Home() {
             <Header />
 
             <div className="arqon-page-scroll">
-              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:24rem]">
+              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:22rem]">
                 <DashboardHero />
                 <ExecutiveSummary />
               </section>
