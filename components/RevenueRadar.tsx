@@ -46,10 +46,10 @@ const opportunities = [
 export function RevenueRadar() {
   return (
     <section className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-white/5 backdrop-blur">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-white/40">Satış Komuta Katmanı</p>
-          <h2 className="mt-1 text-2xl font-semibold tracking-tight">
+          <p className="text-xs font-medium text-white/40">Satış Komuta Katmanı</p>
+          <h2 className="mt-1 text-xl font-semibold tracking-tight">
             Gelir ve Teklif Radarı
           </h2>
         </div>
@@ -63,20 +63,20 @@ export function RevenueRadar() {
         {revenueCards.map((card) => (
           <div
             key={card.label}
-            className="rounded-3xl border border-white/10 bg-white/[0.03] p-5"
+            className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4"
           >
             <p className="text-sm text-white/45">{card.label}</p>
-            <p className="mt-3 text-3xl font-semibold">{card.value}</p>
-            <p className="mt-2 text-sm text-white/45">{card.note}</p>
+            <p className="mt-2 text-2xl font-semibold">{card.value}</p>
+            <p className="mt-1.5 text-sm text-white/45">{card.note}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-5 space-y-4">
+      <div className="mt-4 space-y-3">
         {opportunities.map((deal) => (
           <div
             key={deal.name}
-            className="rounded-3xl border border-white/10 bg-black/50 p-5"
+            className="rounded-[1.5rem] border border-white/10 bg-black/50 p-4"
           >
             <div className="arqon-card-grid items-center [--arqon-grid-min:12rem]">
               <div>
@@ -100,7 +100,7 @@ export function RevenueRadar() {
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="mt-4">
               <div className="mb-2 flex items-center justify-between text-xs text-white/40">
                 <span>Kapanma Skoru</span>
                 <span>%{deal.score}</span>

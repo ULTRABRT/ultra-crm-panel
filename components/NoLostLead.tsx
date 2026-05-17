@@ -35,14 +35,14 @@ const heatStyles: Record<string, string> = {
 
 export function NoLostLead() {
   return (
-    <section className="mb-5 rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-2xl shadow-black/40">
-      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <section className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+      <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm text-white/40">No Lost Lead Motoru</p>
-          <h2 className="mt-1 text-2xl font-semibold tracking-tight">
+          <p className="text-xs font-medium text-white/40">No Lost Lead Motoru</p>
+          <h2 className="mt-1 text-xl font-semibold tracking-tight">
             Kaybolma Riski Taşıyan Fırsatlar
           </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-white/50">
+          <p className="mt-2 max-w-2xl text-sm leading-5 text-white/50">
             Sistem, teklif isteyen, keşif bekleyen veya uzun süre dönüş almayan
             talepleri satış kaybına dönüşmeden öne çıkarır.
           </p>
@@ -58,7 +58,7 @@ export function NoLostLead() {
         {lostLeadAlerts.map((alert) => (
           <div
             key={alert.customer}
-            className="arqon-card-grid rounded-3xl border border-white/10 bg-black/55 p-5 transition hover:border-white/25 hover:bg-white/[0.04] [--arqon-grid-min:10rem]"
+            className="arqon-card-grid rounded-[1.5rem] border border-white/10 bg-black/55 p-4 transition hover:border-white/25 hover:bg-white/[0.04] [--arqon-grid-min:10rem]"
           >
             <div>
               <p className="font-semibold">{alert.customer}</p>

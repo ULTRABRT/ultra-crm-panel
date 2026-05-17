@@ -27,10 +27,10 @@ const iconMap: Record<(typeof channels)[number]["icon"], IconType> = {
 
 export function ChannelStatus() {
   return (
-    <PanelCard className="p-6">
-      <div className="mb-5">
-        <p className="text-sm text-white/40">Kanal Yönetimi</p>
-        <h3 className="mt-1 text-2xl font-semibold">Kanal Durumu</h3>
+    <PanelCard className="p-5">
+      <div className="mb-4">
+        <p className="text-xs font-medium text-white/40">Kanal Yönetimi</p>
+        <h3 className="mt-1 text-xl font-semibold">Kanal Durumu</h3>
       </div>
 
       <div className="grid gap-3">
@@ -40,11 +40,11 @@ export function ChannelStatus() {
           return (
             <div
               key={channel.name}
-              className="group flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-black/45 p-4 transition hover:border-white/20 hover:bg-white/[0.06]"
+              className="group flex items-center justify-between gap-3 rounded-[1.5rem] border border-white/10 bg-black/45 p-3.5 transition hover:border-white/20 hover:bg-white/[0.06]"
             >
-              <div className="flex min-w-0 items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] transition group-hover:bg-white/[0.1]">
-                  <Icon className="text-xl text-white" />
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] transition group-hover:bg-white/[0.1]">
+                  <Icon className="text-lg text-white" />
                 </div>
 
                 <div className="min-w-0">

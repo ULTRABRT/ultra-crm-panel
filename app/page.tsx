@@ -25,7 +25,7 @@ export default function Home() {
             <Header />
 
             <div className="arqon-page-scroll">
-              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:22rem]">
+              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:22rem]">
                 <DashboardHero />
                 <ExecutiveSummary />
               </section>
@@ -34,7 +34,7 @@ export default function Home() {
                 <CommandInsights />
               </section>
 
-              <section className="arqon-section-gap arqon-fluid-grid [--arqon-grid-min:24rem]">
+              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:24rem]">
                 <RequestsTable />
                 <ChannelStatus />
               </section>
@@ -49,7 +49,7 @@ export default function Home() {
 
               {/* ── YENİ: DNA Sektörel KPI Bloku ─────────────────────────── */}
               <section className="arqon-section-gap">
-                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl">
+                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur-xl">
                   <SectorKpiGroup
                     zone="boardroom_right_column"
                     eyebrow="DNA Test Alanı"

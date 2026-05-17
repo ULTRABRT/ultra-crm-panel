@@ -71,29 +71,29 @@ const activities = [
 export function CommandInsights() {
   return (
     <section className="arqon-section-gap arqon-split-grid [--arqon-split-min:24rem]">
-      <div className="rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-2xl shadow-black/40">
-        <div className="mb-6 flex items-center justify-between">
+      <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <div>
-            <p className="text-sm text-white/40">Kaynak Performansı</p>
-            <h2 className="mt-1 text-2xl font-semibold">
+            <p className="text-xs font-medium text-white/40">Kaynak Performansı</p>
+            <h2 className="mt-1 text-xl font-semibold">
               Bugünün Kaynak Gücü
             </h2>
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/60">
+          <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-white/60">
             Kalite görünümü
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {sources.map((source) => (
             <div
               key={source.name}
-              className="rounded-3xl border border-white/10 bg-black/55 p-5"
+              className="rounded-[1.5rem] border border-white/10 bg-black/55 p-4"
             >
-              <div className="mb-4 flex items-start justify-between gap-4">
+              <div className="mb-3 flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-lg font-semibold">{source.name}</p>
+                  <p className="font-semibold">{source.name}</p>
                   <p className="mt-1 text-sm text-white/45">{source.note}</p>
                 </div>
 
@@ -105,23 +105,23 @@ export function CommandInsights() {
               <div className="grid grid-cols-3 gap-3 text-sm">
                 <div>
                   <p className="text-white/40">Lead</p>
-                  <p className="mt-1 text-xl font-semibold">{source.leads}</p>
+                  <p className="mt-1 text-lg font-semibold">{source.leads}</p>
                 </div>
 
                 <div>
                   <p className="text-white/40">Çok Sıcak</p>
-                  <p className="mt-1 text-xl font-semibold">{source.hot}</p>
+                  <p className="mt-1 text-lg font-semibold">{source.hot}</p>
                 </div>
 
                 <div>
                   <p className="text-white/40">Teklif</p>
-                  <p className="mt-1 text-xl font-semibold">{source.offer}</p>
+                  <p className="mt-1 text-lg font-semibold">{source.offer}</p>
                 </div>
               </div>
 
-              <div className="mt-4 h-2 rounded-full bg-white/10">
+              <div className="mt-3 h-1.5 rounded-full bg-white/10">
                 <div
-                  className="h-2 rounded-full bg-white"
+                  className="h-1.5 rounded-full bg-white"
                   style={{ width: `${source.quality}%` }}
                 />
               </div>
@@ -130,12 +130,12 @@ export function CommandInsights() {
         </div>
       </div>
 
-      <div className="space-y-5">
-        <div className="rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-2xl shadow-black/40">
-          <div className="mb-6 flex items-center justify-between">
+      <div className="space-y-4">
+        <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+          <div className="mb-4 flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm text-white/40">Enerji Operasyon Katmanı</p>
-              <h2 className="mt-1 text-2xl font-semibold">
+              <p className="text-xs font-medium text-white/40">Enerji Operasyon Katmanı</p>
+              <h2 className="mt-1 text-xl font-semibold">
                 Solify DNA Kartları
               </h2>
             </div>
@@ -150,15 +150,15 @@ export function CommandInsights() {
               return (
                 <div
                   key={card.title}
-                  className="rounded-3xl border border-white/10 bg-black/55 p-5"
+                  className="rounded-[1.5rem] border border-white/10 bg-black/55 p-4"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06]">
-                    <Icon className="text-xl" />
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06]">
+                    <Icon className="text-lg" />
                   </div>
 
                   <p className="text-sm text-white/45">{card.title}</p>
-                  <p className="mt-2 text-4xl font-semibold">{card.value}</p>
-                  <p className="mt-2 text-sm leading-6 text-white/50">
+                  <p className="mt-2 text-3xl font-semibold">{card.value}</p>
+                  <p className="mt-1.5 text-sm leading-5 text-white/50">
                     {card.note}
                   </p>
                 </div>
@@ -167,11 +167,11 @@ export function CommandInsights() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-2xl shadow-black/40">
-          <div className="mb-5 flex items-center justify-between">
+        <div className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
+          <div className="mb-4 flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm text-white/40">Canlı Operasyon Günlüğü</p>
-              <h2 className="mt-1 text-2xl font-semibold">Son Aktiviteler</h2>
+              <p className="text-xs font-medium text-white/40">Canlı Operasyon Günlüğü</p>
+              <h2 className="mt-1 text-xl font-semibold">Son Aktiviteler</h2>
             </div>
 
             <FiActivity className="text-xl text-white/50" />
@@ -181,13 +181,13 @@ export function CommandInsights() {
             {activities.map((activity, index) => (
               <div
                 key={activity}
-                className="flex gap-4 rounded-3xl border border-white/10 bg-black/55 p-4"
+                className="flex gap-3 rounded-[1.5rem] border border-white/10 bg-black/55 p-3.5"
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-semibold text-black">
                   {index + 1}
                 </div>
 
-                <p className="text-sm leading-6 text-white/65">{activity}</p>
+                <p className="text-sm leading-5 text-white/65">{activity}</p>
               </div>
             ))}
           </div>

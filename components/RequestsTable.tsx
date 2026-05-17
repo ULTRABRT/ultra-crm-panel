@@ -64,23 +64,23 @@ const temperatureStyles = {
 
 export function RequestsTable() {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-black/40 p-6 shadow-2xl shadow-black/30">
-      <div className="mb-6 flex items-center justify-between gap-4">
+    <div className="rounded-[2rem] border border-white/10 bg-black/40 p-5 shadow-2xl shadow-black/30">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <div>
-          <p className="text-sm text-white/40">Talep Kalite Motoru</p>
-          <h2 className="mt-1 text-2xl font-semibold">Son Gelen Talepler</h2>
+          <p className="text-xs font-medium text-white/40">Talep Kalite Motoru</p>
+          <h2 className="mt-1 text-xl font-semibold">Son Gelen Talepler</h2>
         </div>
 
-        <button className="rounded-full border border-white/10 px-5 py-2 text-sm text-white/70 transition hover:border-white/25 hover:text-white">
+        <button className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70 transition hover:border-white/25 hover:text-white">
           Tümünü Gör
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-white/10">
+      <div className="overflow-hidden rounded-[1.5rem] border border-white/10">
         {requests.map((request, index) => (
           <div
             key={request.customer}
-            className={`arqon-card-grid px-5 py-4 text-sm [--arqon-grid-min:10rem] ${
+            className={`arqon-card-grid px-4 py-3.5 text-sm [--arqon-grid-min:10rem] ${
               index !== requests.length - 1 ? "border-b border-white/10" : ""
             }`}
           >
@@ -108,20 +108,20 @@ export function RequestsTable() {
         ))}
       </div>
 
-      <div className="arqon-card-grid mt-6 [--arqon-grid-min:12rem]">
+      <div className="arqon-card-grid mt-4 [--arqon-grid-min:12rem]">
         {actionQueue.map((item) => (
           <div
             key={item.title}
-            className="rounded-3xl border border-white/10 bg-white/[0.035] p-5"
+            className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4"
           >
             <p className="text-sm text-white/45">{item.title}</p>
-            <p className="mt-3 text-3xl font-semibold">{item.value}</p>
-            <p className="mt-2 text-sm text-white/45">{item.note}</p>
+            <p className="mt-2 text-2xl font-semibold">{item.value}</p>
+            <p className="mt-1.5 text-sm text-white/45">{item.note}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.035] p-5">
+      <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-sm text-white/40">Akıllı Öneri</p>
@@ -135,7 +135,7 @@ export function RequestsTable() {
           </span>
         </div>
 
-        <p className="mt-4 max-w-2xl text-sm leading-6 text-white/50">
+        <p className="mt-3 max-w-2xl text-sm leading-5 text-white/50">
           Sistem, teklif ihtimali yüksek talepleri öne çıkarır. Satış ekibi önce
           sıcak müşterilere dönüş yapar, düşük kaliteli bildirimler otomatik
           olarak arka plana alınır.
