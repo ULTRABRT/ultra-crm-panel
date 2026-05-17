@@ -56,8 +56,8 @@ export default function SektorModulleriPage() {
                 </h1>
 
                 <p className="mt-5 max-w-2xl text-base leading-8 text-white/52">
-                  Arqon, her sektörün dilini, KPI'larını, müşteri alanlarını ve
-                  operasyon sinyallerini tek çekirdekte yorumlar.
+                  Arqon, kanal sinyallerini, KPI mantığını ve müşteri hafızasını
+                  tek operasyon çekirdeğinde birleştirir.
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">

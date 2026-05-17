@@ -1,25 +1,15 @@
-import type { CSSProperties } from "react";
-
 type SignalChannel = {
   id: string;
   label: string;
   path: string;
-  startX: number;
-  startY: number;
+  nodeX: number;
+  nodeY: number;
   labelX: number;
   labelY: number;
   textAnchor?: "start" | "middle" | "end";
-  delay: string;
-};
-
-type SignalStyle = CSSProperties & {
-  "--signal-delay": string;
-  "--signal-x": string;
-  "--signal-y": string;
-};
-
-type FlowStyle = CSSProperties & {
-  "--signal-delay": string;
+  duration: string;
+  begin: string;
+  secondaryBegin: string;
 };
 
 const coreX = 360;
@@ -29,91 +19,128 @@ const channels: SignalChannel[] = [
   {
     id: "whatsapp",
     label: "WhatsApp",
-    path: "M86 92 C150 92 198 142 248 178 C288 207 318 222 360 230",
-    startX: 86,
-    startY: 92,
-    labelX: 70,
-    labelY: 68,
-    delay: "0s",
+    path: "M88 104 C156 104 198 140 246 174 C286 202 320 222 360 230",
+    nodeX: 88,
+    nodeY: 104,
+    labelX: 72,
+    labelY: 78,
+    duration: "6.8s",
+    begin: "-0.9s",
+    secondaryBegin: "-4.2s",
   },
   {
     id: "instagram",
     label: "Instagram",
-    path: "M170 34 C214 82 238 130 276 162 C304 186 326 204 360 230",
-    startX: 170,
-    startY: 34,
+    path: "M174 42 C214 86 242 128 278 162 C306 188 332 210 360 230",
+    nodeX: 174,
+    nodeY: 42,
     labelX: 144,
-    labelY: 28,
-    delay: "-0.55s",
+    labelY: 30,
+    duration: "7.7s",
+    begin: "-2.4s",
+    secondaryBegin: "-5.9s",
   },
   {
     id: "mail",
     label: "Mail",
-    path: "M640 86 C574 96 524 132 476 166 C428 200 396 216 360 230",
-    startX: 640,
-    startY: 86,
-    labelX: 650,
-    labelY: 65,
+    path: "M636 94 C570 102 520 134 474 166 C426 200 394 218 360 230",
+    nodeX: 636,
+    nodeY: 94,
+    labelX: 652,
+    labelY: 76,
     textAnchor: "end",
-    delay: "-1.1s",
+    duration: "7.2s",
+    begin: "-1.8s",
+    secondaryBegin: "-5.1s",
   },
   {
     id: "phone",
     label: "Telefon",
-    path: "M680 226 C598 226 540 222 488 224 C438 226 402 228 360 230",
-    startX: 680,
-    startY: 226,
-    labelX: 650,
-    labelY: 216,
+    path: "M674 226 C598 226 538 226 486 225 C438 224 398 227 360 230",
+    nodeX: 674,
+    nodeY: 226,
+    labelX: 652,
+    labelY: 214,
     textAnchor: "end",
-    delay: "-1.65s",
+    duration: "6.4s",
+    begin: "-3.1s",
+    secondaryBegin: "-5.8s",
   },
   {
     id: "form",
     label: "Form",
-    path: "M602 378 C548 350 506 318 464 288 C420 258 390 240 360 230",
-    startX: 602,
-    startY: 378,
-    labelX: 634,
-    labelY: 398,
+    path: "M604 372 C548 346 504 316 462 288 C420 260 390 240 360 230",
+    nodeX: 604,
+    nodeY: 372,
+    labelX: 636,
+    labelY: 392,
     textAnchor: "end",
-    delay: "-2.2s",
+    duration: "8.1s",
+    begin: "-2.8s",
+    secondaryBegin: "-6.6s",
   },
   {
     id: "web-chat",
     label: "Web Chat",
-    path: "M316 420 C320 360 328 318 338 286 C346 260 352 244 360 230",
-    startX: 316,
-    startY: 420,
-    labelX: 316,
+    path: "M318 418 C322 360 330 318 340 286 C348 260 354 244 360 230",
+    nodeX: 318,
+    nodeY: 418,
+    labelX: 318,
     labelY: 438,
     textAnchor: "middle",
-    delay: "-2.75s",
+    duration: "7.4s",
+    begin: "-1.2s",
+    secondaryBegin: "-4.7s",
   },
   {
     id: "referral",
     label: "Referans",
-    path: "M74 334 C146 326 202 306 250 284 C296 263 328 244 360 230",
-    startX: 74,
-    startY: 334,
-    labelX: 70,
-    labelY: 356,
-    delay: "-3.3s",
+    path: "M82 334 C150 326 204 306 252 284 C298 262 330 244 360 230",
+    nodeX: 82,
+    nodeY: 334,
+    labelX: 72,
+    labelY: 358,
+    duration: "6.9s",
+    begin: "-3.7s",
+    secondaryBegin: "-6.3s",
   },
 ];
 
-function getSignalStyle(channel: SignalChannel): SignalStyle {
-  return {
-    "--signal-delay": channel.delay,
-    "--signal-x": `${coreX - channel.startX}px`,
-    "--signal-y": `${coreY - channel.startY}px`,
-  };
-}
-
-function getFlowStyle(channel: SignalChannel): FlowStyle {
-  return {
-    "--signal-delay": channel.delay,
-  };
+function SignalPulse({
+  channel,
+  begin,
+  radius,
+  glowRadius,
+  opacity,
+}: {
+  channel: SignalChannel;
+  begin: string;
+  radius: number;
+  glowRadius: number;
+  opacity: string;
+}) {
+  return (
+    <g className="arqon-signal-flow" opacity="0">
+      <circle r={glowRadius} fill="white" opacity="0.12" filter="url(#arqon-soft-glow)" />
+      <circle r={radius} fill="white" opacity={opacity} />
+      <animateMotion
+        dur={channel.duration}
+        begin={begin}
+        repeatCount="indefinite"
+        rotate="auto"
+      >
+        <mpath href={`#arqon-signal-path-${channel.id}`} />
+      </animateMotion>
+      <animate
+        attributeName="opacity"
+        values="0;0.88;0.72;0"
+        keyTimes="0;0.18;0.82;1"
+        dur={channel.duration}
+        begin={begin}
+        repeatCount="indefinite"
+      />
+    </g>
+  );
 }
 
 export function SignalCore() {
@@ -123,10 +150,10 @@ export function SignalCore() {
       className="arqon-signal-shell relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0B0D10] p-5 shadow-2xl shadow-black/35"
     >
       <div className="pointer-events-none absolute inset-0 arqon-signal-grid" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.09),transparent_34%),radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.045),transparent_26%),radial-gradient(circle_at_80%_85%,rgba(255,255,255,0.04),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_34%),radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.04),transparent_26%),radial-gradient(circle_at_80%_85%,rgba(255,255,255,0.035),transparent_30%)]" />
 
       <div className="relative">
-        <div className="mb-4 flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/36">
+        <div className="mb-4 flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/36">
           <span>Signal Core</span>
           <span>7 kanal</span>
         </div>
@@ -139,85 +166,113 @@ export function SignalCore() {
         >
           <title id="signal-core-title">Arqon Sektörel DNA sinyal çekirdeği</title>
           <desc id="signal-core-desc">
-            Çevresel kanal sinyalleri merkezdeki altıgen DNA çekirdeğine akar.
+            Kanal sinyalleri sabit hatlar üzerinden merkezdeki Arqon çekirdeğine akar.
           </desc>
 
           <defs>
-            <filter id="arqon-soft-glow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="7" result="blur" />
+            <filter id="arqon-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+            <radialGradient id="arqon-core-surface" cx="50%" cy="45%" r="62%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
+              <stop offset="46%" stopColor="rgba(255,255,255,0.075)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0.025)" />
+            </radialGradient>
           </defs>
 
-          <g opacity="0.34">
-            <circle cx={coreX} cy={coreY} r="178" fill="none" stroke="white" strokeWidth="1" strokeDasharray="2 18" />
-            <circle cx={coreX} cy={coreY} r="112" fill="none" stroke="white" strokeWidth="1" strokeDasharray="1 14" />
+          <g opacity="0.2">
+            <circle cx={coreX} cy={coreY} r="178" fill="none" stroke="white" strokeWidth="1" />
+            <circle cx={coreX} cy={coreY} r="112" fill="none" stroke="white" strokeWidth="1" />
           </g>
 
-          {channels.map((channel) => (
-            <g key={channel.id}>
+          <g>
+            {channels.map((channel) => (
               <path
+                key={channel.id}
+                id={`arqon-signal-path-${channel.id}`}
                 className="arqon-signal-path"
                 d={channel.path}
                 fill="none"
-                stroke="rgba(255,255,255,0.38)"
+                stroke="rgba(255,255,255,0.28)"
                 strokeLinecap="round"
-                strokeWidth="1.3"
-                style={getFlowStyle(channel)}
+                strokeWidth="1.15"
               />
-              <circle
-                className="arqon-signal-dot"
-                cx={channel.startX}
-                cy={channel.startY}
-                r="3.5"
-                fill="white"
-                filter="url(#arqon-soft-glow)"
-                style={getSignalStyle(channel)}
+            ))}
+          </g>
+
+          <g>
+            {channels.map((channel) => (
+              <g key={channel.id}>
+                <circle
+                  cx={channel.nodeX}
+                  cy={channel.nodeY}
+                  r="5"
+                  fill="rgba(255,255,255,0.08)"
+                  stroke="rgba(255,255,255,0.22)"
+                  strokeWidth="1"
+                />
+                <circle cx={channel.nodeX} cy={channel.nodeY} r="1.7" fill="rgba(255,255,255,0.74)" />
+                <text
+                  x={channel.labelX}
+                  y={channel.labelY}
+                  textAnchor={channel.textAnchor ?? "start"}
+                  className="arqon-signal-label fill-white/43 text-[13px] font-medium tracking-[0.08em]"
+                >
+                  {channel.label}
+                </text>
+              </g>
+            ))}
+          </g>
+
+          <g>
+            {channels.map((channel) => (
+              <SignalPulse
+                key={`${channel.id}-primary`}
+                channel={channel}
+                begin={channel.begin}
+                radius={2.4}
+                glowRadius={8}
+                opacity="0.88"
               />
-              <circle
-                cx={channel.startX}
-                cy={channel.startY}
-                r="5"
-                fill="none"
-                stroke="rgba(255,255,255,0.22)"
-                strokeWidth="1"
+            ))}
+            {channels.map((channel) => (
+              <SignalPulse
+                key={`${channel.id}-secondary`}
+                channel={channel}
+                begin={channel.secondaryBegin}
+                radius={1.6}
+                glowRadius={5.5}
+                opacity="0.58"
               />
-              <text
-                x={channel.labelX}
-                y={channel.labelY}
-                textAnchor={channel.textAnchor ?? "start"}
-                className="fill-white/45 text-[13px] font-medium tracking-[0.14em]"
-              >
-                {channel.label}
-              </text>
-            </g>
-          ))}
+            ))}
+          </g>
 
           <g className="arqon-signal-core">
             <polygon
-              points="360,142 438,186 438,274 360,318 282,274 282,186"
-              fill="rgba(255,255,255,0.055)"
-              stroke="rgba(255,255,255,0.62)"
-              strokeWidth="1.4"
+              points="360,144 438,186 438,274 360,316 282,274 282,186"
+              fill="url(#arqon-core-surface)"
+              stroke="rgba(255,255,255,0.64)"
+              strokeWidth="1.35"
             />
             <polygon
-              points="360,174 410,202 410,258 360,286 310,258 310,202"
-              fill="rgba(0,0,0,0.58)"
-              stroke="rgba(255,255,255,0.28)"
+              points="360,176 408,203 408,257 360,284 312,257 312,203"
+              fill="rgba(0,0,0,0.62)"
+              stroke="rgba(255,255,255,0.26)"
               strokeWidth="1"
             />
             <path
-              d="M330 230 H350 L360 208 L370 252 L382 230 H394"
+              d="M330 230 H350 L360 209 L370 251 L382 230 H394"
               fill="none"
-              stroke="rgba(255,255,255,0.76)"
+              stroke="rgba(255,255,255,0.74)"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="1.8"
             />
-            <circle cx={coreX} cy={coreY} r="4" fill="white" />
+            <circle cx={coreX} cy={coreY} r="3.2" fill="white" opacity="0.86" />
           </g>
 
           <g className="fill-white text-center">
@@ -225,7 +280,7 @@ export function SignalCore() {
               x={coreX}
               y="350"
               textAnchor="middle"
-              className="text-[18px] font-semibold tracking-[0.36em]"
+              className="arqon-signal-brand text-[18px] font-bold tracking-[0.26em]"
             >
               ARQON
             </text>
@@ -233,7 +288,7 @@ export function SignalCore() {
               x={coreX}
               y="376"
               textAnchor="middle"
-              className="fill-white/40 text-[11px] font-medium uppercase tracking-[0.28em]"
+              className="arqon-signal-label fill-white/40 text-[11px] font-medium uppercase tracking-[0.2em]"
             >
               Sector DNA
             </text>

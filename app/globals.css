@@ -527,52 +527,17 @@ select:focus-visible {
 }
 
 .arqon-signal-path {
-  stroke-dasharray: 12 24;
-  stroke-dashoffset: 96;
-  animation: arqon-signal-flow 4.2s linear infinite;
-  animation-delay: var(--signal-delay, 0s);
+  vector-effect: non-scaling-stroke;
 }
 
-.arqon-signal-dot {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: arqon-signal-dot-flow 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  animation-delay: var(--signal-delay, 0s);
+.arqon-signal-flow {
+  pointer-events: none;
 }
 
 .arqon-signal-core {
   transform-box: fill-box;
   transform-origin: center;
-  animation: arqon-core-pulse 5.2s ease-in-out infinite;
-}
-
-@keyframes arqon-signal-flow {
-  to {
-    stroke-dashoffset: -96;
-  }
-}
-
-@keyframes arqon-signal-dot-flow {
-  0%,
-  14% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.64);
-  }
-
-  28% {
-    opacity: 0.82;
-  }
-
-  82% {
-    opacity: 0.72;
-    transform: translate3d(var(--signal-x), var(--signal-y), 0) scale(0.86);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--signal-x), var(--signal-y), 0) scale(0.46);
-  }
+  animation: arqon-core-pulse 6.4s ease-in-out infinite;
 }
 
 @keyframes arqon-core-pulse {
@@ -582,23 +547,17 @@ select:focus-visible {
   }
 
   50% {
-    transform: scale(1.03);
+    transform: scale(1.018);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .arqon-signal-path,
-  .arqon-signal-dot,
   .arqon-signal-core {
     animation: none !important;
     transform: none !important;
   }
 
-  .arqon-signal-path {
-    stroke-dashoffset: 0 !important;
-  }
-
-  .arqon-signal-dot {
-    opacity: 0.58 !important;
+  .arqon-signal-flow {
+    display: none;
   }
 }
