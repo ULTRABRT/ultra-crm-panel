@@ -25,7 +25,7 @@ export default function Home() {
             <Header />
 
             <div className="arqon-page-scroll">
-              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:22rem]">
+              <section className="arqon-section-gap arqon-dashboard-grid [--arqon-dashboard-grid-min:22rem]">
                 <DashboardHero />
                 <ExecutiveSummary />
               </section>
@@ -34,7 +34,7 @@ export default function Home() {
                 <CommandInsights />
               </section>
 
-              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:24rem]">
+              <section className="arqon-section-gap arqon-dashboard-grid [--arqon-dashboard-grid-min:24rem]">
                 <RequestsTable />
                 <ChannelStatus />
               </section>
