@@ -6,6 +6,8 @@ import {
   HiOutlineMagnifyingGlass,
   HiOutlinePlus,
 } from "react-icons/hi2";
+import { useDnaSafe } from "../context/DnaContext";
+import { resolveLabel } from "../lib/dna/keys";
 
 type HeaderConfig = {
   eyebrow: string;
@@ -56,18 +58,39 @@ function getHeaderConfig(pathname: string): HeaderConfig {
 export function Header() {
   const pathname = usePathname();
   const config = getHeaderConfig(pathname);
+  const dnaContext = useDnaSafe();
+  const activeSectorName = dnaContext?.activeDna.meta.name
+    ? resolveLabel(dnaContext.activeDna.meta.name)
+    : "Solify";
+  const activePackageLabel = dnaContext?.activeDna.meta.packageLabel
+    ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
+    : "Enerji Paketi";
+  const sectorInitial = activeSectorName.trim().charAt(0).toUpperCase() || "S";
 
   return (
     <header className="relative z-10 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
       <div className="flex min-h-[104px] flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.45em] text-white/35">
-            {config.eyebrow}
-          </p>
+        <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+          <div className="shrink-0">
+            <div className="text-[1.35rem] font-semibold leading-none tracking-[0.32em] text-white">
+              ARQON
+            </div>
+            <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/35">
+              Operation Intelligence
+            </div>
+          </div>
 
-          <h1 className="mt-2 truncate text-2xl font-semibold tracking-tight text-white">
-            {config.title}
-          </h1>
+          <div className="hidden h-10 w-px bg-white/10 sm:block" />
+
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.45em] text-white/35">
+              {config.eyebrow}
+            </p>
+
+            <h1 className="mt-2 truncate text-2xl font-semibold tracking-tight text-white">
+              {config.title}
+            </h1>
+          </div>
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -92,15 +115,15 @@ export function Header() {
 
             <div className="hidden h-12 items-center gap-3 rounded-full border border-white/10 bg-black/45 px-3 pr-4 sm:flex">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
-                S
+                {sectorInitial}
               </div>
 
               <div>
                 <p className="text-xs font-semibold leading-none text-white">
-                  Solify
+                  {activeSectorName}
                 </p>
                 <p className="mt-1 text-[11px] leading-none text-white/40">
-                  Enerji Paketi
+                  {activePackageLabel}
                 </p>
               </div>
             </div>
