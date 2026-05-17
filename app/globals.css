@@ -483,3 +483,93 @@ select:focus-visible {
     transition: none;
   }
 }
+
+.arqon-signal-shell {
+  isolation: isolate;
+}
+
+.arqon-signal-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.36;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 76%);
+}
+
+.arqon-signal-path {
+  stroke-dasharray: 12 24;
+  stroke-dashoffset: 96;
+  animation: arqon-signal-flow 4.2s linear infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.arqon-signal-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: arqon-signal-dot-flow 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.arqon-signal-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: arqon-core-pulse 5.2s ease-in-out infinite;
+}
+
+@keyframes arqon-signal-flow {
+  to {
+    stroke-dashoffset: -96;
+  }
+}
+
+@keyframes arqon-signal-dot-flow {
+  0%,
+  14% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.64);
+  }
+
+  28% {
+    opacity: 0.82;
+  }
+
+  82% {
+    opacity: 0.72;
+    transform: translate3d(var(--signal-x), var(--signal-y), 0) scale(0.86);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--signal-x), var(--signal-y), 0) scale(0.46);
+  }
+}
+
+@keyframes arqon-core-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arqon-signal-path,
+  .arqon-signal-dot,
+  .arqon-signal-core {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .arqon-signal-path {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .arqon-signal-dot {
+    opacity: 0.58 !important;
+  }
+}

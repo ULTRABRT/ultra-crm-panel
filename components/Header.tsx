@@ -41,6 +41,11 @@ const headerConfigs: Record<string, HeaderConfig> = {
     title: "Ultra Inbox",
     searchPlaceholder: "Mesaj, müşteri, kanal veya durum ara...",
   },
+  "/sektor-modulleri": {
+    eyebrow: "Sektörel DNA Mimarisi",
+    title: "Sektör Modülleri",
+    searchPlaceholder: "Sektör, sinyal, KPI veya modül ara...",
+  },
 };
 
 function getHeaderConfig(pathname: string): HeaderConfig {
