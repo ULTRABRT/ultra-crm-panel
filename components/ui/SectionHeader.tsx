@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { designTokens } from "../../lib/design/tokens";
 
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -21,15 +22,15 @@ export function SectionHeader({
     return (
       <div className={`mb-6 ${className}`}>
         {eyebrow && (
-          <p className="text-sm text-white/40 uppercase tracking-widest">
+          <p className={designTokens.typography.label}>
             {eyebrow}
           </p>
         )}
-        <h2 className="mt-1 text-2xl font-semibold tracking-tight text-white">
+        <h2 className={`mt-1 ${designTokens.typography.sectionTitle}`}>
           {title}
         </h2>
         {description && (
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-white/50">
+          <p className={`mt-2 max-w-3xl ${designTokens.typography.body}`}>
             {description}
           </p>
         )}
@@ -43,15 +44,15 @@ export function SectionHeader({
     <div className={`mb-6 flex items-start justify-between gap-4 ${className}`}>
       <div>
         {eyebrow && (
-          <p className="text-sm text-white/40 uppercase tracking-widest">
+          <p className={designTokens.typography.label}>
             {eyebrow}
           </p>
         )}
-        <h2 className="mt-1 text-2xl font-semibold tracking-tight text-white">
+        <h2 className={`mt-1 ${designTokens.typography.sectionTitle}`}>
           {title}
         </h2>
         {description && (
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-white/50">
+          <p className={`mt-2 max-w-3xl ${designTokens.typography.body}`}>
             {description}
           </p>
         )}

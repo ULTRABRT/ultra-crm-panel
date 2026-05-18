@@ -2,6 +2,7 @@
 
 import { SectionHeader } from "../ui/SectionHeader";
 import { KpiCard } from "../ui/KpiCard";
+import { KpiGrid } from "../ui/KpiGrid";
 import { useDna } from "../../context/DnaContext";
 import { evaluateKpi, formatKpiValue } from "../../lib/dna/kpiEvaluator";
 import { resolveIcon } from "../../lib/dna/iconRegistry";
@@ -16,12 +17,6 @@ type SectorKpiGroupProps = {
   description?: string;
   columns?: 2 | 3 | 4;
   className?: string;
-};
-
-const gridClass: Record<number, string> = {
-  2: "grid sm:grid-cols-2 gap-4",
-  3: "grid sm:grid-cols-2 xl:grid-cols-3 gap-4",
-  4: "grid sm:grid-cols-2 xl:grid-cols-4 gap-4",
 };
 
 export function SectorKpiGroup({
@@ -40,8 +35,6 @@ export function SectorKpiGroup({
 
   if (cards.length === 0) return null;
 
-  const colClass = gridClass[columns] ?? gridClass[2];
-
   return (
     <div className={className}>
       {(title || eyebrow) && (
@@ -52,7 +45,7 @@ export function SectorKpiGroup({
         />
       )}
 
-      <div className={colClass}>
+      <KpiGrid columns={columns}>
         {cards.map((kpi) => {
           const result = evaluateKpi(kpi, mockEvaluationDataset);
           const formattedValue = result.isUnavailable
@@ -79,7 +72,7 @@ export function SectorKpiGroup({
             />
           );
         })}
-      </div>
+      </KpiGrid>
     </div>
   );
 }

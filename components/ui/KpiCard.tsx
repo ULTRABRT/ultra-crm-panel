@@ -1,6 +1,7 @@
 "use client";
 
 import type { IconType } from "react-icons";
+import { designTokens } from "../../lib/design/tokens";
 import { CountUpValue } from "./CountUpValue";
 
 type KpiCardProps = {
@@ -25,15 +26,17 @@ export function KpiCard({
   valueFormatter,
 }: KpiCardProps) {
   const baseBg =
-    variant === "highlight" ? "bg-white/[0.055]" : "bg-white/[0.035]";
+    variant === "highlight"
+      ? designTokens.surface.cardStrong.className
+      : designTokens.surface.card.className;
   const shouldCountUp = typeof value === "number" && Number.isFinite(value);
 
   return (
     <div
       className={`
         arqon-card-hover group relative
-        rounded-3xl border border-white/10 ${baseBg}
-        p-5 shadow-2xl shadow-black/20
+        ${designTokens.radius.xl.className} border ${designTokens.border.subtle.className} ${baseBg}
+        ${designTokens.spacing[24].padding} ${designTokens.shadow.soft.className}
         ${className}
       `}
     >
@@ -41,15 +44,22 @@ export function KpiCard({
       {(Icon || badge) && (
         <div className="mb-4 flex items-center justify-between">
           {Icon ? (
-            <div className="rounded-2xl border border-white/10 bg-black/50 p-3">
-              <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+            <div
+              className={`${designTokens.radius.lg.className} border ${designTokens.border.subtle.className} ${designTokens.surface.overlay.className} p-3`}
+            >
+              <Icon
+                className={`h-5 w-5 ${designTokens.text.primary.className}`}
+                aria-hidden="true"
+              />
             </div>
           ) : (
             <div />
           )}
 
           {badge && (
-            <span className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[11px] font-medium text-white/50">
+            <span
+              className={`${designTokens.radius.full.className} border ${designTokens.border.subtle.className} bg-black/40 px-3 py-1 text-[11px] font-medium ${designTokens.text.muted.className}`}
+            >
               {badge}
             </span>
           )}
@@ -57,10 +67,10 @@ export function KpiCard({
       )}
 
       {/* Label */}
-      <p className="text-sm text-white/50">{label}</p>
+      <p className={designTokens.typography.body}>{label}</p>
 
       {/* Value */}
-      <p className="mt-2 text-4xl font-semibold tracking-tight text-white">
+      <p className={`mt-2 text-4xl font-semibold tracking-tight ${designTokens.text.primary.className}`}>
         {shouldCountUp ? (
           <CountUpValue value={value} formatter={valueFormatter} />
         ) : (
@@ -70,7 +80,9 @@ export function KpiCard({
 
       {/* Description */}
       {description && (
-        <p className="mt-3 text-xs leading-5 text-white/45">{description}</p>
+        <p className={`mt-3 text-xs leading-5 ${designTokens.text.muted.className}`}>
+          {description}
+        </p>
       )}
     </div>
   );
