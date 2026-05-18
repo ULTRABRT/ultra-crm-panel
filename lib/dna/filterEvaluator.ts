@@ -2,6 +2,7 @@ import type {
   FilterEvaluationContext,
   FilterComparator,
   FilterExpression,
+  TimeWindowFilterExpression,
 } from "../../types/dna/FilterExpression";
 
 // ─────────────────────────────────────────────
@@ -136,6 +137,13 @@ function compareValues(
   }
 }
 
+function resolveTimeWindowHours(
+  expression: TimeWindowFilterExpression
+): number | null {
+  const hours = expression.hours ?? expression.windowHours;
+  return typeof hours === "number" && Number.isFinite(hours) ? hours : null;
+}
+
 // ─────────────────────────────────────────────
 // Public API
 // ─────────────────────────────────────────────
@@ -177,12 +185,14 @@ export function evaluateFilter(
         const now = context.now ?? new Date();
         const diffMs = now.getTime() - fieldDate.getTime();
         const diffHours = diffMs / (1000 * 60 * 60);
+        const windowHours = resolveTimeWindowHours(expression);
+        if (windowHours === null) return false;
 
         if (expression.mode === "within") {
-          return diffHours <= expression.windowHours;
+          return diffHours <= windowHours;
         } else {
           // "exceeds"
-          return diffHours > expression.windowHours;
+          return diffHours > windowHours;
         }
       } catch {
         return false;

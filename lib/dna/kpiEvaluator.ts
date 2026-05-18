@@ -1,4 +1,8 @@
-import type { KpiCard, KpiSourceSimple } from "../../types/dna/KpiCard";
+import type {
+  ExternalKpiSource,
+  KpiCard,
+  KpiSourceSimple,
+} from "../../types/dna/KpiCard";
 import { filterCollection } from "./filterEvaluator";
 
 // ─────────────────────────────────────────────
@@ -51,6 +55,10 @@ function evaluateSimpleSource(
   }, 0);
 }
 
+function resolveIntegrationKey(source: ExternalKpiSource): string {
+  return source.integrationKey ?? source.integrationId ?? "unknown";
+}
+
 // ─────────────────────────────────────────────
 // Public API — evaluateKpi
 // ─────────────────────────────────────────────
@@ -96,10 +104,11 @@ export function evaluateKpi(card: KpiCard, dataset: KpiDataset): KpiResult {
     }
 
     if (source.type === "external") {
+      const integrationKey = resolveIntegrationKey(source);
       return {
         value: 0,
         isUnavailable: true,
-        error: `External integration "${source.integrationId}" not implemented in V1.`,
+        error: `External integration "${integrationKey}" not implemented in V1.`,
       };
     }
 

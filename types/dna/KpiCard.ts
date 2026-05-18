@@ -13,6 +13,25 @@ import type { DnaKpiId } from "./DnaKey";
 import type { FilterExpression } from "./FilterExpression";
 import type { Localizable } from "./Localizable";
 
+export type ExternalKpiSource = {
+  /** Dis entegrasyon (V1'de tipte var, motoru sonra) */
+  type: "external";
+  metric: string;
+} & (
+  | {
+      /** Canonical integration key */
+      integrationKey: string;
+      /** Backward-compatible V1 integration id */
+      integrationId?: string;
+    }
+  | {
+      /** Canonical integration key */
+      integrationKey?: string;
+      /** Backward-compatible V1 integration id */
+      integrationId: string;
+    }
+);
+
 /** KPI veri kaynagi varyantlari */
 export type KpiSource =
   | {
@@ -44,12 +63,7 @@ export type KpiSource =
       numerator: KpiSourceSimple;
       denominator: KpiSourceSimple;
     }
-  | {
-      /** Dis entegrasyon (V1'de tipte var, motoru sonra) */
-      type: "external";
-      integrationId: string;
-      metric: string;
-    };
+  | ExternalKpiSource;
 
 /** Ratio icin alt tip (recursion engellemek icin) */
 export type KpiSourceSimple =

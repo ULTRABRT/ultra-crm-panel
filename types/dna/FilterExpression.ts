@@ -40,16 +40,28 @@ export type FieldFilterExpression = {
   value?: string | number | boolean | string[] | number[] | [number, number];
 };
 
+type TimeWindowHoursFields =
+  | {
+      /** Canonical hour window field */
+      hours: number;
+      /** Backward-compatible V1 field */
+      windowHours?: number;
+    }
+  | {
+      /** Canonical hour window field */
+      hours?: number;
+      /** Backward-compatible V1 field */
+      windowHours: number;
+    };
+
 /** Yatay zaman penceresi kontrolu icin ozel kosul (orn. "son 2 saatte") */
 export type TimeWindowFilterExpression = {
   op: "timeWindow";
   /** Karsilastirilacak zaman alani (orn. "lead.lastContactAt") */
   field: string;
-  /** Pozitif sayilar gecmis, negatif sayilar gelecek penceresi */
-  windowHours: number;
   /** "within" = pencere icinde, "exceeds" = pencereyi astiysa */
   mode: "within" | "exceeds";
-};
+} & TimeWindowHoursFields;
 
 /** Mantiksal AND */
 export type AndFilterExpression = {
