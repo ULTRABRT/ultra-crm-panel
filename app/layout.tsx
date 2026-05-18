@@ -17,7 +17,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Ultra CRM | Solify Panel",
+  title: "Arqon | Solify Panel",
   description:
     "Solify müşteri ilişkileri, talep yönetimi ve operasyon takip paneli.",
 };

@@ -53,7 +53,7 @@ export function InboxHero() {
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
                 <HiOutlineInboxStack className="h-4 w-4 text-white/70" />
                 <span className="text-xs font-medium text-white/55">
-                  Ultra CRM / Mesaj Operasyon Merkezi
+                  Arqon / Mesaj Operasyon Merkezi
                 </span>
               </span>
 

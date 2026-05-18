@@ -58,7 +58,7 @@ export const energyDna: SectorDna = {
       "Gunes paneli, batarya, GES projeleri ve enerji tasarrufu odakli satis operasyonu.",
     status: "active",
     releaseDate: "2026-05-14",
-    author: "Ultra CRM",
+    author: "Arqon",
   },
 
   vocabulary: {

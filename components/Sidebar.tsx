@@ -14,6 +14,8 @@ import {
   HiOutlineSquares2X2,
   HiOutlineUserGroup,
 } from "react-icons/hi2";
+import { useDnaSafe } from "../context/DnaContext";
+import { resolveLabel } from "../lib/dna/keys";
 import { ArqonLockup } from "./brand/ArqonLockup";
 
 type SidebarItem = {
@@ -64,8 +66,8 @@ const menuItems: SidebarItem[] = [
     icon: HiOutlineCog6Tooth,
   },
   {
-    label: "Sektör Modülleri",
-    href: "/sektor-modulleri",
+    label: "Sektörel DNA",
+    href: "/sektorel-dna",
     icon: HiOutlineBolt,
   },
 ];
@@ -80,6 +82,10 @@ function isActivePath(pathname: string, href: string) {
 
 export function Sidebar() {
   const pathname = usePathname();
+  const dnaContext = useDnaSafe();
+  const activePackageLabel = dnaContext?.activeDna.meta.packageLabel
+    ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
+    : "Aktif DNA";
 
   return (
     <aside className="arqon-sidebar sticky top-0 hidden h-dvh shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl lg:flex">
@@ -108,7 +114,7 @@ export function Sidebar() {
               <h2 className="mt-1 truncate text-xl font-semibold tracking-tight text-white">
                 Solify Panel
               </h2>
-              <p className="mt-1 text-xs text-white/38">Enerji Paketi</p>
+              <p className="mt-1 text-xs text-white/38">{activePackageLabel}</p>
             </div>
           </div>
         </div>
@@ -172,7 +178,7 @@ export function Sidebar() {
 
             <div className="rounded-[1.5rem] border border-white/10 bg-black/55 p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/30">
-                Ultra Durum
+                Intelligence, Sharpened.
               </p>
 
               <div className="mt-4 flex items-center justify-between gap-3">

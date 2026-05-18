@@ -6,9 +6,9 @@ import {
   HiOutlineMagnifyingGlass,
   HiOutlinePlus,
 } from "react-icons/hi2";
-import { ArqonWordmark } from "./brand/ArqonWordmark";
 import { useDnaSafe } from "../context/DnaContext";
 import { resolveLabel } from "../lib/dna/keys";
+import { ArqonWordmark } from "./brand/ArqonWordmark";
 
 type HeaderConfig = {
   eyebrow: string;
@@ -42,9 +42,9 @@ const headerConfigs: Record<string, HeaderConfig> = {
     title: "Ultra Inbox",
     searchPlaceholder: "Mesaj, müşteri, kanal veya durum ara...",
   },
-  "/sektor-modulleri": {
+  "/sektorel-dna": {
     eyebrow: "Sektörel DNA Mimarisi",
-    title: "Sektör Modülleri",
+    title: "Sektörel DNA",
     searchPlaceholder: "Sektör, sinyal, KPI veya modül ara...",
   },
 };
@@ -67,10 +67,10 @@ export function Header() {
   const dnaContext = useDnaSafe();
   const activeSectorName = dnaContext?.activeDna.meta.name
     ? resolveLabel(dnaContext.activeDna.meta.name)
-    : "Solify";
+    : "Arqon";
   const activePackageLabel = dnaContext?.activeDna.meta.packageLabel
     ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
-    : "Enerji Paketi";
+    : "Aktif DNA";
   const sectorInitial = activeSectorName.trim().charAt(0).toUpperCase() || "S";
 
   return (
@@ -113,34 +113,34 @@ export function Header() {
         </div>
 
         <div className="arqon-header-actions shrink-0">
-            <div className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center rounded-full border border-white/10 bg-black/45 px-3 text-sm font-semibold text-white">
-              <span className="text-white/55">Sistem:</span>
-              <span className="ml-1 text-white">Aktif</span>
+          <div className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center rounded-full border border-white/10 bg-black/45 px-3 text-sm font-semibold text-white">
+            <span className="text-white/55">Sistem:</span>
+            <span className="ml-1 text-white">Aktif</span>
+          </div>
+
+          <button className="flex h-[clamp(2.75rem,4cqi,3rem)] w-[clamp(2.75rem,4cqi,3rem)] items-center justify-center rounded-full border border-white/10 bg-black/45 text-white transition hover:bg-white/[0.06]">
+            <HiOutlineBellAlert className="h-5 w-5" />
+          </button>
+
+          <div className="arqon-header-sector h-[clamp(2.75rem,4cqi,3rem)] items-center gap-3 rounded-full border border-white/10 bg-black/45 px-3 pr-4">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
+              {sectorInitial}
             </div>
 
-            <button className="flex h-[clamp(2.75rem,4cqi,3rem)] w-[clamp(2.75rem,4cqi,3rem)] items-center justify-center rounded-full border border-white/10 bg-black/45 text-white transition hover:bg-white/[0.06]">
-              <HiOutlineBellAlert className="h-5 w-5" />
-            </button>
-
-            <div className="arqon-header-sector h-[clamp(2.75rem,4cqi,3rem)] items-center gap-3 rounded-full border border-white/10 bg-black/45 px-3 pr-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
-                {sectorInitial}
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold leading-none text-white">
-                  {activeSectorName}
-                </p>
-                <p className="mt-1 text-[11px] leading-none text-white/40">
-                  {activePackageLabel}
-                </p>
-              </div>
+            <div>
+              <p className="text-xs font-semibold leading-none text-white">
+                {activeSectorName}
+              </p>
+              <p className="mt-1 text-[11px] leading-none text-white/40">
+                {activePackageLabel}
+              </p>
             </div>
+          </div>
 
-            <button className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center justify-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/85">
-              <HiOutlinePlus className="h-4 w-4" />
-              Yeni Talep
-            </button>
+          <button className="inline-flex h-[clamp(2.75rem,4cqi,3rem)] items-center justify-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/85">
+            <HiOutlinePlus className="h-4 w-4" />
+            Yeni Talep
+          </button>
         </div>
       </div>
     </header>

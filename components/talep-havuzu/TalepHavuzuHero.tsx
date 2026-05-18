@@ -15,7 +15,7 @@ export function TalepHavuzuHero() {
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
               <HiOutlineSparkles className="h-4 w-4 text-white/70" />
               <span className="text-xs font-medium text-white/55">
-                Ultra CRM / Solify Panel
+                Arqon / Solify Panel
               </span>
             </div>
 

@@ -6,7 +6,7 @@ export const menuItems = [
   "Müşteri Kartları",
   "Kanal Yönetimi",
   "Akıllı Yanıt Ayarları",
-  "Sektör Modülleri",
+  "Sektörel DNA",
 ];
 
 export const stats = [
