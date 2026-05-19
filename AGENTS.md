@@ -100,3 +100,37 @@ Her ekran şu sorulara cevap vermeli:
 - Sistem işletme sahibine karar aldırıyor mu?
 
 Bu sorulara hizmet etmeyen kart, metrik veya görsel unsur zayıftır.
+
+<!-- BEGIN ARQON_PHASE_GATE -->
+
+## Current Project State — Arqon Phase Gate
+
+Bu repo Arqon / Ultra CRM Master Development projesidir.
+
+Güncel resmi konum:
+
+```text
+FAZ 5 — SİNYAL ÇEKİRDEĞİ: GÖRSEL KATMAN başlangıcına hazır.
+```
+
+Tamamlanan kapılar:
+
+```text
+FAZ 0 — Temizlik & Teknik Borç Kapatma tamamlandı.
+FAZ 1 — Marka Kimliği & İsimlendirme tamamlandı.
+FAZ 2 — Tasarım Sistemi Anayasası tamamlandı.
+FAZ 3 — Kontrol Merkezi → AI Boardroom tamamlandı.
+FAZ 4 — Sinyal Çekirdeği: Veri Katmanı tamamlandı.
+FAZ 4.5 — Duplicate DNA context temizliği tamamlandı.
+```
+
+Faz 5 başlamadan önce korunacak sınırlar:
+
+- Faz 5 yalnız Signal Core görsel katmanı kapsamında ele alınmalıdır.
+- Faz 5 başlamadan önce çalışma alanı temiz olmalıdır.
+- `components/dna/SignalCore.tsx` üzerinde değişiklik yapılacaksa önce mevcut görsel yapı okunmalıdır.
+- `ChannelNode.tsx` ve `SignalFlow.tsx` yalnız Faz 5 görevi açıkça verildiğinde oluşturulmalıdır.
+- `ChannelSignalProvider` mount edilmemiştir; provider mount kararı ayrı mimari komut gerektirir.
+- `app/page.tsx`, `app/layout.tsx`, Dashboard, Inbox ve Sektörel DNA sayfa redesign işleri Faz 5 kapsamı değildir.
+
+<!-- END ARQON_PHASE_GATE -->
