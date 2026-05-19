@@ -32,6 +32,36 @@ export const stats = [
   },
 ];
 
+export const noLostLeadAlerts = [
+  {
+    customer: "Mehmet Akgün",
+    issue: "Teklif istendi ama hazırlık başlamadı",
+    heat: "Çok sıcak",
+    wait: "2 sa 18 dk",
+    owner: "Satış Ekibi",
+    action: "Bugün aranmalı",
+    href: "/leadler",
+  },
+  {
+    customer: "Karaqaş Metal",
+    issue: "Eksik bilgi nedeniyle teklif bekliyor",
+    heat: "Ilık",
+    wait: "5 sa 40 dk",
+    owner: "Operasyon",
+    action: "Bilgi tamamlanmalı",
+    href: "/talep-havuzu",
+  },
+  {
+    customer: "Ayşe Demir",
+    issue: "Keşif bilgisi netleşmedi",
+    heat: "Sıcak",
+    wait: "1 sa 12 dk",
+    owner: "Satış Ekibi",
+    action: "Keşif tarihi alınmalı",
+    href: "/leadler",
+  },
+] as const;
+
 export const requests = [
   {
     customer: "Mehmet Akgün",

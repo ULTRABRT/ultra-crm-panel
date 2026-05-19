@@ -340,6 +340,114 @@ export const energyDna: SectorDna = {
 
   kpiCards: [
     {
+      id: createDnaKpiId(SECTOR_SLUG, "boardroom", "hot_requests"),
+      label: "Bugünkü Sıcak Talep",
+      description: "Yüksek niyet taşıyan açık müşteri sinyalleri.",
+      icon: "HiOutlineFire",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "or",
+          expressions: [
+            {
+              op: "fieldOp",
+              field: fieldKeys.lityum_batarya_ilgisi,
+              comparator: "isTrue",
+            },
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_ges_ilgisi,
+              comparator: "isTrue",
+            },
+          ],
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_briefing",
+      priority: 10,
+      drilldownTarget: "/talep-havuzu",
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "boardroom", "waiting_follow_up"),
+      label: "Takip Bekleyen Müşteri",
+      description: "Keşif veya çatı bilgisi netleşmeyi bekleyen kayıtlar.",
+      icon: "HiOutlineClock",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "or",
+          expressions: [
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_tipi,
+              comparator: "isEmpty",
+            },
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_yonu,
+              comparator: "isEmpty",
+            },
+            {
+              op: "fieldOp",
+              field: fieldKeys.cati_yonu,
+              comparator: "eq",
+              value: "needs_check",
+            },
+          ],
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_briefing",
+      priority: 20,
+      drilldownTarget: "/leadler",
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "boardroom", "revenue_risk"),
+      label: "Teklif / Gelir Riski",
+      description: "Yüksek fatura seviyesinde açık fırsat hacmi.",
+      icon: "HiOutlineCurrencyDollar",
+      source: {
+        type: "sum",
+        scope: "customers",
+        field: fieldKeys.aylik_fatura,
+        filter: {
+          op: "fieldOp",
+          field: fieldKeys.aylik_fatura,
+          comparator: "gte",
+          value: 4000,
+        },
+      },
+      renderAs: "bigNumber",
+      format: "currency",
+      zone: "boardroom_briefing",
+      priority: 30,
+      drilldownTarget: "/leadler",
+    },
+    {
+      id: createDnaKpiId(SECTOR_SLUG, "boardroom", "channel_open_opportunity"),
+      label: "Kanal Kaynaklı Açık Fırsat",
+      description: "Hizmet ilgisi tanımlanmış açık müşteri kayıtları.",
+      icon: "HiOutlineInboxStack",
+      source: {
+        type: "count",
+        scope: "customers",
+        filter: {
+          op: "fieldOp",
+          field: fieldKeys.ilgilendigi_hizmet,
+          comparator: "isNotEmpty",
+        },
+      },
+      renderAs: "bigNumber",
+      format: "integer",
+      zone: "boardroom_briefing",
+      priority: 40,
+      drilldownTarget: "/talep-havuzu",
+    },
+    {
       id: createDnaKpiId(SECTOR_SLUG, "dashboard", "battery_opportunities"),
       label: "Batarya Firsatlari",
       description: "Lityum batarya ilgisi tasiyan musteriler.",

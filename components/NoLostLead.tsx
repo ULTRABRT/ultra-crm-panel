@@ -1,31 +1,5 @@
 import { FiAlertTriangle, FiClock, FiUserCheck } from "react-icons/fi";
-
-const lostLeadAlerts = [
-  {
-    customer: "Mehmet Akgün",
-    issue: "Teklif istendi ama hazırlık başlamadı",
-    heat: "Çok sıcak",
-    wait: "2 sa 18 dk",
-    owner: "Satış Ekibi",
-    action: "Bugün aranmalı",
-  },
-  {
-    customer: "Karaqaş Metal",
-    issue: "Eksik bilgi nedeniyle teklif bekliyor",
-    heat: "Ilık",
-    wait: "5 sa 40 dk",
-    owner: "Operasyon",
-    action: "Bilgi tamamlanmalı",
-  },
-  {
-    customer: "Ayşe Demir",
-    issue: "Keşif bilgisi netleşmedi",
-    heat: "Sıcak",
-    wait: "1 sa 12 dk",
-    owner: "Satış Ekibi",
-    action: "Keşif tarihi alınmalı",
-  },
-];
+import { noLostLeadAlerts } from "../data/dashboard";
 
 const heatStyles: Record<string, string> = {
   "Çok sıcak": "bg-white text-black",
@@ -55,7 +29,7 @@ export function NoLostLead() {
       </div>
 
       <div className="grid gap-3">
-        {lostLeadAlerts.map((alert) => (
+        {noLostLeadAlerts.map((alert) => (
           <div
             key={alert.customer}
             className="arqon-card-grid rounded-[1.5rem] border border-white/10 bg-black/55 p-4 transition hover:border-white/25 hover:bg-white/[0.04] [--arqon-grid-min:10rem]"

@@ -1,13 +1,14 @@
 import { ChannelStatus } from "../components/ChannelStatus";
 import { CommandInsights } from "../components/CommandInsights";
-import { DashboardHero } from "../components/DashboardHero";
 import { ExecutiveSummary } from "../components/ExecutiveSummary";
 import { Header } from "../components/Header";
 import { NoLostLead } from "../components/NoLostLead";
 import { RequestsTable } from "../components/RequestsTable";
 import { RevenueRadar } from "../components/RevenueRadar";
 import { Sidebar } from "../components/Sidebar";
+import { AiBoardroomBriefing } from "../components/dna/AiBoardroomBriefing";
 import { SectorKpiGroup } from "../components/dna/SectorKpiGroup";
+import { PageShell, SectionHeader } from "../components/ui";
 import { DnaProvider } from "../context/DnaContext";
 import { energyDna } from "../data/dna/energy";
 
@@ -25,10 +26,46 @@ export default function Home() {
             <Header />
 
             <div className="arqon-page-scroll">
-              <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:22rem]">
-                <DashboardHero />
-                <ExecutiveSummary />
-              </section>
+              <PageShell
+                eyebrow="Kontrol Merkezi"
+                title="AI Boardroom"
+                description="Açık talepler, gelir riski ve insan onayı bekleyen aksiyonlar tek karar ekranında özetlenir."
+              >
+                <section className="arqon-section-gap arqon-fluid-grid items-start [--arqon-grid-min:22rem]">
+                  <div className="min-w-0 space-y-5">
+                    <AiBoardroomBriefing />
+
+                    <SectorKpiGroup
+                      zone="boardroom_briefing"
+                      eyebrow="Ana KPI"
+                      title="Bugünün dört karar sinyali"
+                      description="Aktif DNA, kritik operasyon metriklerini tek karar setinde öne çıkarır."
+                      columns={4}
+                    />
+                  </div>
+
+                  <aside className="self-start rounded-[2rem] border border-white/10 bg-white/[0.025] p-5">
+                    <SectionHeader
+                      eyebrow="Sağ Kolon"
+                      title="Komut Paneli"
+                      description="Riskler, DNA sinyalleri ve mevcut operasyon destekleri."
+                      align="stack"
+                    />
+
+                    <div className="space-y-5">
+                      <ExecutiveSummary />
+
+                      <SectorKpiGroup
+                        zone="boardroom_right_column"
+                        eyebrow="DNA Sinyali"
+                        title="Sektörel KPI'lar"
+                        description="Aktif sektör DNA'sından gelen destek metrikleri."
+                        columns={2}
+                      />
+                    </div>
+                  </aside>
+                </section>
+              </PageShell>
 
               <section className="arqon-section-gap">
                 <CommandInsights />
@@ -45,18 +82,6 @@ export default function Home() {
 
               <section className="arqon-section-gap">
                 <RevenueRadar />
-              </section>
-
-              <section className="arqon-section-gap">
-                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur-xl">
-                  <SectorKpiGroup
-                    zone="boardroom_right_column"
-                    eyebrow="DNA Test Alanı"
-                    title="Sektörel KPI'lar (Enerji DNA)"
-                    description="Bu blok yeni DNA mimarisinden besleniyor. Mevcut Solify DNA Kartları üstte hâlâ duruyor; ikisi karşılaştırılabilir."
-                    columns={4}
-                  />
-                </div>
               </section>
             </div>
           </section>
