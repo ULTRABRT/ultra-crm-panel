@@ -21,11 +21,11 @@ export function getSignalWeight(signal: ChannelSignal): number {
   const statusWeight =
     signal.status === "connected"
       ? 1
-      : signal.status === "warning"
-        ? 0.82
-        : signal.status === "idle"
-          ? 0.58
-          : 0.35;
+      : signal.status === "idle"
+        ? 0.58
+        : signal.status === "error"
+          ? 0.36
+          : 0.18;
 
   return clamp(
     throughputWeight * 0.42 +

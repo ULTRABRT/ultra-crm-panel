@@ -4,7 +4,7 @@ import { Sidebar } from "../../components/Sidebar";
 import { SignalCore } from "../../components/dna/SignalCore";
 
 const signalStats = [
-  { label: "Sinyal kaynağı", value: "7 kanal" },
+  { label: "Sinyal kaynağı", value: "8 kanal" },
   { label: "DNA katmanı", value: "Tek çekirdek" },
   { label: "Aksiyon dili", value: "Sektörel" },
 ];
@@ -13,7 +13,7 @@ const moduleCards = [
   {
     title: "Kanal sinyalleri",
     description:
-      "WhatsApp, Instagram, mail, telefon, form, web chat ve referans akışları tek operasyon haritasına bağlanır.",
+      "WhatsApp, Instagram, Messenger, Telegram, TikTok, SMS, webchat ve form sinyalleri tek operasyon haritasında birleşir.",
   },
   {
     title: "KPI mantığı",

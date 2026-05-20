@@ -740,6 +740,7 @@ select:focus-visible,
   }
 }
 
+/* Arqon Signal Core */
 .arqon-signal-shell {
   isolation: isolate;
 }
@@ -761,10 +762,45 @@ select:focus-visible,
   pointer-events: none;
 }
 
+.arqon-channel-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.arqon-signal-glint {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 8 92;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  filter: url("#arqon-soft-glow");
+  animation: arqon-signal-glint var(--arqon-flow-duration, 3600ms) linear infinite;
+  animation-delay: var(--arqon-flow-delay, 0ms);
+}
+
 .arqon-signal-core {
   transform-box: fill-box;
   transform-origin: center;
   animation: arqon-core-pulse 6.4s ease-in-out infinite;
+}
+
+@keyframes arqon-signal-glint {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 100;
+  }
+
+  12% {
+    opacity: var(--arqon-flow-opacity, 0.62);
+  }
+
+  82% {
+    opacity: calc(var(--arqon-flow-opacity, 0.62) * 0.72);
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes arqon-core-pulse {
@@ -786,5 +822,9 @@ select:focus-visible,
 
   .arqon-signal-flow {
     display: none;
+  }
+
+  .arqon-signal-glint {
+    animation: none !important;
   }
 }

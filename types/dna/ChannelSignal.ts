@@ -8,7 +8,11 @@ export type ChannelId =
   | "webchat"
   | "form";
 
-export type ChannelSignalStatus = "connected" | "idle" | "warning" | "error";
+export type ChannelSignalStatus =
+  | "connected"
+  | "idle"
+  | "error"
+  | "disconnected";
 
 export type ChannelSignalTrend = "up" | "flat" | "down";
 
@@ -23,6 +27,7 @@ export type ChannelSignal = {
   trend: ChannelSignalTrend;
   lastSignalAt: string;
   description: string;
+  errorReason?: string;
 };
 
 export type SignalEngineParams = {
@@ -36,7 +41,9 @@ export type SignalEngineParams = {
 export type ChannelSignalSnapshot = {
   signals: ChannelSignal[];
   activeSignals: ChannelSignal[];
-  warningSignals: ChannelSignal[];
+  errorSignals: ChannelSignal[];
+  disconnectedSignals: ChannelSignal[];
+  attentionSignals: ChannelSignal[];
   totalThroughput: number;
   averageHealthScore: number;
 };

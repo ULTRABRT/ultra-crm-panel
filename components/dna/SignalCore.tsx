@@ -1,151 +1,172 @@
-import { ArqonEmblem } from "../brand/ArqonEmblem";
+"use client";
 
-type SignalChannel = {
-  id: string;
-  label: string;
+import { useEffect, useMemo, useState } from "react";
+import { ArqonEmblem } from "../brand/ArqonEmblem";
+import { useChannelSignals } from "../../hooks/useChannelSignals";
+import type {
+  ChannelId,
+  ChannelSignal,
+  SignalEngineParams,
+} from "../../types/dna/ChannelSignal";
+import { ChannelNode } from "./ChannelNode";
+import { SignalFlow } from "./SignalFlow";
+
+type TextAnchor = "start" | "middle" | "end";
+
+type ChannelGeometry = {
   path: string;
   nodeX: number;
   nodeY: number;
   labelX: number;
   labelY: number;
-  textAnchor?: "start" | "middle" | "end";
-  duration: string;
-  begin: string;
-  secondaryBegin: string;
+  textAnchor?: TextAnchor;
 };
 
 const coreX = 360;
 const coreY = 230;
 
-const channels: SignalChannel[] = [
-  {
-    id: "whatsapp",
-    label: "WhatsApp",
-    path: "M88 104 C156 104 198 140 246 174 C286 202 320 222 360 230",
-    nodeX: 88,
-    nodeY: 104,
-    labelX: 72,
-    labelY: 78,
-    duration: "6.8s",
-    begin: "-0.9s",
-    secondaryBegin: "-4.2s",
-  },
-  {
-    id: "instagram",
-    label: "Instagram",
-    path: "M174 42 C214 86 242 128 278 162 C306 188 332 210 360 230",
-    nodeX: 174,
-    nodeY: 42,
-    labelX: 144,
-    labelY: 30,
-    duration: "7.7s",
-    begin: "-2.4s",
-    secondaryBegin: "-5.9s",
-  },
-  {
-    id: "mail",
-    label: "Mail",
-    path: "M636 94 C570 102 520 134 474 166 C426 200 394 218 360 230",
-    nodeX: 636,
-    nodeY: 94,
-    labelX: 652,
-    labelY: 76,
-    textAnchor: "end",
-    duration: "7.2s",
-    begin: "-1.8s",
-    secondaryBegin: "-5.1s",
-  },
-  {
-    id: "phone",
-    label: "Telefon",
-    path: "M674 226 C598 226 538 226 486 225 C438 224 398 227 360 230",
-    nodeX: 674,
-    nodeY: 226,
-    labelX: 652,
-    labelY: 214,
-    textAnchor: "end",
-    duration: "6.4s",
-    begin: "-3.1s",
-    secondaryBegin: "-5.8s",
-  },
-  {
-    id: "form",
-    label: "Form",
-    path: "M604 372 C548 346 504 316 462 288 C420 260 390 240 360 230",
-    nodeX: 604,
-    nodeY: 372,
-    labelX: 636,
-    labelY: 392,
-    textAnchor: "end",
-    duration: "8.1s",
-    begin: "-2.8s",
-    secondaryBegin: "-6.6s",
-  },
-  {
-    id: "web-chat",
-    label: "Web Chat",
-    path: "M318 418 C322 360 330 318 340 286 C348 260 354 244 360 230",
-    nodeX: 318,
-    nodeY: 418,
-    labelX: 318,
-    labelY: 438,
-    textAnchor: "middle",
-    duration: "7.4s",
-    begin: "-1.2s",
-    secondaryBegin: "-4.7s",
-  },
-  {
-    id: "referral",
-    label: "Referans",
-    path: "M82 334 C150 326 204 306 252 284 C298 262 330 244 360 230",
-    nodeX: 82,
-    nodeY: 334,
-    labelX: 72,
-    labelY: 358,
-    duration: "6.9s",
-    begin: "-3.7s",
-    secondaryBegin: "-6.3s",
-  },
+const canonicalChannelOrder: ChannelId[] = [
+  "whatsapp",
+  "instagram",
+  "messenger",
+  "telegram",
+  "tiktok",
+  "sms",
+  "webchat",
+  "form",
 ];
 
-function SignalPulse({
-  channel,
-  begin,
-  radius,
-  glowRadius,
-  opacity,
-}: {
-  channel: SignalChannel;
-  begin: string;
-  radius: number;
-  glowRadius: number;
-  opacity: string;
-}) {
-  return (
-    <g className="arqon-signal-flow" opacity="0">
-      <circle r={glowRadius} fill="white" opacity="0.12" filter="url(#arqon-soft-glow)" />
-      <circle r={radius} fill="white" opacity={opacity} />
-      <animateMotion
-        dur={channel.duration}
-        begin={begin}
-        repeatCount="indefinite"
-        rotate="auto"
-      >
-        <mpath href={`#arqon-signal-path-${channel.id}`} />
-      </animateMotion>
-      <animate
-        attributeName="opacity"
-        values="0;0.88;0.72;0"
-        keyTimes="0;0.18;0.82;1"
-        dur={channel.duration}
-        begin={begin}
-        repeatCount="indefinite"
-      />
-    </g>
-  );
+const channelGeometry: Record<ChannelId, ChannelGeometry> = {
+  whatsapp: {
+    path: "M88 108 C150 102 198 136 248 174 C288 204 322 224 360 230",
+    nodeX: 88,
+    nodeY: 108,
+    labelX: 72,
+    labelY: 82,
+  },
+  instagram: {
+    path: "M172 42 C214 86 244 128 280 164 C308 190 334 212 360 230",
+    nodeX: 172,
+    nodeY: 42,
+    labelX: 142,
+    labelY: 30,
+  },
+  messenger: {
+    path: "M548 48 C510 88 480 126 444 160 C414 190 386 214 360 230",
+    nodeX: 548,
+    nodeY: 48,
+    labelX: 580,
+    labelY: 34,
+    textAnchor: "end",
+  },
+  telegram: {
+    path: "M672 178 C606 178 540 190 486 204 C434 218 396 226 360 230",
+    nodeX: 672,
+    nodeY: 178,
+    labelX: 652,
+    labelY: 158,
+    textAnchor: "end",
+  },
+  tiktok: {
+    path: "M618 358 C556 336 506 306 462 280 C420 256 390 238 360 230",
+    nodeX: 618,
+    nodeY: 358,
+    labelX: 646,
+    labelY: 382,
+    textAnchor: "end",
+  },
+  sms: {
+    path: "M418 420 C404 362 390 318 378 284 C368 258 363 240 360 230",
+    nodeX: 418,
+    nodeY: 420,
+    labelX: 418,
+    labelY: 442,
+    textAnchor: "middle",
+  },
+  webchat: {
+    path: "M260 418 C278 362 298 318 318 284 C336 256 350 238 360 230",
+    nodeX: 260,
+    nodeY: 418,
+    labelX: 260,
+    labelY: 442,
+    textAnchor: "middle",
+  },
+  form: {
+    path: "M82 330 C148 324 204 304 252 282 C298 260 330 244 360 230",
+    nodeX: 82,
+    nodeY: 330,
+    labelX: 72,
+    labelY: 356,
+  },
+};
+
+const fallbackParams: SignalEngineParams = {
+  intensity: 0.2,
+  pulseDurationMs: 1700,
+  flowDelayMs: 640,
+  opacity: 0.32,
+  scale: 0.96,
+};
+
+function createFallbackSignal(id: ChannelId): ChannelSignal {
+  return {
+    id,
+    label: id === "sms" ? "SMS" : id.charAt(0).toUpperCase() + id.slice(1),
+    status: "idle",
+    throughput: 0,
+    pendingCount: 0,
+    responseTimeMinutes: 0,
+    healthScore: 0,
+    trend: "flat",
+    lastSignalAt: "",
+    description: "Kanal sinyali bekleniyor.",
+  };
+}
+
+function useSignalMotionEnabled() {
+  const [motionEnabled, setMotionEnabled] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncMotionState = () => {
+      setMotionEnabled(
+        !mediaQuery.matches && document.visibilityState === "visible",
+      );
+    };
+
+    syncMotionState();
+    document.addEventListener("visibilitychange", syncMotionState);
+    mediaQuery.addEventListener("change", syncMotionState);
+
+    return () => {
+      document.removeEventListener("visibilitychange", syncMotionState);
+      mediaQuery.removeEventListener("change", syncMotionState);
+    };
+  }, []);
+
+  return motionEnabled;
 }
 
 export function SignalCore() {
+  const { signals, getSignalParams } = useChannelSignals();
+  const motionEnabled = useSignalMotionEnabled();
+
+  const signalMap = useMemo(
+    () => new Map(signals.map((signal) => [signal.id, signal])),
+    [signals],
+  );
+
+  const orderedSignals = canonicalChannelOrder.map((id) => ({
+    signal: signalMap.get(id) ?? createFallbackSignal(id),
+    geometry: channelGeometry[id],
+    params: getSignalParams(id) ?? fallbackParams,
+  }));
+
+  const activeCount = orderedSignals.filter(
+    ({ signal }) => signal.status === "connected",
+  ).length;
+
   return (
     <figure
       aria-label="Arqon Sector DNA signal core visualization"
@@ -157,7 +178,7 @@ export function SignalCore() {
       <div className="relative">
         <div className="mb-4 flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/36">
           <span>Signal Core</span>
-          <span>7 kanal</span>
+          <span>{activeCount}/8 aktif</span>
         </div>
 
         <svg
@@ -166,14 +187,17 @@ export function SignalCore() {
           role="img"
           aria-labelledby="signal-core-title signal-core-desc"
         >
-          <title id="signal-core-title">Arqon Sektörel DNA sinyal çekirdeği</title>
+          <title id="signal-core-title">
+            Arqon Sektorel DNA sinyal cekirdegi
+          </title>
           <desc id="signal-core-desc">
-            Kanal sinyalleri sabit hatlar üzerinden merkezdeki Arqon çekirdeğine akar.
+            Sekiz canonical kanal sinyali sabit hatlar uzerinden merkezdeki
+            Arqon cekirdegine akar.
           </desc>
 
           <defs>
             <filter id="arqon-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feGaussianBlur stdDeviation="5" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
@@ -181,69 +205,36 @@ export function SignalCore() {
             </filter>
           </defs>
 
-          <g opacity="0.2">
+          <g opacity="0.18">
             <circle cx={coreX} cy={coreY} r="178" fill="none" stroke="white" strokeWidth="1" />
             <circle cx={coreX} cy={coreY} r="112" fill="none" stroke="white" strokeWidth="1" />
+            <circle cx={coreX} cy={coreY} r="54" fill="none" stroke="white" strokeWidth="1" />
           </g>
 
           <g>
-            {channels.map((channel) => (
-              <path
-                key={channel.id}
-                id={`arqon-signal-path-${channel.id}`}
-                className="arqon-signal-path"
-                d={channel.path}
-                fill="none"
-                stroke="rgba(255,255,255,0.28)"
-                strokeLinecap="round"
-                strokeWidth="1.15"
+            {orderedSignals.map(({ signal, geometry, params }) => (
+              <SignalFlow
+                key={signal.id}
+                id={signal.id}
+                path={geometry.path}
+                signal={signal}
+                params={params}
+                motionEnabled={motionEnabled}
               />
             ))}
           </g>
 
           <g>
-            {channels.map((channel) => (
-              <g key={channel.id}>
-                <circle
-                  cx={channel.nodeX}
-                  cy={channel.nodeY}
-                  r="5"
-                  fill="rgba(255,255,255,0.08)"
-                  stroke="rgba(255,255,255,0.22)"
-                  strokeWidth="1"
-                />
-                <circle cx={channel.nodeX} cy={channel.nodeY} r="1.7" fill="rgba(255,255,255,0.74)" />
-                <text
-                  x={channel.labelX}
-                  y={channel.labelY}
-                  textAnchor={channel.textAnchor ?? "start"}
-                  className="arqon-signal-label fill-white/43 text-[13px] font-medium tracking-[0.08em]"
-                >
-                  {channel.label}
-                </text>
-              </g>
-            ))}
-          </g>
-
-          <g>
-            {channels.map((channel) => (
-              <SignalPulse
-                key={`${channel.id}-primary`}
-                channel={channel}
-                begin={channel.begin}
-                radius={2.4}
-                glowRadius={8}
-                opacity="0.88"
-              />
-            ))}
-            {channels.map((channel) => (
-              <SignalPulse
-                key={`${channel.id}-secondary`}
-                channel={channel}
-                begin={channel.secondaryBegin}
-                radius={1.6}
-                glowRadius={5.5}
-                opacity="0.58"
+            {orderedSignals.map(({ signal, geometry, params }) => (
+              <ChannelNode
+                key={signal.id}
+                signal={signal}
+                params={params}
+                x={geometry.nodeX}
+                y={geometry.nodeY}
+                labelX={geometry.labelX}
+                labelY={geometry.labelY}
+                textAnchor={geometry.textAnchor}
               />
             ))}
           </g>
@@ -251,7 +242,7 @@ export function SignalCore() {
           <g transform="translate(312 182)">
             <g className="arqon-signal-core">
               <ArqonEmblem
-                className="h-24 w-24 opacity-95 drop-shadow-[0_0_24px_rgba(255,255,255,0.14)]"
+                className="h-24 w-24 opacity-95 drop-shadow-[0_0_22px_rgba(255,255,255,0.13)]"
                 decorative
                 size={96}
               />
@@ -260,20 +251,20 @@ export function SignalCore() {
 
           <g className="text-center">
             <text
-              fill="rgba(255,255,255,0.32)"
+              fill="rgba(255,255,255,0.28)"
               x={coreX}
               y="350"
               textAnchor="middle"
-              className="arqon-signal-label text-[11px] font-semibold tracking-[0.2em]"
+              className="arqon-signal-label text-[10px] font-semibold tracking-[0.18em]"
             >
               SIGNAL CORE
             </text>
             <text
-              fill="rgba(255,255,255,0.28)"
+              fill="rgba(255,255,255,0.24)"
               x={coreX}
               y="376"
               textAnchor="middle"
-              className="arqon-signal-label text-[10px] font-medium uppercase tracking-[0.18em]"
+              className="arqon-signal-label text-[10px] font-medium uppercase tracking-[0.16em]"
             >
               Sector DNA
             </text>

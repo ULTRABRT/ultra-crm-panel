@@ -24,8 +24,13 @@ export function useChannelSignals(): ChannelSignalSnapshot & {
     const activeSignals = signals.filter(
       (signal) => signal.status === "connected",
     );
-    const warningSignals = signals.filter(
-      (signal) => signal.status === "warning" || signal.status === "error",
+    const errorSignals = signals.filter((signal) => signal.status === "error");
+    const disconnectedSignals = signals.filter(
+      (signal) => signal.status === "disconnected",
+    );
+    const attentionSignals = signals.filter(
+      (signal) =>
+        signal.status === "error" || signal.status === "disconnected",
     );
     const totalThroughput = signals.reduce(
       (total, signal) => total + signal.throughput,
@@ -42,7 +47,9 @@ export function useChannelSignals(): ChannelSignalSnapshot & {
     return {
       signals,
       activeSignals,
-      warningSignals,
+      errorSignals,
+      disconnectedSignals,
+      attentionSignals,
       totalThroughput,
       averageHealthScore,
       getSignalById: (id: ChannelId) =>
