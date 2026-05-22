@@ -5,10 +5,12 @@ Arqon / Ultra CRM Panel is a premium CRM command panel focused on customer opera
 ## Current Status
 
 ```text
-Status: Phase 7A registry + pure resolver completed
+Status: Phase 7B resolver contract hardening completed
 Branch: main
-Current repo HEAD / latest docs handoff commit: 132ce5c8c8a97827ffb717f4f1c2aab6b712af7f docs: update phase 7a dna resolver handoff
+Current repo HEAD / latest implementation commit: e5b91ddf617cc67ce22f0f0ea20beec7ef95a723 refactor(dna): harden active dna resolver contract
+Latest docs metadata handoff commit: c75f68134ea970a5fca0612166e4aed18e02ee6b docs: clarify phase 7a handoff head metadata
 Phase 7A product/refactor commit: 184737c64b0a5512b7582be187fdabf279483d1e refactor(dna): resolve active dna through sector registry
+security pre-push gate: passed; no tracked env/key/private/credential files or secret pattern matches
 Tech gate: typecheck passing; build passing after Google Fonts network retry
 ```
 
@@ -31,8 +33,25 @@ Initial registry contents: energyDna only
 Resolver output: SectorDna
 Missing/unknown sectorId fallback: baseline energyDna
 DnaProvider scope: route-level on / and /inbox
-TenantOverride merge: not implemented; Phase 7B
-ActiveConfig runtime layer: not implemented; Phase 7B
+TenantOverride merge: not implemented; future Phase 7 scope
+ActiveConfig runtime layer: not implemented; future Phase 7 scope
+```
+
+Phase 7B completed:
+
+```text
+Resolver contract: hardened
+sectorId normalization: trim before registry lookup
+undefined/null/empty/whitespace sectorId: baseline fallback
+unknown sectorId: baseline fallback
+known/default sectorId: registry value
+Fallback source: baselineSectorDna / energyDna
+Resolver output: SectorDna
+Resolver side effects: none
+Registry contents: energyDna only
+TenantOverride runtime: not implemented
+ActiveConfig runtime layer: not implemented
+Test package/config: not added
 ```
 
 ## Product Focus
@@ -78,8 +97,8 @@ npm run build
 
 ## Architecture Note
 
-`activeDna` no longer directly exports `energyDna`; it is produced by the Sector DNA registry and pure resolver boundary.
+`activeDna` no longer directly exports `energyDna`; it flows through `resolveActiveDna()`, `sectorDnaRegistry`, and the deterministic `baselineSectorDna` / `energyDna` fallback.
 
 `DnaProvider` is mounted route-level on `/` and `/inbox`; it is not mounted globally in `app/layout.tsx`.
 
-This is not a full multi-tenant backend. `TenantOverride` merge, `ActiveConfig` runtime selection, and real tenant identity resolution remain Phase 7B work.
+This is not a full multi-tenant backend. `TenantOverride` merge, `ActiveConfig` runtime selection, and real tenant identity resolution remain future Phase 7 work.

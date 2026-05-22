@@ -63,7 +63,9 @@ Build and typecheck are necessary, but they are not the same thing as visual/pro
 - Do not add sector === "energy" logic in Core components.
 - Keep activeDna resolved through the Sector DNA registry and pure resolver.
 - Keep resolver output as SectorDna.
-- Leave TenantOverride merge and ActiveConfig runtime behavior to Phase 7B.
+- Phase 7B resolver contract hardening is complete.
+- Keep sectorId normalization and baselineSectorDna fallback behavior intact.
+- Leave TenantOverride merge and ActiveConfig runtime behavior to future explicitly scoped work.
 - Do not claim a multi-tenant backend or real tenant identity resolver exists.
 - Do not mount DnaProvider globally.
 - Do not mount ChannelSignalProvider unless explicitly scoped.

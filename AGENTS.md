@@ -7,14 +7,17 @@ Project: Arqon / Ultra CRM Master Development
 ```text
 Branch: main
 Remote: https://github.com/ULTRABRT/ultra-crm-panel.git
-Current repo HEAD / latest docs handoff commit: 132ce5c8c8a97827ffb717f4f1c2aab6b712af7f docs: update phase 7a dna resolver handoff
+Current repo HEAD / latest implementation commit: e5b91ddf617cc67ce22f0f0ea20beec7ef95a723 refactor(dna): harden active dna resolver contract
+Latest docs metadata handoff commit: c75f68134ea970a5fca0612166e4aed18e02ee6b docs: clarify phase 7a handoff head metadata
 Phase 7A product/refactor commit: 184737c64b0a5512b7582be187fdabf279483d1e refactor(dna): resolve active dna through sector registry
 Post-Phase 6 handoff baseline HEAD: b23c61c4114b06b8134194ae7b4b75e053fdf5cc
 Latest repo handoff commit: b23c61c4114b06b8134194ae7b4b75e053fdf5cc docs: update post-phase 6 repo handoff
 Latest pushed product commit: e9088ecefabb9500f7d5018db95fc18e8dd08a86 fix(inbox): refine final mobile visual polish
 Post-Phase 6 Quality Sweep: completed and pushed
 Phase 7A registry + pure resolver: completed and pushed
-Working tree after Phase 7A push: clean
+Phase 7B resolver contract hardening: completed and pushed
+Working tree after Phase 7B push: clean
+security pre-push gate: passed; no tracked env/key/private/credential files or secret pattern matches
 Typecheck: passed
 Build: passed after Google Fonts network retry
 ```
@@ -38,9 +41,28 @@ activeDna source: resolveActiveDna() output
 Resolver output: SectorDna
 Initial registry contents: energyDna only
 Missing/unknown sectorId fallback: baseline energyDna
-TenantOverride merge: not implemented; Phase 7B
-ActiveConfig runtime layer: not implemented; Phase 7B
+TenantOverride merge: not implemented; future Phase 7 scope
+ActiveConfig runtime layer: not implemented; future Phase 7 scope
 Fake tenant resolver: not implemented
+```
+
+Phase 7B outcomes:
+
+```text
+Resolver contract hardening: completed
+sectorId normalization: trim before registry lookup
+undefined/null/empty/whitespace sectorId: baseline fallback
+unknown sectorId: baseline fallback
+known/default sectorId: registry value
+Fallback source: baselineSectorDna
+Resolver output: SectorDna
+Resolver side effects: none
+Registry contents: energyDna only
+DEFAULT_SECTOR_DNA_ID: preserved
+TenantOverride runtime: not implemented
+ActiveConfig runtime: not implemented
+Second Sector DNA: not added
+Test package/config: not added
 ```
 
 Implemented route hygiene placeholders:
@@ -108,10 +130,11 @@ data/dna/active.ts exports activeDna from resolveActiveDna().
 data/dna/resolveActiveDna.ts returns SectorDna.
 data/dna/sectorRegistry.ts owns the current Sector DNA registry.
 sectorDnaRegistry currently starts with energyDna only.
-Missing or unknown sectorId falls back deterministically to baseline energyDna.
+baselineSectorDna is the deterministic fallback.
+Missing, unknown, empty, or whitespace sectorId falls back to baselineSectorDna / energyDna.
 / and /inbox use route-level DnaProvider dna={activeDna}.
 app/layout.tsx does not mount DnaProvider globally.
-TenantOverride merge and ActiveConfig runtime are deferred to Phase 7B.
+TenantOverride merge and ActiveConfig runtime remain future Phase 7 scope.
 No real tenant identity source, auth/session resolver, or multi-tenant backend is implemented yet.
 ```
 
@@ -165,14 +188,16 @@ Known completed items:
 - QS6 final technical gate
 - Push to GitHub main
 - Phase 7A registry + pure resolver
+- Phase 7B resolver contract hardening
 ```
 
 Known remaining debt:
 
 ```text
-- TenantOverride merge and ActiveConfig runtime layer are Phase 7B.
+- TenantOverride merge and ActiveConfig runtime layer remain future Phase 7 scope.
 - Real tenant identity source/backend/auth/session selection remains unresolved.
 - Placeholder routes are not real feature modules yet.
+- Automated resolver tests require an explicit test tooling decision; no test package/config exists yet.
 ```
 
 ## Development Rules
