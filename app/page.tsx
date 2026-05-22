@@ -10,11 +10,11 @@ import { AiBoardroomBriefing } from "../components/dna/AiBoardroomBriefing";
 import { SectorKpiGroup } from "../components/dna/SectorKpiGroup";
 import { PageShell, SectionHeader } from "../components/ui";
 import { DnaProvider } from "../context/DnaContext";
-import { energyDna } from "../data/dna/energy";
+import { activeDna } from "../data/dna/active";
 
 export default function Home() {
   return (
-    <DnaProvider dna={energyDna}>
+    <DnaProvider dna={activeDna}>
       <main className="arqon-app-shell">
         <div className="arqon-app-frame">
           <Sidebar />

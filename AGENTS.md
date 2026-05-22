@@ -1,136 +1,271 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+# AGENTS.md — Arqon / Ultra CRM Codex Çalışma Kuralları
 
+## Konum kuralı
 
-# ULTRA CRM — CODEX MASTER UYGULAMA ANAYASASI
+Bu dosya repo root içinde, yani `package.json` ile aynı klasörde bulunmalıdır. Codex için kaynak dosyası olarak Project Sources'ta eklenmesi faydalıdır; ancak repo guardrail'i için asıl konum repo root'tur.
 
-## Rol paylaşımı
+Yanlış konumlar: Masaüstü, indirilen zip klasörü, `app/`, `components/`.
 
-Bu projede Codex mimar değil, uygulayıcı mühendistir.
-
-- Opus 4.7: master mimari, ürün vizyonu, ekran standardı, kalite kararı.
-- Codex: verilen mimari kararı mevcut repo içinde temiz, güvenli, TypeScript uyumlu şekilde uygular.
-- ChatGPT: süreç koçu, hata okuyucu, terminal/git yönlendirme ve karar süzgeci.
-
-Codex kendi başına ürün vizyonunu değiştirmez. Eğer mimari karar gerekiyorsa önce kullanıcıya sorar.
-
-## Ürün vizyonu
-
-Ultra CRM basit CRM, demo dashboard veya tek sektör paneli değildir.
-
-Ultra CRM:
-- müşteri talebinden satışa,
-- satıştan teklife,
-- tekliften operasyona,
-- operasyondan müşteri hafızasına,
-- müşteri hafızasından sektör DNA’sına
-
-uzanan premium AI işletme zekâsıdır.
-
-Enerji/Solify sadece ilk sektör DNA örneğidir. Ana çekirdek enerjiye hardcoded kalmamalıdır.
-
-## Tasarım standardı
-
-Tüm UI premium siyah SaaS panel standardında olmalıdır.
-
-Korunacak tasarım dili:
-- Arka plan: siyah / koyu cam yüzeyler
-- Kartlar: rounded-2xl / rounded-3xl, border-white/10, bg-white/[0.03-0.06]
-- Efektler: backdrop-blur, soft shadow, grid/radial premium atmosfer
-- Tipografi: net hiyerarşi, büyük başlık, küçük açıklama, operasyonel mikro metin
-- Üslup: pazarlama sloganı değil, yönetici brifingi
-- Görsel kalite: geçici demo hissi, amatör dashboard hissi, rastgele renk karmaşası yasaktır.
-
-## Kod standardı
-
-- TypeScript hatası bırakma.
-- Türkçe UI metinleri olabilir; ama TypeScript key/id/type alanlarında Türkçe karakter kullanma.
-- Gereksiz dependency ekleme.
-- Mevcut çalışan yapıyı kırma.
-- Import path’leri mevcut repo mimarisine göre doğrula.
-- Kullanılmayan component veya data oluşturma.
-- Büyük değişikliklerde önce plan sun.
-- Her değişiklikten sonra test komutlarını çalıştır.
-
-## Çalışma protokolü
-
-Her görevde şu sırayı izle:
-
-1. AGENTS.md dosyasını oku.
-2. İlgili mevcut dosyaları incele.
-3. Önce kısa uygulama planı çıkar:
-   - hedef
-   - değişecek dosyalar
-   - neden değişeceği
-   - risk
-   - test komutları
-4. Kullanıcı onayı olmadan büyük refactor yapma.
-5. Uygulama sırasında küçük ve mantıklı diff üret.
-6. Sonunda şu kontrolleri çalıştır:
-   - npx tsc --noEmit
-   - npm run build
-   - git status --short
-7. Hata varsa düzeltmeden “bitti” deme.
-8. Son raporda şunları ver:
-   - değişen dosyalar
-   - ne değişti
-   - hangi testler geçti
-   - kalan risk
-   - bir sonraki önerilen adım
-
-## Yasaklar
-
-- .env, secret, credential, token dosyalarını okuma veya değiştirme.
-- git reset --hard, rm -rf, clean, force push gibi yıkıcı komutlar çalıştırma.
-- Kullanıcı açıkça istemedikçe mevcut tasarım sistemini komple yıkma.
-- Sadece güzel görünen ama ürün mimarisine hizmet etmeyen geçici UI üretme.
-- “Master” kelimesini kullanıp acemi kod yazma.
-
-## Ultra CRM karar filtresi
-
-Her ekran şu sorulara cevap vermeli:
-
-- Kim bekliyor?
-- Nerede para kaybı var?
-- Şimdi ne yapmalıyım?
-- Hangi müşteri, teklif, kanal veya aksiyon öncelikli?
-- Sistem işletme sahibine karar aldırıyor mu?
-
-Bu sorulara hizmet etmeyen kart, metrik veya görsel unsur zayıftır.
-
-<!-- BEGIN ARQON_PHASE_GATE -->
-
-## Current Project State — Arqon Phase Gate
-
-Bu repo Arqon / Ultra CRM Master Development projesidir.
-
-Güncel resmi konum:
+## Aktif proje konumu
 
 ```text
-FAZ 5 — SİNYAL ÇEKİRDEĞİ: GÖRSEL KATMAN başlangıcına hazır.
+Aktif faz: FAZ 6 — ULTRA INBOX TAM YENİDEN TASARIM
+Aktif alt faz: Faz 6A — premium visual match / final inbox implementation
+Durum: devam ediyor
+Görsel kabul: yok
+Commit: kullanıcı görsel onayı olmadan yasak
 ```
 
-Tamamlanan kapılar:
+## Kaynak önceliği
+
+Codex ve yardımcı modeller şu sırayı izler:
 
 ```text
-FAZ 0 — Temizlik & Teknik Borç Kapatma tamamlandı.
-FAZ 1 — Marka Kimliği & İsimlendirme tamamlandı.
-FAZ 2 — Tasarım Sistemi Anayasası tamamlandı.
-FAZ 3 — Kontrol Merkezi → AI Boardroom tamamlandı.
-FAZ 4 — Sinyal Çekirdeği: Veri Katmanı tamamlandı.
-FAZ 4.5 — Duplicate DNA context temizliği tamamlandı.
+1. AGENTS.md
+2. 01_ARQON_MASTER_ROADMAP_v1.0.md
+3. 02_ARQON_CURRENT_STATE_HANDOFF.md
+4. 06_ARQON_ULTRA_INBOX_FINAL_VISUAL_SPEC.md
+5. 05_ARQON_ULTRA_INBOX_MASTER_STANDARD.md
+6. 03_ARQON_DNA_ARCHITECTURE_CONTEXT.md
+7. 04_ARQON_BRAND_AND_UI_RULES.md
+8. Repo terminal çıktıları ve gerçek dosyalar
 ```
 
-Faz 5 başlamadan önce korunacak sınırlar:
+Ana kural:
 
-- Faz 5 yalnız Signal Core görsel katmanı kapsamında ele alınmalıdır.
-- Faz 5 başlamadan önce çalışma alanı temiz olmalıdır.
-- `components/dna/SignalCore.tsx` üzerinde değişiklik yapılacaksa önce mevcut görsel yapı okunmalıdır.
-- `ChannelNode.tsx` ve `SignalFlow.tsx` yalnız Faz 5 görevi açıkça verildiğinde oluşturulmalıdır.
-- `ChannelSignalProvider` mount edilmemiştir; provider mount kararı ayrı mimari komut gerektirir.
-- `app/page.tsx`, `app/layout.tsx`, Dashboard, Inbox ve Sektörel DNA sayfa redesign işleri Faz 5 kapsamı değildir.
+```text
+Roadmap pusuladır. Handoff güncel konumdur. Repo çıktısı teknik gerçektir. Kullanıcı görsel kabulü UI gerçeğidir.
+```
 
-<!-- END ARQON_PHASE_GATE -->
+## Codex rolü
+
+Codex repo üzerinde dar kapsamlı uygulama yapar.
+
+Codex şunları yapmaz:
+
+```text
+- Faz dışı mimari yorum yapmaz.
+- Yeni package eklemez.
+- Görsel tasarım standardını keyfi değiştirmez.
+- Kullanıcı görsel onayı olmadan commit atmaz.
+- Build geçti diye görsel kabul varsaymaz.
+```
+
+## Faz 6A izinli dosyalar
+
+Faz 6A kapsamında yalnız şu dosyalara dokunulabilir:
+
+```text
+app/inbox/page.tsx
+components/inbox/InboxWorkspace.tsx
+components/inbox/ConversationQueue.tsx
+components/inbox/ConversationView.tsx
+components/inbox/AiMemoryStrip.tsx
+components/inbox/AiReplyBand.tsx
+components/inbox/CustomerSidePanel.tsx
+app/globals.css
+data/inbox.ts
+types/inbox.ts
+```
+
+Gerekirse `data/inbox.ts` ve `types/inbox.ts` yalnız type-safe mock/local data düzeni için değişir.
+
+## Faz 6A yasak dosyalar
+
+Şu dosyalara dokunulmaz:
+
+```text
+app/layout.tsx
+app/page.tsx
+data/dashboard.ts
+context/DnaContext.tsx
+context/ChannelSignalContext.tsx
+lib/DnaContext.tsx
+types/dna/ChannelSignal.ts
+data/dna/channelStatus.ts
+hooks/useChannelSignals.ts
+lib/dna/signalEngine.ts
+```
+
+`lib/DnaContext.tsx` yeniden oluşturulmaz, import edilmez.
+
+## Faz 6A ürün hedefi
+
+Ultra Inbox final hedefi:
+
+```text
+Dark Arqon sidebar + light/platinum premium inbox canvas + platform switcher + conversation command center + AI action strip + auto-grow composer + Customer Intelligence executive dock/rail.
+```
+
+Uygulama sıradan admin panel gibi görünürse kabul edilmez.
+
+## Görsel kabul kilidi
+
+Faz 6A için teknik başarı tek başına yeterli değildir.
+
+```text
+npx tsc --noEmit başarılı olabilir.
+npm run build başarılı olabilir.
+Yine de kullanıcı görsel kabulü yoksa commit yok.
+```
+
+## İşlevsel davranışlar korunur
+
+Şunlar kırılmamalıdır:
+
+```text
+- local search
+- platform filter
+- quick filters
+- active conversation selection
+- Customer dock/rail update
+- AI Kullan/Düzenle draft'a metin basma
+- Reddet öneriyi pasifleştirme
+- composer auto-grow
+```
+
+Gerçek mesaj gönderimi eklenmez.
+
+## DNA/provider sınırı
+
+Faz 6A sırasında:
+
+```text
+- DnaProvider mount edilmez.
+- ChannelSignalProvider mount edilmez.
+- useDna/useDnaSafe/activeDna bağlanmaz.
+- No Lost Lead / No Lost Money gerçek entegrasyonu yapılmaz.
+```
+
+DNA bağlantısı Faz 6C konusudur.
+
+## Renk ve UI sınırı
+
+Faz 6A `/inbox` workspace light/platinum olabilir.
+
+Kullanılabilir:
+
+```text
+#F4F5F7
+#F6F7F9
+#FFFFFF
+#EEF0F3
+#F1F2F4
+#0B0D10
+#4B5563
+#7A808A
+black/[0.08]
+black/[0.10]
+```
+
+Yasak:
+
+```text
+blue
+cyan
+sky
+indigo
+teal
+purple
+from-
+to-
+via-
+neon
+glow
+```
+
+Not: `glow` araması global boot/signal dosyalarında false positive verebilir; aktif inbox path içinde olmamalıdır.
+
+## Platform switcher kuralı
+
+Platformlar:
+
+```text
+Tümü
+WhatsApp
+Instagram
+Messenger
+Mail
+Webchat
+Formlar
+```
+
+Kurallar:
+
+```text
+- icon/logo + label + sayı görünür.
+- yatay scroll yok.
+- kesik chip yok.
+- Mail ChannelSignal'a eklenmez.
+```
+
+## Customer Intelligence kuralı
+
+CustomerSidePanel şu şekilde davranabilir:
+
+```text
+- geniş desktop: sağ rail
+- laptop/monitor: compact executive bottom dock
+```
+
+Yasak:
+
+```text
+- uzun form
+- eski dört büyük kart grid'i
+- aktif UI'da "Müşteri hafızası / İletişim ve kaynak / Lead ve aksiyon / Sector DNA" dev blokları
+```
+
+## Her uygulama sonunda zorunlu kontroller
+
+```bash
+git status --short
+git diff --stat
+npx tsc --noEmit
+npm run build
+git status --short
+```
+
+Faz 6A özel audit:
+
+```bash
+rg -n "TopCommandHeader|PlatformSwitcher|MainCommandGrid|CustomerIntelligenceDock" components/inbox app/inbox
+rg -n "Müşteri hafızası|İletişim ve kaynak|Lead ve aksiyon|Sector DNA|Bağlantıya hazır" components/inbox app/inbox
+rg -n "overflow-x-auto|overflow-x-scroll|whitespace-nowrap" app/inbox components/inbox app/globals.css
+rg -n "h-dvh|h-screen|height: 100vh|height: 100dvh|absolute|fixed|inset-0" app/inbox components/inbox app/globals.css
+rg -n "blue|cyan|sky|indigo|teal|purple|from-|to-|via-|neon|glow" components/inbox app/inbox/page.tsx app/globals.css
+rg -n "useDna|DnaProvider|ChannelSignalProvider|useChannelSignalContext|lib/DnaContext" app/inbox components/inbox context hooks lib data types
+rg -n "any" app/inbox components/inbox data/inbox.ts types/inbox.ts
+```
+
+## Rapor formatı
+
+Her Codex raporu şunları içerir:
+
+```text
+1. Değişen dosyalar
+2. Aktif render path
+3. Görsel hedefe hangi noktalarla yaklaşıldı
+4. Search/platform/quick filter durumu
+5. Active conversation update durumu
+6. AI Kullan/Düzenle/Reddet durumu
+7. Composer auto-grow durumu
+8. DNA/provider bağlanmadı doğrulaması
+9. Yasak dosyalara dokunulmadı doğrulaması
+10. any kullanılmadı doğrulaması
+11. Typecheck sonucu
+12. Build sonucu
+13. git status --short sonucu
+14. Commit atıldı mı? Cevap: atılmamalı
+```
+
+## Kapanış
+
+Faz 6A ancak kullanıcı şu kararı verdiğinde kapanır:
+
+```text
+Bu görünüm Arqon'un premium Ultra Inbox standardını karşılıyor; Faz 6A görsel kabul veriyorum.
+```
+
+Bu karar yoksa commit yok.

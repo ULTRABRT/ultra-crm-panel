@@ -1,542 +1,446 @@
+"use client";
+
+import { useMemo, useState, type ReactNode } from "react";
 import {
-  HiOutlineArrowTrendingUp,
+  FaFacebookMessenger,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
+import {
+  HiOutlineAdjustmentsHorizontal,
   HiOutlineChatBubbleLeftRight,
-  HiOutlineCheckCircle,
-  HiOutlineClock,
   HiOutlineDocumentText,
+  HiOutlineEnvelope,
   HiOutlineInboxStack,
   HiOutlineMagnifyingGlass,
-  HiOutlinePaperAirplane,
-  HiOutlinePaperClip,
-  HiOutlinePhone,
   HiOutlineSparkles,
-  HiOutlineUserCircle,
+  HiOutlineSquares2X2,
 } from "react-icons/hi2";
 
-import { inboxConversations, inboxDetail } from "../../data/inbox";
+import {
+  inboxChannelStats,
+  inboxConversations,
+  inboxDetail,
+} from "@/data/inbox";
+import { useDnaSafe } from "@/context/DnaContext";
+import type { InboxChannel, InboxConversation } from "@/types/inbox";
 
-const channelFilters = [
-  "Tümü",
-  "WhatsApp",
-  "Instagram",
-  "Messenger",
-  "E-posta",
-  "Web Sohbet",
-  "Formlar",
+import { ConversationQueue, type QueueFilter } from "./ConversationQueue";
+import { ConversationView } from "./ConversationView";
+import { CustomerSidePanel } from "./CustomerSidePanel";
+
+type PlatformFilter = InboxChannel | "all" | "messenger";
+
+type PlatformBase = {
+  id: PlatformFilter;
+  label: string;
+};
+
+type PlatformOption = PlatformBase & {
+  total: number;
+  unread: number;
+};
+
+const platformBase: PlatformBase[] = [
+  {
+    id: "all",
+    label: "Tümü",
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+  },
+  {
+    id: "messenger",
+    label: "Messenger",
+  },
+  {
+    id: "mail",
+    label: "Mail",
+  },
+  {
+    id: "webChat",
+    label: "Webchat",
+  },
+  {
+    id: "forms",
+    label: "Formlar",
+  },
 ];
 
-const queueFilters = [
-  { label: "Tümü", value: "5" },
-  { label: "Yanıt", value: "3" },
-  { label: "Sıcak", value: "3" },
-];
+function getPlatformIcon(platform: PlatformFilter, active: boolean) {
+  const className = "h-[21px] w-[21px]";
 
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  if (platform === "whatsapp") {
+    return (
+      <FaWhatsapp
+        className={className}
+        style={active ? undefined : { color: "#22A060" }}
+      />
+    );
+  }
+
+  if (platform === "instagram") {
+    return (
+      <FaInstagram
+        className={className}
+        style={active ? undefined : { color: "#D62976" }}
+      />
+    );
+  }
+
+  if (platform === "messenger") {
+    return (
+      <FaFacebookMessenger
+        className={className}
+        style={active ? undefined : { color: "#0866FF" }}
+      />
+    );
+  }
+
+  if (platform === "mail") {
+    return <HiOutlineEnvelope className={className} />;
+  }
+
+  if (platform === "webChat") {
+    return <HiOutlineChatBubbleLeftRight className={className} />;
+  }
+
+  if (platform === "forms") {
+    return <HiOutlineDocumentText className={className} />;
+  }
+
+  return <HiOutlineSquares2X2 className={className} />;
 }
 
-function StatusPill({
-  children,
-  active = false,
-}: {
-  children: React.ReactNode;
-  active?: boolean;
-}) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold ${
-        active
-          ? "bg-white text-black"
-          : "border border-white/10 bg-white/[0.045] text-white/48"
-      }`}
-    >
-      {children}
-    </span>
+function matchesSearch(conversation: InboxConversation, query: string) {
+  const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
+
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  return [
+    conversation.customerName,
+    conversation.channelLabel,
+    conversation.subject,
+    conversation.preview,
+    conversation.lastMessage,
+    conversation.intentLabel,
+  ].some((value) =>
+    value.toLocaleLowerCase("tr-TR").includes(normalizedQuery),
   );
 }
 
-function ConversationRow({
-  conversation,
-  active = false,
+function matchesQueueFilter(
+  conversation: InboxConversation,
+  filter: QueueFilter,
+) {
+  if (filter === "waiting") {
+    return conversation.isUnread || conversation.status === "waitingReply";
+  }
+
+  if (filter === "hot") {
+    return (
+      conversation.temperature === "veryHot" ||
+      conversation.temperature === "hot"
+    );
+  }
+
+  return true;
+}
+
+function TopCommandHeader({
+  searchQuery,
+  onSearchChange,
 }: {
-  conversation: (typeof inboxConversations)[number];
-  active?: boolean;
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
 }) {
   return (
-    <button
-      className={`group w-full border-b border-white/10 px-4 py-3.5 text-left transition ${
-        active ? "bg-white text-black" : "bg-transparent hover:bg-white/[0.045]"
-      }`}
-    >
-      <div className="flex gap-3">
-        <div
-          className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-xs font-bold ${
-            active
-              ? "bg-black text-white"
-              : "border border-white/10 bg-white/[0.045] text-white"
-          }`}
-        >
-          {getInitials(conversation.customerName)}
+    <header className="arqon-inbox-commandbar-final rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] px-3 py-2 shadow-[0_12px_34px_rgba(11,13,16,0.07),inset_0_1px_0_rgba(255,255,255,0.94)]">
+      <div className="arqon-inbox-commandrow-final">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-black/[0.08] bg-[#FFFFFF] text-[#0B0D10] shadow-[0_8px_18px_rgba(11,13,16,0.08)]">
+            <HiOutlineInboxStack className="h-4 w-4" />
+          </div>
 
-          {conversation.isUnread ? (
-            <span
-              className={`absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border ${
-                active ? "border-white bg-black" : "border-[#071522] bg-white"
-              }`}
-            />
-          ) : null}
-        </div>
-
-        <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <h3
-                  className={`truncate text-sm font-semibold ${
-                    active ? "text-black" : "text-white"
-                  }`}
-                >
-                  {conversation.customerName}
-                </h3>
-
-                {conversation.isUnread ? (
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                      active ? "bg-black text-white" : "bg-white text-black"
-                    }`}
-                  >
-                    Yeni
-                  </span>
-                ) : null}
-              </div>
-
-              <p
-                className={`mt-0.5 truncate text-xs ${
-                  active ? "text-black/50" : "text-white/36"
-                }`}
-              >
-                {conversation.channelLabel} · {conversation.intentLabel}
+          <div className="min-w-0">
+            <div className="flex min-w-0 items-center gap-2">
+              <h1 className="shrink-0 text-lg font-semibold tracking-tight text-[#0B0D10]">
+                Ultra Inbox
+              </h1>
+              <p className="line-clamp-1 text-[11px] font-medium text-[#6B7280]">
+                Müşteri operasyon merkezi · AI destekli kanal komut merkezi
               </p>
             </div>
 
-            <span
-              className={`shrink-0 text-[11px] font-medium ${
-                active ? "text-black/45" : "text-white/28"
-              }`}
-            >
-              {conversation.lastMessageTimeLabel}
-            </span>
-          </div>
-
-          <p
-            className={`mt-2 line-clamp-2 text-sm leading-5 ${
-              active ? "text-black/72" : "text-white/52"
-            }`}
-          >
-            {conversation.preview}
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            <StatusPill active={active}>Çok sıcak</StatusPill>
-            {conversation.hasBatteryInterest ? (
-              <StatusPill active={active}>Batarya</StatusPill>
-            ) : null}
-            {conversation.hasMissingInfo ? (
-              <StatusPill active={active}>Eksik</StatusPill>
-            ) : null}
-            {conversation.isLeadCandidate ? (
-              <StatusPill active={active}>Lead</StatusPill>
-            ) : null}
           </div>
         </div>
+
+        <div className="arqon-inbox-command-search">
+          <div className="arqon-search-field flex h-9 w-full items-center gap-2 rounded-full border border-black/[0.08] bg-[#FFFFFF] px-3 text-[#7A808A] shadow-[0_6px_18px_rgba(11,13,16,0.035)]">
+            <HiOutlineMagnifyingGlass className="h-4 w-4 shrink-0" />
+            <input
+              value={searchQuery}
+              onChange={(event) => onSearchChange(event.target.value)}
+              className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-[#0B0D10] outline-none placeholder:text-[#8A9099]"
+              placeholder="Müşteri, kanal veya mesaj ara..."
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
+          <button
+            type="button"
+            className="inline-flex h-9 items-center gap-1.5 rounded-[0.7rem] border border-black/[0.08] bg-[#FFFFFF] px-3 text-[11px] font-semibold text-[#0B0D10] transition hover:bg-[#EEF0F3]"
+          >
+            <HiOutlineAdjustmentsHorizontal className="h-4 w-4" />
+            Filtre
+          </button>
+
+          <button
+            type="button"
+            className="inline-flex h-9 items-center gap-1.5 rounded-[0.7rem] bg-[#0B0D10] px-3 text-[11px] font-semibold text-[#FFFFFF] shadow-[0_10px_22px_rgba(11,13,16,0.16)] transition hover:bg-[#1A1D22]"
+          >
+            <HiOutlineSparkles className="h-4 w-4" />
+            AI açık
+          </button>
+        </div>
       </div>
-    </button>
+    </header>
   );
 }
 
-function MessageBubble({
-  message,
+function PlatformSwitcher({
+  platforms,
+  activePlatform,
+  onPlatformChange,
 }: {
-  message: (typeof inboxDetail.activeConversation.messages)[number];
+  platforms: PlatformOption[];
+  activePlatform: PlatformFilter;
+  onPlatformChange: (platform: PlatformFilter) => void;
 }) {
-  const isOutgoing = message.direction === "outgoing";
-  const isInternal = message.direction === "internal";
-
   return (
-    <article
-      className={`flex ${
-        isOutgoing ? "justify-end" : isInternal ? "justify-center" : "justify-start"
-      }`}
+    <nav
+      aria-label="Inbox platformları"
+      className="arqon-inbox-platform-bar-final arqon-channel-pulse-rail"
     >
-      <div
-        className={`max-w-[72%] rounded-[1.35rem] px-4 py-3 ${
-          isOutgoing
-            ? "bg-[#0f6fff] text-white shadow-xl shadow-[#0f6fff]/15"
-            : isInternal
-              ? "border border-white/10 bg-white/[0.05] text-white/58"
-              : "border border-white/10 bg-[#10283d] text-white"
-        }`}
-      >
-        <div className="mb-2 flex items-center gap-2">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
-              isOutgoing
-                ? "bg-white/15 text-white"
-                : "border border-white/10 bg-black/20 text-white/50"
+      {platforms.map((platform) => {
+        const isActive = activePlatform === platform.id;
+
+        return (
+          <button
+            key={platform.id}
+            type="button"
+            onClick={() => onPlatformChange(platform.id)}
+            className={`arqon-platform-card arqon-channel-pulse-card relative flex h-[62px] min-w-0 items-center gap-3 rounded-[0.85rem] border px-3 text-left transition ${
+              isActive
+                ? "border-black/[0.18] bg-[#0B0D10] text-[#FFFFFF] shadow-[0_16px_34px_rgba(11,13,16,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]"
+                : "border-black/[0.08] bg-[#FFFFFF] text-[#0B0D10] shadow-[0_10px_28px_rgba(11,13,16,0.055),inset_0_1px_0_rgba(255,255,255,0.95)] hover:border-black/[0.12] hover:bg-[#F7F8FA]"
             }`}
           >
-            {isOutgoing ? (
-              <HiOutlineSparkles className="h-3.5 w-3.5" />
-            ) : isInternal ? (
-              <HiOutlineDocumentText className="h-3.5 w-3.5" />
-            ) : (
-              <HiOutlineUserCircle className="h-3.5 w-3.5" />
-            )}
-
-            {isOutgoing ? "Solify" : isInternal ? "İç not" : "Müşteri"}
-          </span>
-        </div>
-
-        <p className="whitespace-pre-line text-sm leading-7 text-white/80">
-          {message.content}
-        </p>
-
-        <div
-          className={`mt-2 flex items-center justify-end gap-1.5 text-[11px] ${
-            isOutgoing ? "text-white/65" : "text-white/32"
-          }`}
-        >
-          {message.timeLabel}
-          {isOutgoing ? <HiOutlineCheckCircle className="h-3.5 w-3.5" /> : null}
-        </div>
-      </div>
-    </article>
+            <span
+              className={`arqon-platform-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.7rem] border ${
+                isActive
+                  ? "border-[#FFFFFF]/15 bg-[#FFFFFF]/10 text-[#FFFFFF]"
+                  : "border-black/[0.08] bg-[#F4F5F7] text-[#0B0D10]"
+              }`}
+            >
+              {getPlatformIcon(platform.id, isActive)}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="arqon-platform-label block text-[12px] font-semibold">
+                {platform.label}
+              </span>
+              <span
+                className={`arqon-platform-subtitle mt-1 block truncate text-[10px] font-medium ${
+                  isActive ? "text-[#FFFFFF]/72" : "text-[#7A808A]"
+                }`}
+              >
+                <span className="arqon-platform-subtitle-full">
+                  {platform.total} toplam · {platform.unread} bekliyor
+                </span>
+                <span className="arqon-platform-subtitle-compact">
+                  {platform.unread} bekliyor
+                </span>
+              </span>
+            </span>
+            <span
+              className={`arqon-platform-count shrink-0 self-start rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                isActive
+                  ? "bg-[#FFFFFF]/12 text-[#E5E7EB]"
+                  : "bg-[#F1F2F4] text-[#7A808A]"
+              }`}
+            >
+              {platform.unread > 0 ? platform.unread : platform.total}
+            </span>
+          </button>
+        );
+      })}
+    </nav>
   );
+}
+
+function MainCommandGrid({ children }: { children: ReactNode }) {
+  return <div className="arqon-inbox-workbench-final">{children}</div>;
+}
+
+function CustomerIntelligenceDock({ children }: { children: ReactNode }) {
+  return <div className="arqon-inbox-customer-dock-final">{children}</div>;
 }
 
 export function InboxWorkspace() {
-  const { activeConversation, aiReplies } = inboxDetail;
-  const aiReply = aiReplies[0];
+  const { actions } = inboxDetail;
+  const dnaContext = useDnaSafe();
+  const activeDna = dnaContext?.activeDna ?? null;
+  const [activeConversationId, setActiveConversationId] = useState(
+    inboxDetail.activeConversation.id,
+  );
+  const [activePlatform, setActivePlatform] = useState<PlatformFilter>("all");
+  const [activeQueueFilter, setActiveQueueFilter] = useState<QueueFilter>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [draft, setDraft] = useState("");
+  const [dismissedReplyIdsByConversation, setDismissedReplyIdsByConversation] =
+    useState<Record<string, string[]>>({});
+
+  const filteredConversations = useMemo(
+    () =>
+      inboxConversations.filter((conversation) => {
+        const platformMatch =
+          activePlatform === "all" || conversation.channel === activePlatform;
+
+        return (
+          platformMatch &&
+          matchesQueueFilter(conversation, activeQueueFilter) &&
+          matchesSearch(conversation, searchQuery)
+        );
+      }),
+    [activePlatform, activeQueueFilter, searchQuery],
+  );
+
+  const activeConversation =
+    filteredConversations.find(
+      (conversation) => conversation.id === activeConversationId,
+    ) ??
+    filteredConversations[0] ??
+    null;
+
+  const dismissedReplyIds = activeConversation
+    ? dismissedReplyIdsByConversation[activeConversation.id] ?? []
+    : [];
+
+  const availableReplies =
+    activeConversation?.aiReplies.filter(
+      (reply) => !dismissedReplyIds.includes(reply.id),
+    ) ?? [];
+
+  const waitingCount = inboxConversations.filter(
+    (conversation) =>
+      conversation.isUnread || conversation.status === "waitingReply",
+  ).length;
+  const hotCount = inboxConversations.filter((conversation) =>
+    ["veryHot", "hot"].includes(conversation.temperature),
+  ).length;
+
+  const platformOptions: PlatformOption[] = platformBase.map((platform) => {
+    if (platform.id === "all") {
+      return {
+        ...platform,
+        total: inboxConversations.length,
+        unread: waitingCount,
+      };
+    }
+
+    const stat =
+      platform.id === "messenger"
+        ? undefined
+        : inboxChannelStats.find((item) => item.id === platform.id);
+
+    return {
+      ...platform,
+      total: stat?.total ?? 0,
+      unread: stat?.unread ?? 0,
+    };
+  });
+
+  function handleSelectConversation(conversationId: string) {
+    setActiveConversationId(conversationId);
+    setDraft("");
+  }
+
+  function handleUseReply(message: string) {
+    setDraft(message);
+  }
+
+  function handleDismissReply(replyId: string) {
+    if (!activeConversation) {
+      return;
+    }
+
+    setDismissedReplyIdsByConversation((current) => {
+      const conversationReplyIds = current[activeConversation.id] ?? [];
+
+      if (conversationReplyIds.includes(replyId)) {
+        return current;
+      }
+
+      return {
+        ...current,
+        [activeConversation.id]: [...conversationReplyIds, replyId],
+      };
+    });
+  }
 
   return (
-    <section className="arqon-inbox-workspace h-full min-h-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#06111d] shadow-2xl shadow-black/45">
-      <div className="flex h-full min-h-0 flex-col">
-        <header className="shrink-0 border-b border-white/10 bg-[#071522]">
-          <div className="arqon-inbox-top">
-            <div className="flex min-w-0 items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-black">
-                <HiOutlineInboxStack className="h-5 w-5" />
-              </div>
+    <section className="arqon-inbox-workspace-final w-full">
+      <TopCommandHeader
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
 
-              <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <h1 className="truncate text-lg font-semibold tracking-tight text-white">
-                    Ultra Inbox
-                  </h1>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-white/45">
-                    Canlı mesaj merkezi
-                  </span>
-                </div>
+      <PlatformSwitcher
+        activePlatform={activePlatform}
+        platforms={platformOptions}
+        onPlatformChange={setActivePlatform}
+      />
 
-                <p className="mt-0.5 truncate text-sm text-white/36">
-                  Tüm platform mesajlarını tek yerden yönet, yanıtla ve satış aksiyonuna çevir.
-                </p>
-              </div>
-            </div>
+      <MainCommandGrid>
+        <ConversationQueue
+          activeConversationId={activeConversation?.id ?? ""}
+          activeQueueFilter={activeQueueFilter}
+          conversations={filteredConversations}
+          onQueueFilterChange={setActiveQueueFilter}
+          onSelectConversation={handleSelectConversation}
+          totalConversationCount={inboxConversations.length}
+        />
 
-            <div className="arqon-inbox-actions">
-              <div className="arqon-search-field arqon-inbox-search h-10 min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-white/45">
-                <HiOutlineMagnifyingGlass className="h-5 w-5 shrink-0" />
-                <input
-                  className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
-                  placeholder="Mesaj, müşteri veya kanal ara..."
-                />
-              </div>
+        <div className="arqon-inbox-command-stack arqon-command-deck-shell">
+          <ConversationView
+            activeDna={activeDna}
+            actions={actions}
+            aiReplies={availableReplies}
+            conversation={activeConversation}
+            draft={draft}
+            onDismissReply={handleDismissReply}
+            onDraftChange={setDraft}
+            onEditReply={handleUseReply}
+            onUseReply={handleUseReply}
+          />
 
-              <button className="h-10 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm font-semibold text-white/60 transition hover:bg-white/[0.08] hover:text-white">
-                Filtre
-              </button>
-
-              <button className="h-10 rounded-2xl bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/85">
-                AI Açık
-              </button>
-            </div>
-          </div>
-
-          <div className="flex h-[50px] items-center gap-2 overflow-x-auto border-t border-white/10 px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {channelFilters.map((channel, index) => (
-              <button
-                key={channel}
-                className={`inline-flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition ${
-                  index === 0
-                    ? "bg-white text-black"
-                    : "border border-white/10 bg-white/[0.035] text-white/55 hover:bg-white/[0.07] hover:text-white"
-                }`}
-              >
-                <HiOutlineChatBubbleLeftRight className="h-3.5 w-3.5" />
-                {channel}
-              </button>
-            ))}
-          </div>
-        </header>
-
-        <div className="arqon-inbox-grid">
-          <aside className="flex min-h-0 flex-col overflow-hidden border-r border-white/10 bg-[#071522]">
-            <div className="shrink-0 border-b border-white/10 px-4 py-4">
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <div>
-                  <p className="mb-2 inline-flex rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-white/45">
-                    Konuşma Kuyruğu
-                  </p>
-
-                  <h2 className="text-lg font-semibold tracking-tight text-white">
-                    Gelen Kutusu
-                  </h2>
-
-                  <p className="mt-1 text-xs text-white/36">
-                    Satışa en yakın mesajlar yukarıda.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-2 text-right">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-white/28">
-                    Açık
-                  </p>
-                  <p className="text-lg font-semibold text-white">24</p>
-                </div>
-              </div>
-
-              <div className="arqon-search-field mb-3 flex h-10 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-3 text-white/42">
-                <HiOutlineMagnifyingGlass className="h-4 w-4 shrink-0" />
-                <input
-                  className="arqon-search-input h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
-                  placeholder="Konuşma ara..."
-                />
-              </div>
-
-              <div className="grid grid-cols-3 gap-2">
-                {queueFilters.map((filter, index) => (
-                  <button
-                    key={filter.label}
-                    className={`rounded-2xl px-2 py-2.5 text-center transition ${
-                      index === 0
-                        ? "bg-white text-black"
-                        : "border border-white/10 bg-white/[0.035] text-white/48 hover:bg-white/[0.07] hover:text-white"
-                    }`}
-                  >
-                    <span className="block text-xs font-semibold">
-                      {filter.label}
-                    </span>
-                    <span
-                      className={`mt-0.5 block text-[11px] ${
-                        index === 0 ? "text-black/45" : "text-white/28"
-                      }`}
-                    >
-                      {filter.value}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {inboxConversations.map((conversation, index) => (
-                <ConversationRow
-                  key={conversation.id}
-                  conversation={conversation}
-                  active={index === 0}
-                />
-              ))}
-            </div>
-          </aside>
-
-          <section className="flex min-h-0 flex-col overflow-hidden bg-[#06111d]">
-            <div className="flex h-[74px] shrink-0 items-center justify-between gap-4 border-b border-white/10 bg-[#071522] px-5">
-              <div className="flex min-w-0 items-center gap-3">
-                <div className="relative shrink-0">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-sm font-bold text-black">
-                    {getInitials(activeConversation.customerName)}
-                  </div>
-                  <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border border-[#071522] bg-[#0f6fff] text-white">
-                    <HiOutlineChatBubbleLeftRight className="h-3 w-3" />
-                  </span>
-                </div>
-
-                <div className="min-w-0">
-                  <div className="flex min-w-0 items-center gap-2">
-                    <h2 className="truncate text-lg font-semibold tracking-tight text-white">
-                      {activeConversation.customerName}
-                    </h2>
-                    <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-1 text-[11px] font-medium text-white/55">
-                      {activeConversation.channelLabel}
-                    </span>
-                  </div>
-
-                  <p className="mt-1 truncate text-sm text-white/40">
-                    {activeConversation.subject}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex shrink-0 items-center gap-2">
-                <button className="inline-flex h-10 items-center gap-2 rounded-2xl bg-white px-4 text-sm font-semibold text-black">
-                  <HiOutlinePhone className="h-4 w-4" />
-                  Ara
-                </button>
-
-                <button className="inline-flex h-10 items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.05] px-4 text-sm font-semibold text-white/62">
-                  <HiOutlineArrowTrendingUp className="h-4 w-4" />
-                  Lead
-                </button>
-              </div>
-            </div>
-
-            <main className="min-h-0 flex-1 overflow-y-auto bg-[radial-gradient(circle_at_top_right,rgba(15,111,255,0.10),transparent_30%),linear-gradient(to_bottom,#06111d,#04080d)] px-6 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="mx-auto flex max-w-[820px] flex-col gap-4">
-                <div className="flex justify-center">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs font-medium text-white/35">
-                    <HiOutlineClock className="h-3.5 w-3.5" />
-                    Bugün
-                  </span>
-                </div>
-
-                {activeConversation.messages.map((message) => (
-                  <MessageBubble key={message.id} message={message} />
-                ))}
-              </div>
-            </main>
-
-            <footer className="shrink-0 border-t border-white/10 bg-[#071522] px-5 py-3">
-              {aiReply ? (
-                <div className="mb-2 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-2">
-                  <div className="flex min-w-0 items-center gap-2">
-                    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-black">
-                      <HiOutlineSparkles className="h-3.5 w-3.5" />
-                      AI
-                    </span>
-
-                    <p className="truncate text-sm text-white/58">
-                      {aiReply.message}
-                    </p>
-                  </div>
-
-                  <button className="shrink-0 rounded-xl bg-white px-3 py-1.5 text-xs font-semibold text-black">
-                    Kullan
-                  </button>
-                </div>
-              ) : null}
-
-              <div className="arqon-search-field flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-black/25 p-2.5">
-                <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/55">
-                  <HiOutlinePaperClip className="h-5 w-5" />
-                </button>
-
-                <input
-                  className="arqon-search-input h-10 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35"
-                  placeholder="Mesajınızı yazın..."
-                />
-
-                <button className="flex h-10 shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#0f6fff] px-5 text-sm font-semibold text-white shadow-lg shadow-[#0f6fff]/20">
-                  <HiOutlinePaperAirplane className="h-4 w-4" />
-                  Gönder
-                </button>
-              </div>
-            </footer>
-          </section>
-
-          <aside className="arqon-inbox-detail min-h-0 flex-col overflow-hidden border-l border-white/10 bg-[#071522]">
-            <div className="shrink-0 border-b border-white/10 px-5 py-5">
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sm font-bold text-black">
-                  {getInitials(activeConversation.customerName)}
-                </div>
-
-                <span className="rounded-full bg-white px-2.5 py-1.5 text-[11px] font-semibold text-black">
-                  {activeConversation.aiScore} AI skor
-                </span>
-              </div>
-
-              <h2 className="truncate text-lg font-semibold tracking-tight text-white">
-                {activeConversation.customerName}
-              </h2>
-
-              <p className="mt-1 truncate text-sm text-white/40">
-                {activeConversation.customerTypeLabel}
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                <StatusPill active>Çok sıcak</StatusPill>
-                <StatusPill active>Acil</StatusPill>
-              </div>
-            </div>
-
-            <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <section className="mb-3 rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/32">
-                  Müşteri
-                </p>
-
-                <div className="space-y-2">
-                  <div className="rounded-xl border border-white/10 bg-black/25 px-3 py-2.5">
-                    <p className="text-[10px] uppercase tracking-[0.16em] text-white/28">
-                      Telefon
-                    </p>
-                    <p className="mt-1 truncate text-sm font-semibold text-white/75">
-                      {activeConversation.phone}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-black/25 px-3 py-2.5">
-                    <p className="text-[10px] uppercase tracking-[0.16em] text-white/28">
-                      Kaynak
-                    </p>
-                    <p className="mt-1 truncate text-sm font-semibold text-white/75">
-                      {activeConversation.sourceLabel}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-black/25 px-3 py-2.5">
-                    <p className="text-[10px] uppercase tracking-[0.16em] text-white/28">
-                      Sorumlu
-                    </p>
-                    <p className="mt-1 truncate text-sm font-semibold text-white/75">
-                      {activeConversation.assigneeLabel}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/32">
-                  İşlemler
-                </p>
-
-                <div className="space-y-2">
-                  <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-black">
-                    <HiOutlinePhone className="h-4 w-4" />
-                    Ara
-                  </button>
-
-                  <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-semibold text-white/62">
-                    <HiOutlineArrowTrendingUp className="h-4 w-4" />
-                    Lead oluştur
-                  </button>
-
-                  <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-semibold text-white/62">
-                    <HiOutlineDocumentText className="h-4 w-4" />
-                    Teklif oluştur
-                  </button>
-                </div>
-              </section>
-            </div>
-          </aside>
+          <CustomerIntelligenceDock>
+            <CustomerSidePanel
+              activeDna={activeDna}
+              actions={actions}
+              conversation={activeConversation}
+            />
+          </CustomerIntelligenceDock>
         </div>
-      </div>
+      </MainCommandGrid>
     </section>
   );
 }

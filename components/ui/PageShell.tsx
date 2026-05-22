@@ -22,7 +22,7 @@ export function PageShell({
 }: PageShellProps) {
   return (
     <section className={`min-w-0 ${className}`}>
-      <div className="mb-6 flex min-w-0 flex-wrap items-start justify-between gap-4">
+      <div className="arqon-page-shell-head mb-6 flex min-w-0 flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           {eyebrow && <div className={designTokens.typography.label}>{eyebrow}</div>}
           <h1 className={`mt-2 ${designTokens.typography.pageTitle}`}>{title}</h1>
@@ -33,7 +33,7 @@ export function PageShell({
           )}
         </div>
 
-        {actions && <div className="shrink-0">{actions}</div>}
+        {actions && <div className="arqon-page-shell-actions shrink-0">{actions}</div>}
       </div>
 
       <div className={`min-w-0 space-y-6 ${contentClassName}`}>{children}</div>

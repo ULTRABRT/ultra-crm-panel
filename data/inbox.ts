@@ -6,6 +6,19 @@ import type {
   InboxDetail,
   InboxKpi,
 } from "../types/inbox";
+import { createDnaFieldKey } from "../lib/dna/keys";
+
+const inboxDnaFields = {
+  interestedService: createDnaFieldKey(
+    "energy",
+    "basics",
+    "ilgilendigi_hizmet",
+  ),
+  structureType: createDnaFieldKey("energy", "basics", "yapi_tipi"),
+  roofType: createDnaFieldKey("energy", "basics", "cati_tipi"),
+  monthlyBill: createDnaFieldKey("energy", "basics", "aylik_fatura"),
+  batteryNeed: createDnaFieldKey("energy", "signals", "batarya_ihtiyaci"),
+} as const;
 
 export const inboxKpis: InboxKpi[] = [
   {
@@ -108,8 +121,50 @@ export const inboxConversations: InboxConversation[] = [
     hasMissingInfo: true,
     hasBatteryInterest: true,
     isLeadCandidate: true,
+    customerIntelligence: {
+      interest: "Cati Tipi GES + Batarya",
+      location: "Istanbul, Kartal",
+      valueLabel: "3.200 - 4.000 TL",
+      valueRiskLabel: "Bilgi eksikligi riski",
+      nextBestAction: "Cati + fatura + abonelik gucu iste",
+      expectedOutcome: "Lead kaydi tamamlanir",
+      sourceDate: "6 Mayis 2026",
+      dnaFieldValues: [
+        { fieldKey: inboxDnaFields.interestedService, value: "Panel + batarya" },
+        { fieldKey: inboxDnaFields.structureType, value: "Mustakil ev" },
+        { fieldKey: inboxDnaFields.monthlyBill, value: "3.200 - 4.000 TL" },
+      ],
+    },
     nextAction:
       "Çatı tipi, lokasyon ve aylık fatura bilgisi netleştirilip lead kaydı açılmalı.",
+    aiReplies: [
+      {
+        id: "conv-001-reply-missing-info",
+        title: "Eksik Bilgi Toplayan Yanıt",
+        toneLabel: "Profesyonel / net",
+        replyPreview:
+          "Mehmet'ten çatı tipi, konum, fatura ve abonelik gücünü iste.",
+        message:
+          "Merhaba Mehmet Bey, yardımcı memnuniyetle oluruz. Size doğru fiyat çıkarabilmemiz için çatı tipi, konum, aylık elektrik faturası ve mevcut abonelik gücünüzü paylaşabilir misiniz?",
+        reason: "Teklif çıkarabilmek için çatı, konum ve fatura bilgisi eksik.",
+        confidenceLabel: "%94 güven",
+        expectedOutcome: "Lead kaydı tamamlanır.",
+        nextActionLabel: "Eksik bilgiyi tamamla",
+      },
+      {
+        id: "conv-001-reply-call-permission",
+        title: "Hızlı Arama İzni",
+        toneLabel: "Kısa / satış odaklı",
+        replyPreview:
+          "Talebi aldığını belirt, net fiyat için kısa ön görüşme izni iste.",
+        message:
+          "Merhaba Mehmet Bey, güneş paneli ve batarya talebinizi aldık. Net fiyat çıkarabilmemiz için kısa bir ön görüşme yapmamız gerekiyor. Bugün sizi arayabilir miyiz?",
+        reason: "Sıcak lead için arama izni dönüşü hızlandırır.",
+        confidenceLabel: "%91 güven",
+        expectedOutcome: "Satış araması planlanır.",
+        nextActionLabel: "Arama izni al",
+      },
+    ],
     messages: [
       {
         id: "msg-001",
@@ -136,6 +191,19 @@ export const inboxConversations: InboxConversation[] = [
         timeLabel: "12 dk önce",
         status: "unread",
         statusLabel: "Okunmadı",
+      },
+      {
+        id: "msg-003",
+        direction: "outgoing",
+        senderName: "Solify",
+        senderRole: "Satış Ekibi",
+        channel: "instagram",
+        channelLabel: "Instagram",
+        content:
+          "Merhaba Mehmet Bey, yardımcı memnuniyetle oluruz. Size doğru fiyat çıkarabilmemiz için çatı tipi, konum, aylık elektrik tüketimi ve mevcut abonelik gücünüzü paylaşabilir misiniz?",
+        timeLabel: "Taslak",
+        status: "answered",
+        statusLabel: "Taslak öneri",
       },
     ],
   },
@@ -169,8 +237,50 @@ export const inboxConversations: InboxConversation[] = [
     hasMissingInfo: true,
     hasBatteryInterest: false,
     isLeadCandidate: true,
+    customerIntelligence: {
+      interest: "Kesif + amortisman",
+      location: "Istanbul",
+      valueLabel: "Tahmini bekleniyor",
+      valueRiskLabel: "Kesif bilgisi eksik",
+      nextBestAction: "Cati + lokasyon + fatura iste",
+      expectedOutcome: "Kesif akisi baslar",
+      sourceDate: "6 Mayis 2026",
+      dnaFieldValues: [
+        { fieldKey: inboxDnaFields.interestedService, value: "Panel sistemi" },
+        { fieldKey: inboxDnaFields.structureType, value: "Mustakil ev" },
+        { fieldKey: inboxDnaFields.roofType, value: null, note: "Bekleniyor" },
+      ],
+    },
     nextAction:
       "Çatı tipi, lokasyon ve aylık fatura bilgisi istenerek keşif akışı başlatılmalı.",
+    aiReplies: [
+      {
+        id: "conv-002-reply-discovery-info",
+        title: "Keşif Bilgisi Toplayan Yanıt",
+        toneLabel: "Açıklayıcı / güven veren",
+        replyPreview:
+          "Ayşe'den çatı tipi, lokasyon ve fatura bilgisini iste; amortisman için ön keşif akışı öner.",
+        message:
+          "Merhaba Ayşe Hanım, amortisman süresini doğru hesaplayabilmemiz için çatı tipi, konum ve son aylık elektrik faturası bilgisini paylaşabilir misiniz? Bu bilgilerle size uygun sistem aralığını ve keşif adımını netleştirebiliriz.",
+        reason: "Keşif ve amortisman hesabı için temel saha bilgileri eksik.",
+        confidenceLabel: "%89 güven",
+        expectedOutcome: "Keşif akışı başlar.",
+        nextActionLabel: "Keşif bilgisini tamamla",
+      },
+      {
+        id: "conv-002-reply-appointment",
+        title: "Keşif Randevusu Önerisi",
+        toneLabel: "Nazik / yönlendirici",
+        replyPreview:
+          "Ön bilgi aldıktan sonra keşif randevusu için uygun zamanı sor.",
+        message:
+          "Ayşe Hanım, bilgileri aldıktan sonra size yaklaşık sistem ve amortisman aralığını çıkarabiliriz. Uygun olursanız keşif planı için bugün kısa bir görüşme organize edelim.",
+        reason: "Müşteri keşif ve amortisman soruyor; randevu niyeti yüksek.",
+        confidenceLabel: "%86 güven",
+        expectedOutcome: "Keşif randevusu planlanır.",
+        nextActionLabel: "Randevu öner",
+      },
+    ],
     messages: [
       {
         id: "msg-003",
@@ -230,8 +340,50 @@ export const inboxConversations: InboxConversation[] = [
     hasMissingInfo: true,
     hasBatteryInterest: false,
     isLeadCandidate: true,
+    customerIntelligence: {
+      interest: "Kurumsal cati GES",
+      location: "Hatay, Antakya",
+      valueLabel: "Proje bazli",
+      valueRiskLabel: "Teknik bilgi eksik",
+      nextBestAction: "Tuketim + cati alani + lokasyon iste",
+      expectedOutcome: "Proje ekibine aktarilir",
+      sourceDate: "6 Mayis 2026",
+      dnaFieldValues: [
+        { fieldKey: inboxDnaFields.interestedService, value: "Kurumsal proje" },
+        { fieldKey: inboxDnaFields.structureType, value: "Sanayi tesisi" },
+        { fieldKey: inboxDnaFields.roofType, value: "Metal cati" },
+      ],
+    },
     nextAction:
       "Tüketim, çatı alanı ve proje lokasyonu netleştirilip proje ekibine aktarılmalı.",
+    aiReplies: [
+      {
+        id: "conv-003-reply-project-data",
+        title: "Proje Bilgisi Toplayan Yanıt",
+        toneLabel: "Kurumsal / net",
+        replyPreview:
+          "Karaçaş Metal'den tüketim, çatı alanı ve lokasyon bilgisini iste.",
+        message:
+          "Merhaba, proje bazlı ön teklif hazırlayabilmemiz için aylık tüketim, çatı alanı, tesis lokasyonu ve mevcut bağlantı gücü bilgilerini paylaşabilir misiniz? Bu bilgilerle proje ekibimiz ilk fizibiliteyi çıkarabilir.",
+        reason: "Kurumsal teklif için teknik tüketim ve saha bilgileri eksik.",
+        confidenceLabel: "%87 güven",
+        expectedOutcome: "Proje ekibine aktarılır.",
+        nextActionLabel: "Proje bilgisini tamamla",
+      },
+      {
+        id: "conv-003-reply-project-call",
+        title: "Proje Ön Görüşmesi",
+        toneLabel: "Kurumsal / hızlı",
+        replyPreview:
+          "Teknik bilgileri netleştirmek için proje ekibiyle kısa görüşme öner.",
+        message:
+          "Merhaba, talebinizi proje ekibimize aktarabiliriz. Tüketim ve çatı bilgilerini birlikte netleştirmek için kısa bir teknik ön görüşme planlayalım mı?",
+        reason: "Kurumsal fırsat proje ekibi yönlendirmesi gerektiriyor.",
+        confidenceLabel: "%84 güven",
+        expectedOutcome: "Teknik ön görüşme planlanır.",
+        nextActionLabel: "Ön görüşme öner",
+      },
+    ],
     messages: [
       {
         id: "msg-005",
@@ -291,8 +443,50 @@ export const inboxConversations: InboxConversation[] = [
     hasMissingInfo: true,
     hasBatteryInterest: true,
     isLeadCandidate: true,
+    customerIntelligence: {
+      interest: "Batarya ekleme",
+      location: "Istanbul",
+      valueLabel: "Batarya potansiyeli",
+      valueRiskLabel: "Sistem bilgisi eksik",
+      nextBestAction: "Kapasite + inverter + batarya ihtiyaci sor",
+      expectedOutcome: "Batarya teklifi netlesir",
+      sourceDate: "6 Mayis 2026",
+      dnaFieldValues: [
+        { fieldKey: inboxDnaFields.interestedService, value: "Batarya ekleme" },
+        { fieldKey: inboxDnaFields.batteryNeed, value: true },
+        { fieldKey: inboxDnaFields.structureType, value: "Mevcut sistem" },
+      ],
+    },
     nextAction:
       "Mevcut sistem kapasitesi, inverter tipi ve batarya ihtiyacı sorulmalı.",
+    aiReplies: [
+      {
+        id: "conv-004-reply-battery-details",
+        title: "Batarya Uygunluk Yanıtı",
+        toneLabel: "Teknik / sade",
+        replyPreview:
+          "Selin'den mevcut sistem kapasitesi, inverter tipi ve yedekleme ihtiyacını iste.",
+        message:
+          "Merhaba Selin Hanım, batarya uygunluğunu doğru değerlendirebilmemiz için mevcut sistem kapasitenizi, inverter modelinizi ve elektrik kesintilerinde hangi cihazları yedeklemek istediğinizi paylaşabilir misiniz?",
+        reason: "Batarya teklifi için mevcut sistem ve kullanım ihtiyacı eksik.",
+        confidenceLabel: "%90 güven",
+        expectedOutcome: "Batarya teklifi netleşir.",
+        nextActionLabel: "Batarya bilgisini tamamla",
+      },
+      {
+        id: "conv-004-reply-specialist-call",
+        title: "Uzman Görüşmesi Önerisi",
+        toneLabel: "Destekleyici / hızlı",
+        replyPreview:
+          "Batarya uyumu için kısa teknik görüşme öner.",
+        message:
+          "Selin Hanım, mevcut sisteminize uygun batarya seçeneğini hızlıca netleştirmek için teknik ekibimizle kısa bir görüşme planlayabiliriz. Bugün sizin için uygun bir saat var mı?",
+        reason: "Mevcut sistem uyumu teknik doğrulama gerektiriyor.",
+        confidenceLabel: "%86 güven",
+        expectedOutcome: "Teknik görüşme planlanır.",
+        nextActionLabel: "Görüşme planla",
+      },
+    ],
     messages: [
       {
         id: "msg-007",
@@ -350,7 +544,36 @@ export const inboxConversations: InboxConversation[] = [
     hasMissingInfo: false,
     hasBatteryInterest: false,
     isLeadCandidate: false,
+    customerIntelligence: {
+      interest: "Alakasiz temas",
+      location: "Web kanali",
+      valueLabel: "Satis firsati yok",
+      valueRiskLabel: "Dusuk kalite",
+      nextBestAction: "Kaynak kalitesine isle",
+      expectedOutcome: "Kuyruk temiz kalir",
+      sourceDate: "6 Mayis 2026",
+      dnaFieldValues: [
+        { fieldKey: inboxDnaFields.interestedService, value: "Alakasiz temas" },
+        { fieldKey: inboxDnaFields.structureType, value: null, note: "Yok" },
+        { fieldKey: inboxDnaFields.batteryNeed, value: false },
+      ],
+    },
     nextAction: "Aksiyon gerekmiyor. Kaynak kalite analizine dahil edildi.",
+    aiReplies: [
+      {
+        id: "conv-005-reply-quality-note",
+        title: "Kuyruk Temizleme Notu",
+        toneLabel: "İç operasyon / kısa",
+        replyPreview:
+          "Teması satış fırsatı dışında işaretle ve kaynak kalitesi notu ekle.",
+        message:
+          "Bu temas satış fırsatı olarak ilerletilmeyecek. Kaynak kalite analizine düşük uygunluk notu eklenip kuyruk temiz tutulmalı.",
+        reason: "Talep satış süreciyle ilgili değil.",
+        confidenceLabel: "%78 güven",
+        expectedOutcome: "Kuyruk temiz kalır.",
+        nextActionLabel: "Kalite notu ekle",
+      },
+    ],
     messages: [
       {
         id: "msg-009",
@@ -373,21 +596,27 @@ export const inboxAiReplies: InboxAiReply[] = [
     id: "reply-001",
     title: "Eksik Bilgi Toplayan Yanıt",
     toneLabel: "Profesyonel / net",
+    replyPreview:
+      "Çatı tipi, konum, aylık fatura ve mevcut abonelik gücü bilgilerini nazikçe iste.",
     message:
       "Merhaba Mehmet Bey, yardımcı memnuniyetle oluruz. Size doğru fiyat çıkarabilmemiz için çatı tipi, konum, aylık elektrik faturası ve batarya ihtiyacınızı netleştirmemiz gerekiyor. Uygun olursanız bugün sizi arayıp keşif sürecini de planlayabiliriz.",
-    reason:
-      "Müşteri fiyat ve batarya istiyor. Teklif öncesi çatı, lokasyon ve fatura bilgisi tamamlanmalı.",
+    reason: "Teklif çıkarabilmek için 3 bilgi eksik.",
     confidenceLabel: "%94 güven",
+    expectedOutcome: "Lead kaydı tamamlanır.",
+    nextActionLabel: "Eksik bilgiyi tamamla",
   },
   {
     id: "reply-002",
     title: "Hızlı Satış Dönüşü",
     toneLabel: "Kısa / satış odaklı",
+    replyPreview:
+      "Talebi aldığını belirt, net teklif için kısa ön görüşme izni iste.",
     message:
       "Merhaba Mehmet Bey, güneş paneli ve lityum batarya sistemi için talebinizi aldık. Size net teklif hazırlamak için kısa bir ön görüşme yapmamız gerekiyor. Bugün sizi arayabilir miyiz?",
-    reason:
-      "Lead çok sıcak. Kısa ve net dönüş satış ekibinin arama aksiyonunu hızlandırır.",
+    reason: "Sıcak lead için arama izni dönüşü hızlandırır.",
     confidenceLabel: "%91 güven",
+    expectedOutcome: "Satış araması planlanır.",
+    nextActionLabel: "Arama izni al",
   },
 ];
 

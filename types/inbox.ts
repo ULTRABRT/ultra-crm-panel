@@ -1,3 +1,5 @@
+import type { DnaFieldKey } from "./dna/DnaKey";
+
 export type InboxChannel =
   | "instagram"
   | "whatsapp"
@@ -74,6 +76,23 @@ export type InboxChannelStat = {
   statusLabel: string;
 };
 
+export type InboxCustomerDnaFieldValue = {
+  fieldKey: DnaFieldKey;
+  value: string | number | boolean | null;
+  note?: string;
+};
+
+export type InboxCustomerIntelligence = {
+  interest: string;
+  location: string;
+  valueLabel: string;
+  valueRiskLabel: string;
+  nextBestAction: string;
+  expectedOutcome: string;
+  sourceDate: string;
+  dnaFieldValues?: InboxCustomerDnaFieldValue[];
+};
+
 export type InboxMessage = {
   id: string;
   direction: InboxMessageDirection;
@@ -116,6 +135,8 @@ export type InboxConversation = {
   hasBatteryInterest: boolean;
   isLeadCandidate: boolean;
   nextAction: string;
+  customerIntelligence: InboxCustomerIntelligence;
+  aiReplies: InboxAiReply[];
   messages: InboxMessage[];
 };
 
@@ -123,9 +144,12 @@ export type InboxAiReply = {
   id: string;
   title: string;
   toneLabel: string;
+  replyPreview: string;
   message: string;
   reason: string;
   confidenceLabel: string;
+  expectedOutcome: string;
+  nextActionLabel: string;
 };
 
 export type InboxAction = {

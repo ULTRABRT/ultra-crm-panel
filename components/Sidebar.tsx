@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { IconType } from "react-icons";
 import {
+  HiOutlineBars3,
   HiOutlineBolt,
   HiOutlineChatBubbleLeftRight,
   HiOutlineCog6Tooth,
@@ -13,6 +15,7 @@ import {
   HiOutlineShare,
   HiOutlineSquares2X2,
   HiOutlineUserGroup,
+  HiOutlineXMark,
 } from "react-icons/hi2";
 import { useDnaSafe } from "../context/DnaContext";
 import { resolveLabel } from "../lib/dna/keys";
@@ -82,13 +85,73 @@ function isActivePath(pathname: string, href: string) {
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dnaContext = useDnaSafe();
   const activePackageLabel = dnaContext?.activeDna.meta.packageLabel
     ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
     : "Aktif DNA";
+  const activeItem =
+    menuItems.find((item) => isActivePath(pathname, item.href)) ?? menuItems[0]!;
 
   return (
-    <aside className="arqon-sidebar sticky top-0 hidden h-dvh shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl lg:flex">
+    <>
+      <div className="arqon-mobile-topbar">
+        <div className="arqon-mobile-topbar-inner">
+          <ArqonLockup
+            emblemSize={32}
+            wordmarkClassName="h-4 w-[7.2rem]"
+          />
+
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold tracking-tight text-white">
+              {activeItem.label}
+            </p>
+            <p className="mt-0.5 truncate text-[11px] font-medium text-white/40">
+              {activePackageLabel}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            aria-expanded={mobileMenuOpen}
+            className="arqon-mobile-menu-button"
+            onClick={() => setMobileMenuOpen((current) => !current)}
+          >
+            {mobileMenuOpen ? (
+              <HiOutlineXMark className="h-4 w-4" />
+            ) : (
+              <HiOutlineBars3 className="h-4 w-4" />
+            )}
+            Menü
+          </button>
+        </div>
+
+        <nav
+          aria-label="Mobil panel navigasyonu"
+          className={`arqon-mobile-menu ${mobileMenuOpen ? "is-open" : ""}`}
+        >
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const active = isActivePath(pathname, item.href);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`arqon-mobile-menu-link ${
+                  active ? "is-active" : ""
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                <span className="truncate">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+
+      <aside className="arqon-sidebar sticky top-0 hidden h-dvh shrink-0 border-r border-white/10 bg-black/80 backdrop-blur-2xl md:flex">
       <div className="flex min-h-0 w-full flex-col">
         <div className="arqon-sidebar-shell shrink-0 pb-5">
           <div className="arqon-sidebar-brand flex flex-col">
@@ -199,6 +262,7 @@ export function Sidebar() {
           </div>
         </nav>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }
