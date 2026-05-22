@@ -1,5 +1,5 @@
 import type { SectorDna } from "../../types/dna/SectorDna";
 
-import { energyDna } from "./energy";
+import { resolveActiveDna } from "./resolveActiveDna";
 
-export const activeDna: SectorDna = energyDna;
+export const activeDna: SectorDna = resolveActiveDna();
