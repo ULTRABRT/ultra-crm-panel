@@ -1,223 +1,167 @@
+# AGENTS.md - Arqon / Ultra CRM Codex Guardrails
 
-# AGENTS.md — Arqon / Ultra CRM Codex Çalışma Kuralları
+## Current Repo State
 
-## Konum kuralı
-
-Bu dosya repo root içinde, yani `package.json` ile aynı klasörde bulunmalıdır. Codex için kaynak dosyası olarak Project Sources'ta eklenmesi faydalıdır; ancak repo guardrail'i için asıl konum repo root'tur.
-
-Yanlış konumlar: Masaüstü, indirilen zip klasörü, `app/`, `components/`.
-
-## Aktif proje konumu
+Project: Arqon / Ultra CRM Master Development
 
 ```text
-Aktif faz: FAZ 6 — ULTRA INBOX TAM YENİDEN TASARIM
-Aktif alt faz: Faz 6A — premium visual match / final inbox implementation
-Durum: devam ediyor
-Görsel kabul: yok
-Commit: kullanıcı görsel onayı olmadan yasak
+Branch: main
+Remote: https://github.com/ULTRABRT/ultra-crm-panel.git
+Current remote HEAD: e9088ecefabb9500f7d5018db95fc18e8dd08a86
+Latest pushed product commit: fix(inbox): refine final mobile visual polish
+Post-Phase 6 Quality Sweep: completed and pushed
+Working tree after push: clean
+Typecheck: passed
+Build: passed
 ```
 
-## Kaynak önceliği
+Post-Phase 6 sweep outcomes:
 
-Codex ve yardımcı modeller şu sırayı izler:
+```text
+QS2 responsive polish: completed
+QS3 route hygiene: completed
+QS4 tenant resolver: audited only; real resolver deferred to Phase 7
+QS5 final mobile visual polish: completed
+QS6 final technical gate: passed
+```
+
+Implemented route hygiene placeholders:
+
+```text
+/teklifler
+/kanal-yonetimi
+/akilli-yanit-ayarlari
+```
+
+These are roadmap placeholders only. They close navigation trust debt without implementing real offer management, channel management, or AI reply settings workflows.
+
+## Source Priority
+
+Use this order when repo docs and implementation details conflict:
 
 ```text
 1. AGENTS.md
-2. 01_ARQON_MASTER_ROADMAP_v1.0.md
-3. 02_ARQON_CURRENT_STATE_HANDOFF.md
-4. 06_ARQON_ULTRA_INBOX_FINAL_VISUAL_SPEC.md
-5. 05_ARQON_ULTRA_INBOX_MASTER_STANDARD.md
-6. 03_ARQON_DNA_ARCHITECTURE_CONTEXT.md
-7. 04_ARQON_BRAND_AND_UI_RULES.md
-8. Repo terminal çıktıları ve gerçek dosyalar
+2. Current user instruction
+3. Repo terminal output and real files
+4. README.md
+5. CLAUDE.md
+6. Archived/source-pack materials, when present
 ```
 
-Ana kural:
+Main rule:
 
 ```text
-Roadmap pusuladır. Handoff güncel konumdur. Repo çıktısı teknik gerçektir. Kullanıcı görsel kabulü UI gerçeğidir.
+Repo output is technical truth. Current user instruction controls the active task. Docs must not override the real working tree.
 ```
 
-## Codex rolü
+## Architecture Guardrails
 
-Codex repo üzerinde dar kapsamlı uygulama yapar.
+Keep the Core Panel + Sector DNA separation intact.
 
-Codex şunları yapmaz:
+Do:
 
 ```text
-- Faz dışı mimari yorum yapmaz.
-- Yeni package eklemez.
-- Görsel tasarım standardını keyfi değiştirmez.
-- Kullanıcı görsel onayı olmadan commit atmaz.
-- Build geçti diye görsel kabul varsaymaz.
+- Keep Core components generic.
+- Read Sector DNA through typed context/data contracts.
+- Keep activeDna as the current mock bridge until Phase 7.
+- Keep DnaProvider route-level on / and /inbox.
+- Preserve the Ultra Inbox command-center behavior.
 ```
 
-## Faz 6A izinli dosyalar
-
-Faz 6A kapsamında yalnız şu dosyalara dokunulabilir:
+Do not:
 
 ```text
-app/inbox/page.tsx
-components/inbox/InboxWorkspace.tsx
-components/inbox/ConversationQueue.tsx
-components/inbox/ConversationView.tsx
-components/inbox/AiMemoryStrip.tsx
-components/inbox/AiReplyBand.tsx
-components/inbox/CustomerSidePanel.tsx
-app/globals.css
-data/inbox.ts
-types/inbox.ts
+- Add sector === "energy" logic in Core components.
+- Mount DnaProvider globally in app/layout.tsx.
+- Mount ChannelSignalProvider.
+- Add Mail to the canonical ChannelSignal type.
+- Implement a fake tenant resolver.
+- Add real API calls or real message sending.
+- Implement No Lost Money or No Lost Lead integrations unless explicitly scoped.
+- Add a new package without explicit user approval.
 ```
 
-Gerekirse `data/inbox.ts` ve `types/inbox.ts` yalnız type-safe mock/local data düzeni için değişir.
-
-## Faz 6A yasak dosyalar
-
-Şu dosyalara dokunulmaz:
+Current DNA state:
 
 ```text
-app/layout.tsx
-app/page.tsx
-data/dashboard.ts
-context/DnaContext.tsx
-context/ChannelSignalContext.tsx
-lib/DnaContext.tsx
-types/dna/ChannelSignal.ts
-data/dna/channelStatus.ts
-hooks/useChannelSignals.ts
-lib/dna/signalEngine.ts
+data/dna/active.ts exports activeDna from energyDna.
+/ and /inbox use route-level DnaProvider dna={activeDna}.
+activeDna is still a mock bridge.
+The real tenant/sector resolver is deferred to Phase 7.
 ```
 
-`lib/DnaContext.tsx` yeniden oluşturulmaz, import edilmez.
+## Product And UI Guardrails
 
-## Faz 6A ürün hedefi
+Arqon is a premium customer operations command center, not a generic CRM dashboard.
 
-Ultra Inbox final hedefi:
+Visual language:
 
 ```text
-Dark Arqon sidebar + light/platinum premium inbox canvas + platform switcher + conversation command center + AI action strip + auto-grow composer + Customer Intelligence executive dock/rail.
+- Premium graphite / white / platinum
+- Dark Arqon shell
+- Light/platinum Ultra Inbox canvas where scoped
+- Calm, dense, operational spacing
+- Clear command hierarchy
 ```
 
-Uygulama sıradan admin panel gibi görünürse kabul edilmez.
-
-## Görsel kabul kilidi
-
-Faz 6A için teknik başarı tek başına yeterli değildir.
+Avoid:
 
 ```text
-npx tsc --noEmit başarılı olabilir.
-npm run build başarılı olabilir.
-Yine de kullanıcı görsel kabulü yoksa commit yok.
+- Neon/glow/gradient demo look
+- Dashboard card cemetery
+- Broad visual rewrites without approval
+- Forcing desktop UI into mobile viewports
 ```
 
-## İşlevsel davranışlar korunur
-
-Şunlar kırılmamalıdır:
+Ultra Inbox must preserve:
 
 ```text
 - local search
 - platform filter
 - quick filters
 - active conversation selection
-- Customer dock/rail update
-- AI Kullan/Düzenle draft'a metin basma
-- Reddet öneriyi pasifleştirme
+- Customer Intelligence brief update
+- AI Kullan / Duzenle / Reddet behavior
 - composer auto-grow
+- zero horizontal overflow
 ```
 
-Gerçek mesaj gönderimi eklenmez.
+## Quality Sweep Truth
 
-## DNA/provider sınırı
+The Post-Phase 6 Quality Sweep is complete.
 
-Faz 6A sırasında:
+Known completed items:
 
 ```text
-- DnaProvider mount edilmez.
-- ChannelSignalProvider mount edilmez.
-- useDna/useDnaSafe/activeDna bağlanmaz.
-- No Lost Lead / No Lost Money gerçek entegrasyonu yapılmaz.
+- QS2 tablet/mobile responsive polish
+- QS3 minimal route hygiene placeholders
+- QS4 activeDna tenant resolver preflight
+- QS5 final mobile visual polish
+- QS6 final technical gate
+- Push to GitHub main
 ```
 
-DNA bağlantısı Faz 6C konusudur.
-
-## Renk ve UI sınırı
-
-Faz 6A `/inbox` workspace light/platinum olabilir.
-
-Kullanılabilir:
+Known remaining debt:
 
 ```text
-#F4F5F7
-#F6F7F9
-#FFFFFF
-#EEF0F3
-#F1F2F4
-#0B0D10
-#4B5563
-#7A808A
-black/[0.08]
-black/[0.10]
+- Real tenant/sector resolver is Phase 7.
+- activeDna remains a mock bridge.
+- Placeholder routes are not real feature modules yet.
 ```
 
-Yasak:
+## Development Rules
+
+Before changing files:
 
 ```text
-blue
-cyan
-sky
-indigo
-teal
-purple
-from-
-to-
-via-
-neon
-glow
+- Inspect existing patterns first.
+- Keep edits scoped.
+- Do not touch forbidden architecture unless explicitly requested.
+- Do not add packages without explicit approval.
+- Do not push without explicit user approval.
 ```
 
-Not: `glow` araması global boot/signal dosyalarında false positive verebilir; aktif inbox path içinde olmamalıdır.
-
-## Platform switcher kuralı
-
-Platformlar:
-
-```text
-Tümü
-WhatsApp
-Instagram
-Messenger
-Mail
-Webchat
-Formlar
-```
-
-Kurallar:
-
-```text
-- icon/logo + label + sayı görünür.
-- yatay scroll yok.
-- kesik chip yok.
-- Mail ChannelSignal'a eklenmez.
-```
-
-## Customer Intelligence kuralı
-
-CustomerSidePanel şu şekilde davranabilir:
-
-```text
-- geniş desktop: sağ rail
-- laptop/monitor: compact executive bottom dock
-```
-
-Yasak:
-
-```text
-- uzun form
-- eski dört büyük kart grid'i
-- aktif UI'da "Müşteri hafızası / İletişim ve kaynak / Lead ve aksiyon / Sector DNA" dev blokları
-```
-
-## Her uygulama sonunda zorunlu kontroller
+After implementation, run the checks requested by the user. When not otherwise specified, use:
 
 ```bash
 git status --short
@@ -227,45 +171,13 @@ npm run build
 git status --short
 ```
 
-Faz 6A özel audit:
-
-```bash
-rg -n "TopCommandHeader|PlatformSwitcher|MainCommandGrid|CustomerIntelligenceDock" components/inbox app/inbox
-rg -n "Müşteri hafızası|İletişim ve kaynak|Lead ve aksiyon|Sector DNA|Bağlantıya hazır" components/inbox app/inbox
-rg -n "overflow-x-auto|overflow-x-scroll|whitespace-nowrap" app/inbox components/inbox app/globals.css
-rg -n "h-dvh|h-screen|height: 100vh|height: 100dvh|absolute|fixed|inset-0" app/inbox components/inbox app/globals.css
-rg -n "blue|cyan|sky|indigo|teal|purple|from-|to-|via-|neon|glow" components/inbox app/inbox/page.tsx app/globals.css
-rg -n "useDna|DnaProvider|ChannelSignalProvider|useChannelSignalContext|lib/DnaContext" app/inbox components/inbox context hooks lib data types
-rg -n "any" app/inbox components/inbox data/inbox.ts types/inbox.ts
-```
-
-## Rapor formatı
-
-Her Codex raporu şunları içerir:
+## Git Rules
 
 ```text
-1. Değişen dosyalar
-2. Aktif render path
-3. Görsel hedefe hangi noktalarla yaklaşıldı
-4. Search/platform/quick filter durumu
-5. Active conversation update durumu
-6. AI Kullan/Düzenle/Reddet durumu
-7. Composer auto-grow durumu
-8. DNA/provider bağlanmadı doğrulaması
-9. Yasak dosyalara dokunulmadı doğrulaması
-10. any kullanılmadı doğrulaması
-11. Typecheck sonucu
-12. Build sonucu
-13. git status --short sonucu
-14. Commit atıldı mı? Cevap: atılmamalı
+Branch: main
+Remote: origin -> https://github.com/ULTRABRT/ultra-crm-panel.git
+Push policy: push only with explicit user approval.
 ```
 
-## Kapanış
+Commits are allowed only when the user explicitly requests a commit for the current task.
 
-Faz 6A ancak kullanıcı şu kararı verdiğinde kapanır:
-
-```text
-Bu görünüm Arqon'un premium Ultra Inbox standardını karşılıyor; Faz 6A görsel kabul veriyorum.
-```
-
-Bu karar yoksa commit yok.

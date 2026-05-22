@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arqon / Ultra CRM Panel
 
-## Getting Started
+Arqon / Ultra CRM Panel is a premium CRM command panel focused on customer operations, Ultra Inbox, and the Core Panel + Sector DNA architecture.
 
-First, run the development server:
+## Current Status
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```text
+Status: Post-Phase 6 Quality Sweep completed
+Branch: main
+Remote HEAD: e9088ecefabb9500f7d5018db95fc18e8dd08a86
+Tech gate: typecheck and build passing
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Completed sweep items:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+QS2 responsive polish: completed
+QS3 route hygiene: completed
+QS4 activeDna tenant resolver: audited only; real resolver deferred to Phase 7
+QS5 final mobile visual polish: completed
+QS6 final technical gate: passed
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Product Focus
 
-## Learn More
+Arqon is designed as a premium customer operations command center, not a generic CRM dashboard.
 
-To learn more about Next.js, take a look at the following resources:
+Core areas:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+- Ultra Inbox command center
+- Customer Intelligence executive brief
+- Core Panel + Sector DNA separation
+- Premium graphite / platinum SaaS interface
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+Current app routes include:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+/
+/inbox
+/leadler
+/musteri-kartlari
+/sektor-modulleri
+/sektorel-dna
+/talep-havuzu
+/teklifler
+/kanal-yonetimi
+/akilli-yanit-ayarlari
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The `/teklifler`, `/kanal-yonetimi`, and `/akilli-yanit-ayarlari` routes are roadmap placeholders. They avoid 404 trust debt but do not implement real feature workflows yet.
+
+## Development Commands
+
+```bash
+npm install
+npm run dev
+npx tsc --noEmit
+npm run build
+```
+
+## Architecture Note
+
+`activeDna` remains a mock bridge backed by the energy Sector DNA. The real tenant/sector resolver is deferred to Phase 7.
+
+`DnaProvider` is mounted route-level on `/` and `/inbox`; it is not mounted globally in `app/layout.tsx`.
+
