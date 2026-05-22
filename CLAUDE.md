@@ -61,7 +61,10 @@ Build and typecheck are necessary, but they are not the same thing as visual/pro
 ```text
 - Keep Sector DNA generic.
 - Do not add sector === "energy" logic in Core components.
-- Keep activeDna as the mock bridge until the real Phase 7 resolver is approved.
+- Keep activeDna resolved through the Sector DNA registry and pure resolver.
+- Keep resolver output as SectorDna.
+- Leave TenantOverride merge and ActiveConfig runtime behavior to Phase 7B.
+- Do not claim a multi-tenant backend or real tenant identity resolver exists.
 - Do not mount DnaProvider globally.
 - Do not mount ChannelSignalProvider unless explicitly scoped.
 - Do not add Mail to canonical ChannelSignal.

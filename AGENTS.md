@@ -7,13 +7,16 @@ Project: Arqon / Ultra CRM Master Development
 ```text
 Branch: main
 Remote: https://github.com/ULTRABRT/ultra-crm-panel.git
+Current HEAD: 184737c64b0a5512b7582be187fdabf279483d1e
+Latest commit: refactor(dna): resolve active dna through sector registry
 Post-Phase 6 handoff baseline HEAD: b23c61c4114b06b8134194ae7b4b75e053fdf5cc
 Latest repo handoff commit: b23c61c4114b06b8134194ae7b4b75e053fdf5cc docs: update post-phase 6 repo handoff
 Latest pushed product commit: e9088ecefabb9500f7d5018db95fc18e8dd08a86 fix(inbox): refine final mobile visual polish
 Post-Phase 6 Quality Sweep: completed and pushed
-Working tree after push: clean
+Phase 7A registry + pure resolver: completed and pushed
+Working tree after Phase 7A push: clean
 Typecheck: passed
-Build: passed
+Build: passed after Google Fonts network retry
 ```
 
 Post-Phase 6 sweep outcomes:
@@ -24,6 +27,20 @@ QS3 route hygiene: completed
 QS4 tenant resolver: audited only; real resolver deferred to Phase 7
 QS5 final mobile visual polish: completed
 QS6 final technical gate: passed
+```
+
+Phase 7A outcomes:
+
+```text
+Sector DNA registry: added
+Resolver: pure resolveActiveDna() function
+activeDna source: resolveActiveDna() output
+Resolver output: SectorDna
+Initial registry contents: energyDna only
+Missing/unknown sectorId fallback: baseline energyDna
+TenantOverride merge: not implemented; Phase 7B
+ActiveConfig runtime layer: not implemented; Phase 7B
+Fake tenant resolver: not implemented
 ```
 
 Implemented route hygiene placeholders:
@@ -64,7 +81,8 @@ Do:
 ```text
 - Keep Core components generic.
 - Read Sector DNA through typed context/data contracts.
-- Keep activeDna as the current mock bridge until Phase 7.
+- Keep activeDna resolved through the Sector DNA registry and pure resolver.
+- Keep resolver output as SectorDna.
 - Keep DnaProvider route-level on / and /inbox.
 - Preserve the Ultra Inbox command-center behavior.
 ```
@@ -79,16 +97,22 @@ Do not:
 - Implement a fake tenant resolver.
 - Add real API calls or real message sending.
 - Implement No Lost Money or No Lost Lead integrations unless explicitly scoped.
+- Claim TenantOverride merge, ActiveConfig runtime, or multi-tenant backend exists before implementation.
 - Add a new package without explicit user approval.
 ```
 
 Current DNA state:
 
 ```text
-data/dna/active.ts exports activeDna from energyDna.
+data/dna/active.ts exports activeDna from resolveActiveDna().
+data/dna/resolveActiveDna.ts returns SectorDna.
+data/dna/sectorRegistry.ts owns the current Sector DNA registry.
+sectorDnaRegistry currently starts with energyDna only.
+Missing or unknown sectorId falls back deterministically to baseline energyDna.
 / and /inbox use route-level DnaProvider dna={activeDna}.
-activeDna is still a mock bridge.
-The real tenant/sector resolver is deferred to Phase 7.
+app/layout.tsx does not mount DnaProvider globally.
+TenantOverride merge and ActiveConfig runtime are deferred to Phase 7B.
+No real tenant identity source, auth/session resolver, or multi-tenant backend is implemented yet.
 ```
 
 ## Product And UI Guardrails
@@ -140,13 +164,14 @@ Known completed items:
 - QS5 final mobile visual polish
 - QS6 final technical gate
 - Push to GitHub main
+- Phase 7A registry + pure resolver
 ```
 
 Known remaining debt:
 
 ```text
-- Real tenant/sector resolver is Phase 7.
-- activeDna remains a mock bridge.
+- TenantOverride merge and ActiveConfig runtime layer are Phase 7B.
+- Real tenant identity source/backend/auth/session selection remains unresolved.
 - Placeholder routes are not real feature modules yet.
 ```
 

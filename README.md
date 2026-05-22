@@ -5,10 +5,11 @@ Arqon / Ultra CRM Panel is a premium CRM command panel focused on customer opera
 ## Current Status
 
 ```text
-Status: Post-Phase 6 Quality Sweep completed
+Status: Phase 7A registry + pure resolver completed
 Branch: main
-Remote HEAD: e9088ecefabb9500f7d5018db95fc18e8dd08a86
-Tech gate: typecheck and build passing
+Remote HEAD: 184737c64b0a5512b7582be187fdabf279483d1e
+Latest commit: refactor(dna): resolve active dna through sector registry
+Tech gate: typecheck passing; build passing after Google Fonts network retry
 ```
 
 Completed sweep items:
@@ -19,6 +20,19 @@ QS3 route hygiene: completed
 QS4 activeDna tenant resolver: audited only; real resolver deferred to Phase 7
 QS5 final mobile visual polish: completed
 QS6 final technical gate: passed
+```
+
+Phase 7A completed:
+
+```text
+activeDna source: resolveActiveDna()
+Sector registry: sectorDnaRegistry
+Initial registry contents: energyDna only
+Resolver output: SectorDna
+Missing/unknown sectorId fallback: baseline energyDna
+DnaProvider scope: route-level on / and /inbox
+TenantOverride merge: not implemented; Phase 7B
+ActiveConfig runtime layer: not implemented; Phase 7B
 ```
 
 ## Product Focus
@@ -64,7 +78,8 @@ npm run build
 
 ## Architecture Note
 
-`activeDna` remains a mock bridge backed by the energy Sector DNA. The real tenant/sector resolver is deferred to Phase 7.
+`activeDna` no longer directly exports `energyDna`; it is produced by the Sector DNA registry and pure resolver boundary.
 
 `DnaProvider` is mounted route-level on `/` and `/inbox`; it is not mounted globally in `app/layout.tsx`.
 
+This is not a full multi-tenant backend. `TenantOverride` merge, `ActiveConfig` runtime selection, and real tenant identity resolution remain Phase 7B work.
