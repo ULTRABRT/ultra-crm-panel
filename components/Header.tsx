@@ -42,6 +42,21 @@ const headerConfigs: Record<string, HeaderConfig> = {
     title: "Ultra Inbox",
     searchPlaceholder: "Mesaj, müşteri, kanal veya durum ara...",
   },
+  "/teklifler": {
+    eyebrow: "Teklif Operasyon Alanı",
+    title: "Teklifler",
+    searchPlaceholder: "Teklif, müşteri veya talep ara...",
+  },
+  "/kanal-yonetimi": {
+    eyebrow: "Kanal Operasyon Alanı",
+    title: "Kanal Yönetimi",
+    searchPlaceholder: "Kanal, platform veya bağlantı ara...",
+  },
+  "/akilli-yanit-ayarlari": {
+    eyebrow: "AI Yanıt Alanı",
+    title: "Akıllı Yanıt Ayarları",
+    searchPlaceholder: "Yanıt, kanal veya ayar ara...",
+  },
   "/sektorel-dna": {
     eyebrow: "Sektörel DNA Mimarisi",
     title: "Sektörel DNA",
