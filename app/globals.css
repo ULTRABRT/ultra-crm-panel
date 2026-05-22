@@ -855,7 +855,35 @@ body {
 
 @container (max-width: 47.99rem) {
   .arqon-inbox-workspace-final {
-    gap: 0.62rem;
+    gap: 0.48rem;
+  }
+
+  .arqon-inbox-commandbar-final {
+    padding: 0.65rem 0.7rem;
+  }
+
+  .arqon-inbox-commandrow-final {
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .arqon-inbox-commandrow-final > div:first-child {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .arqon-inbox-commandrow-final > div:last-child {
+    grid-column: 2;
+    flex-wrap: nowrap;
+  }
+
+  .arqon-inbox-command-search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .arqon-inbox-command-search .arqon-search-field {
+    height: 2.18rem;
   }
 
   .arqon-inbox-workbench-final {
@@ -869,12 +897,19 @@ body {
   }
 
   .arqon-inbox-platform-bar-final {
+    gap: 0.24rem;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0.2rem;
+  }
+
+  .arqon-platform-card {
+    height: 3.28rem;
+    padding-inline: 0.48rem;
   }
 
   .arqon-inbox-queue {
     height: auto;
-    max-height: clamp(10.75rem, 22dvh, 13rem);
+    max-height: clamp(8.75rem, 16dvh, 10.25rem);
   }
 
   .arqon-inbox-command-stack {
@@ -884,17 +919,18 @@ body {
 
   .arqon-inbox-conversation {
     height: auto;
-    min-height: clamp(24rem, 50dvh, 29rem);
+    min-height: clamp(21rem, 42dvh, 25rem);
   }
 
   .arqon-message-stage-final {
     order: 4;
-    min-height: clamp(9rem, 23dvh, 14rem);
-    max-height: clamp(9rem, 24dvh, 15rem);
+    min-height: clamp(7.25rem, 16dvh, 10rem);
+    max-height: clamp(8rem, 18dvh, 11rem);
   }
 
   .arqon-reply-command-zone-final {
     order: 3;
+    padding: 0.42rem 0.58rem 0.48rem;
   }
 
   .arqon-inbox-customer-dock-final {
@@ -902,15 +938,20 @@ body {
   }
 
   .arqon-customer-executive-band {
-    gap: 0.5rem;
+    gap: 0.38rem;
     min-height: auto;
   }
 
   .arqon-customer-decision-grid {
+    gap: 0.28rem;
     grid-template-columns:
       minmax(0, 0.74fr)
       minmax(0, 0.9fr)
       minmax(0, 1.18fr);
+  }
+
+  .arqon-customer-decision-cell {
+    padding: 0.34rem 0.45rem;
   }
 
   .arqon-customer-decision-cell--source {
@@ -926,17 +967,17 @@ body {
   .arqon-platform-card {
     align-items: center;
     flex-direction: column;
-    gap: 0.28rem;
-    height: 3.15rem;
+    gap: 0.2rem;
+    height: 2.72rem;
     justify-content: center;
     overflow: hidden;
-    padding: 0.28rem;
+    padding: 0.22rem;
     text-align: center;
   }
 
   .arqon-platform-icon {
-    height: 1.55rem;
-    width: 1.55rem;
+    height: 1.38rem;
+    width: 1.38rem;
     border-radius: 0.5rem;
   }
 
@@ -1011,22 +1052,22 @@ body {
   }
 
   .arqon-inbox-queue {
-    max-height: clamp(8.35rem, 16dvh, 9rem);
+    max-height: clamp(6.8rem, 13dvh, 7.35rem);
   }
 
   .arqon-conversation-command-head {
     min-height: auto;
-    gap: 0.48rem;
-    padding: 0.55rem 0.65rem;
+    gap: 0.38rem;
+    padding: 0.45rem 0.55rem;
   }
 
   .arqon-conversation-command-head > div:first-child {
-    gap: 0.5rem;
+    gap: 0.42rem;
   }
 
   .arqon-conversation-command-head > div:first-child > div:first-child {
-    height: 2rem;
-    width: 2rem;
+    height: 1.9rem;
+    width: 1.9rem;
     border-radius: 0.75rem;
   }
 
@@ -1041,21 +1082,21 @@ body {
   }
 
   .arqon-conversation-command-head button {
-    height: 1.85rem;
-    width: 1.85rem;
+    height: 1.76rem;
+    width: 1.76rem;
     gap: 0;
     padding-inline: 0;
     font-size: 0;
   }
 
   .arqon-inbox-conversation {
-    min-height: 25.5rem;
+    min-height: auto;
   }
 
   .arqon-mission-strip {
-    gap: 0.34rem;
+    gap: 0.26rem;
     grid-template-columns: 1fr;
-    padding: 0.42rem;
+    padding: 0.32rem;
   }
 
   .arqon-mission-status {
@@ -1065,23 +1106,40 @@ body {
   .arqon-memory-context-line {
     display: -webkit-box;
     white-space: normal;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1rem;
+    line-height: 0.95rem;
   }
 
   .arqon-ai-decision-strip {
-    padding: 0.45rem;
+    padding: 0.36rem;
   }
 
   .arqon-ai-decision-row {
-    gap: 0.42rem;
+    align-items: center;
+    gap: 0.3rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .arqon-ai-decision-row > div:first-child {
+    min-width: 0;
+  }
+
+  .arqon-ai-decision-row > div:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  .arqon-ai-console-copy {
+    grid-column: 1 / -1;
   }
 
   .arqon-ai-console-badge {
-    height: 1.75rem;
-    padding-inline: 0.55rem;
+    height: 1.62rem;
+    padding-inline: 0.5rem;
   }
 
   .arqon-ai-console-copy {
@@ -1092,10 +1150,10 @@ body {
   .arqon-ai-console-copy p {
     display: -webkit-box;
     white-space: normal;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1rem;
+    line-height: 0.95rem;
   }
 
   .arqon-ai-console-copy > div {
@@ -1103,17 +1161,22 @@ body {
   }
 
   .arqon-ai-decision-strip button {
-    height: 1.7rem;
-    padding-inline: 0.55rem;
+    height: 1.55rem;
+    padding-inline: 0.48rem;
     font-size: 0.625rem;
   }
 
   .arqon-reply-command-zone-final {
-    padding: 0.45rem 0.5rem;
+    padding: 0.34rem 0.45rem 0.52rem;
   }
 
   .arqon-message-bubble-card {
     max-width: 100%;
+  }
+
+  .arqon-message-stage-final {
+    min-height: clamp(7rem, 17dvh, 9rem);
+    max-height: clamp(7.5rem, 18dvh, 9.5rem);
   }
 
   .arqon-inbox-composer-v5 {
@@ -1121,8 +1184,8 @@ body {
   }
 
   .arqon-inbox-composer-v5 textarea {
-    min-height: 2.25rem;
-    line-height: 1.25rem;
+    min-height: 2.12rem;
+    line-height: 1.18rem;
     max-height: 6.5rem;
   }
 
@@ -1156,15 +1219,23 @@ body {
 
   .arqon-customer-decision-grid {
     grid-column: 1 / -1;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .arqon-customer-decision-cell {
-    padding: 0.42rem 0.52rem;
+    padding: 0.34rem 0.42rem;
   }
 
   .arqon-customer-decision-cell--action {
-    grid-column: 1 / -1;
+    grid-column: auto;
+  }
+
+  .arqon-customer-decision-cell p:last-child {
+    display: none;
+  }
+
+  .arqon-customer-identity-block p:nth-of-type(3) {
+    display: none;
   }
 
   .arqon-customer-actions {
