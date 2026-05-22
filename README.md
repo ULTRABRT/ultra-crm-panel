@@ -7,8 +7,8 @@ Arqon / Ultra CRM Panel is a premium CRM command panel focused on customer opera
 ```text
 Status: Phase 7A registry + pure resolver completed
 Branch: main
-Remote HEAD: 184737c64b0a5512b7582be187fdabf279483d1e
-Latest commit: refactor(dna): resolve active dna through sector registry
+Current repo HEAD / latest docs handoff commit: 132ce5c8c8a97827ffb717f4f1c2aab6b712af7f docs: update phase 7a dna resolver handoff
+Phase 7A product/refactor commit: 184737c64b0a5512b7582be187fdabf279483d1e refactor(dna): resolve active dna through sector registry
 Tech gate: typecheck passing; build passing after Google Fonts network retry
 ```
 
