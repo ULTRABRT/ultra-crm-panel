@@ -8,3 +8,5 @@ export const sectorDnaRegistry: Readonly<Record<string, SectorDna>> = {
   [DEFAULT_SECTOR_DNA_ID]: energyDna,
 };
 
+export const baselineSectorDna: SectorDna =
+  sectorDnaRegistry[DEFAULT_SECTOR_DNA_ID];

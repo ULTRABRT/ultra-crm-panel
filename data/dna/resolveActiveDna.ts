@@ -1,6 +1,6 @@
 import type { SectorDna } from "../../types/dna/SectorDna";
 
-import { DEFAULT_SECTOR_DNA_ID, sectorDnaRegistry } from "./sectorRegistry";
+import { baselineSectorDna, sectorDnaRegistry } from "./sectorRegistry";
 
 export type ResolveActiveDnaInput = {
   sectorId?: string | null;
@@ -9,10 +9,17 @@ export type ResolveActiveDnaInput = {
 export function resolveActiveDna({
   sectorId,
 }: ResolveActiveDnaInput = {}): SectorDna {
-  if (!sectorId) {
-    return sectorDnaRegistry[DEFAULT_SECTOR_DNA_ID];
+  const normalizedSectorId = normalizeSectorId(sectorId);
+
+  if (!normalizedSectorId) {
+    return baselineSectorDna;
   }
 
-  return sectorDnaRegistry[sectorId] ?? sectorDnaRegistry[DEFAULT_SECTOR_DNA_ID];
+  return sectorDnaRegistry[normalizedSectorId] ?? baselineSectorDna;
 }
 
+function normalizeSectorId(sectorId: string | null | undefined): string | null {
+  const trimmedSectorId = sectorId?.trim();
+
+  return trimmedSectorId ? trimmedSectorId : null;
+}
