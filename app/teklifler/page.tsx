@@ -1,16 +1,21 @@
-import { HiOutlineDocumentText } from "react-icons/hi2";
-
-import { RoadmapPlaceholderPage } from "../../components/RoadmapPlaceholderPage";
+import { Header } from "../../components/Header";
+import { Sidebar } from "../../components/Sidebar";
+import { OffersWorkspace } from "../../components/teklifler/OffersWorkspace";
 
 export default function TekliflerPage() {
   return (
-    <RoadmapPlaceholderPage
-      Icon={HiOutlineDocumentText}
-      eyebrow="Teklif Modülü"
-      title="Teklifler hazırlanıyor"
-      description="Arqon teklif yönetimi, müşteri talebi ve satış bağlamı ile birlikte kurgulanıyor. Bu sayfa şimdilik 404 yerine güvenli bir ürün durağı olarak yayında."
-      moduleLabel="Teklifler"
-      roadmapNote="Bu modül, teklif hazırlama ve onay akışları gerçek ürün kapsamı netleştiğinde aktive edilecek. Bu aşamada veri girişi, teklif üretimi veya sahte iş akışı bulunmaz."
-    />
+    <main className="arqon-app-shell">
+      <div className="arqon-app-frame">
+        <Sidebar />
+
+        <section className="arqon-main-panel bg-[#0B0D10]">
+          <Header />
+
+          <div className="arqon-page-scroll">
+            <OffersWorkspace />
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
