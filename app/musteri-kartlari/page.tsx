@@ -1,6 +1,7 @@
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { AiMusteriOzeti } from "../../components/musteri-kartlari/AiMusteriOzeti";
+import { CustomerMemorySnapshot } from "../../components/musteri-kartlari/CustomerMemorySnapshot";
 import { EnerjiTalepBilgileri } from "../../components/musteri-kartlari/EnerjiTalepBilgileri";
 import { KesifRandevuKarti } from "../../components/musteri-kartlari/KesifRandevuKarti";
 import { MusteriAksiyonPaneli } from "../../components/musteri-kartlari/MusteriAksiyonPaneli";
@@ -33,6 +34,8 @@ export default function MusteriKartlariPage() {
             <section className="arqon-split-grid [--arqon-split-min:24rem]">
               <div className="space-y-5">
                 <AiMusteriOzeti />
+
+                <CustomerMemorySnapshot />
 
                 <EnerjiTalepBilgileri />
 
