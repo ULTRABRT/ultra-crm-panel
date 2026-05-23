@@ -5,6 +5,7 @@ import { LeadlerHero } from "../../components/leadler/LeadlerHero";
 import { LeadListesi } from "../../components/leadler/LeadListesi";
 import { LeadSegmentleri } from "../../components/leadler/LeadSegmentleri";
 import { LeadStats } from "../../components/leadler/LeadStats";
+import { ReadonlyNoLostLeadSignals } from "../../components/leadler/ReadonlyNoLostLeadSignals";
 
 export default function LeadlerPage() {
   return (
@@ -25,6 +26,8 @@ export default function LeadlerPage() {
             <LeadSegmentleri />
 
             <LeadStats />
+
+            <ReadonlyNoLostLeadSignals />
 
             <section className="arqon-split-grid [--arqon-split-min:24rem]">
               <LeadListesi />
