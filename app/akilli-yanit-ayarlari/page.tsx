@@ -1,16 +1,21 @@
-import { HiOutlineCog6Tooth } from "react-icons/hi2";
-
-import { RoadmapPlaceholderPage } from "../../components/RoadmapPlaceholderPage";
+import { Header } from "../../components/Header";
+import { Sidebar } from "../../components/Sidebar";
+import { SmartReplySettingsWorkspace } from "../../components/akilli-yanit-ayarlari/SmartReplySettingsWorkspace";
 
 export default function AkilliYanitAyarlariPage() {
   return (
-    <RoadmapPlaceholderPage
-      Icon={HiOutlineCog6Tooth}
-      eyebrow="AI Yanıt Ayarları"
-      title="Akıllı yanıt ayarları hazırlanıyor"
-      description="Arqon'un AI yanıt ayarları, Ultra Inbox deneyimiyle tutarlı olacak şekilde hazırlanıyor. Bu ekran şimdilik modülün yol haritasında olduğunu açıkça gösterir."
-      moduleLabel="Akıllı Yanıt Ayarları"
-      roadmapNote="Bu aşamada gerçek prompt yönetimi, otomasyon kuralı, API çağrısı veya ayar formu eklenmedi. AI yanıt konfigürasyonu ayrı kalite ve ürün fazında uygulanacaktır."
-    />
+    <main className="arqon-app-shell">
+      <div className="arqon-app-frame">
+        <Sidebar />
+
+        <section className="arqon-main-panel bg-[#0B0D10]">
+          <Header />
+
+          <div className="arqon-page-scroll">
+            <SmartReplySettingsWorkspace />
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
