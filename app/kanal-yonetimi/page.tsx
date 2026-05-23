@@ -1,16 +1,21 @@
-import { HiOutlineShare } from "react-icons/hi2";
-
-import { RoadmapPlaceholderPage } from "../../components/RoadmapPlaceholderPage";
+import { Header } from "../../components/Header";
+import { Sidebar } from "../../components/Sidebar";
+import { ChannelManagementWorkspace } from "../../components/kanal-yonetimi/ChannelManagementWorkspace";
 
 export default function KanalYonetimiPage() {
   return (
-    <RoadmapPlaceholderPage
-      Icon={HiOutlineShare}
-      eyebrow="Kanal Yönetimi"
-      title="Kanal yönetimi hazırlanıyor"
-      description="Arqon kanal yönetimi, platform bağlantıları ve operasyon sinyallerini ürün yol haritasındaki sıraya göre ele alacak. Bu sayfa, modül tamamlanana kadar güvenli yönlendirme noktasıdır."
-      moduleLabel="Kanal Yönetimi"
-      roadmapNote="Bu görevde gerçek kanal entegrasyonu, ChannelSignal genişletmesi veya sağlayıcı bağlantısı eklenmedi. Modül kapsamı sonraki fazda ürün kararıyla açılacaktır."
-    />
+    <main className="arqon-app-shell">
+      <div className="arqon-app-frame">
+        <Sidebar />
+
+        <section className="arqon-main-panel bg-[#0B0D10]">
+          <Header />
+
+          <div className="arqon-page-scroll">
+            <ChannelManagementWorkspace />
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
