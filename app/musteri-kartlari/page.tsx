@@ -35,13 +35,13 @@ export default function MusteriKartlariPage() {
               <div className="space-y-5">
                 <AiMusteriOzeti />
 
-                <CustomerMemorySnapshot />
-
                 <EnerjiTalepBilgileri />
 
                 <SatisSureciKarti />
 
                 <KesifRandevuKarti />
+
+                <CustomerMemorySnapshot />
 
                 <MusteriTimeline />
               </div>

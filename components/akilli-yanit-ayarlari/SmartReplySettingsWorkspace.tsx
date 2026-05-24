@@ -353,9 +353,9 @@ function PolicyList({
   onSelectPolicy: (policyId: string) => void;
 }) {
   return (
-    <section className="min-w-0 rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-3 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)]">
-      <div className="mb-3 flex flex-wrap items-start justify-between gap-3 px-1">
-        <div>
+    <section className="min-w-0 overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-3 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)]">
+      <div className="mb-3 flex min-w-0 flex-wrap items-start justify-between gap-3 px-1">
+        <div className="min-w-0">
           <h2 className="text-lg font-semibold tracking-tight text-[#0B0D10]">
             Yanıt policy listesi
           </h2>
@@ -363,7 +363,7 @@ function PolicyList({
             {policies.length} local kural görünür
           </p>
         </div>
-        <span className="rounded-full border border-black/[0.08] bg-[#F4F5F7] px-3 py-1 text-[11px] font-semibold text-[#525A65]">
+        <span className="max-w-full rounded-full border border-black/[0.08] bg-[#F4F5F7] px-3 py-1 text-[11px] font-semibold text-[#525A65]">
           AI çağrısı yok
         </span>
       </div>
@@ -379,23 +379,23 @@ function PolicyList({
                 key={policy.id}
                 type="button"
                 onClick={() => onSelectPolicy(policy.id)}
-                className={`w-full rounded-[0.95rem] border p-3 text-left transition ${
+                className={`min-w-0 w-full overflow-hidden rounded-[0.95rem] border p-3 text-left transition ${
                   active
                     ? "border-black/[0.2] bg-[#F7F8FA] shadow-[0_12px_26px_rgba(11,13,16,0.08)]"
                     : "border-transparent bg-[#FFFFFF] hover:border-black/[0.08] hover:bg-[#F7F8FA]"
                 }`}
               >
-                <div className="grid gap-3 xl:grid-cols-[minmax(15rem,1fr)_7rem_8rem_7rem_8rem] xl:items-center">
+                <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(15rem,1fr)_7rem_8rem_7rem_8rem] xl:items-center">
                   <div className="min-w-0">
                     <div className="flex min-w-0 flex-wrap items-center gap-2">
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.75rem] border border-black/[0.08] bg-[#F4F5F7] text-[#0B0D10]">
                         <ChannelIcon className="h-4 w-4" />
                       </span>
-                      <h3 className="truncate text-base font-semibold text-[#0B0D10]">
+                      <h3 className="min-w-0 truncate text-base font-semibold text-[#0B0D10]">
                         {policy.name}
                       </h3>
                     </div>
-                    <p className="mt-1 truncate text-sm text-[#525A65]">
+                    <p className="mt-1 min-w-0 truncate text-sm text-[#525A65]">
                       {channelLabels[policy.channel]} /{" "}
                       {toneLabels[policy.toneProfile]}
                     </p>
@@ -450,13 +450,13 @@ function PolicyList({
                 </div>
 
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-black/[0.06] pt-3">
-                  <p className="text-xs text-[#7A808A]">
+                  <p className="min-w-0 text-xs text-[#7A808A]">
                     Güvenlik:{" "}
                     <span className="font-semibold text-[#525A65]">
                       {policy.safetyBadge}
                     </span>
                   </p>
-                  <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#6B4E16]/20 bg-[#F3E9D2] px-2.5 py-1 text-[11px] font-semibold text-[#6B4E16]">
+                  <span className="inline-flex max-w-full min-w-0 items-center gap-1.5 rounded-full border border-[#6B4E16]/20 bg-[#F3E9D2] px-2.5 py-1 text-[11px] font-semibold text-[#6B4E16]">
                     <HiOutlineExclamationTriangle className="h-3.5 w-3.5 shrink-0" />
                     <span className="truncate">{policy.blockedAction}</span>
                   </span>

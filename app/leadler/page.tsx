@@ -23,17 +23,17 @@ export default function LeadlerPage() {
           <div className="arqon-page-scroll">
             <LeadlerHero />
 
-            <LeadSegmentleri />
-
-            <LeadStats />
-
-            <ReadonlyNoLostLeadSignals />
-
             <section className="arqon-split-grid [--arqon-split-min:24rem]">
               <LeadListesi />
 
               <LeadAksiyonPaneli />
             </section>
+
+            <ReadonlyNoLostLeadSignals />
+
+            <LeadStats />
+
+            <LeadSegmentleri />
           </div>
         </section>
       </div>

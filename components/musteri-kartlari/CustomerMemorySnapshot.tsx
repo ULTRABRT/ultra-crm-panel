@@ -31,24 +31,24 @@ export function CustomerMemorySnapshot() {
   const snapshot = activeCustomerMemorySnapshot;
 
   return (
-    <section className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20">
-      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+    <section className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4 shadow-2xl shadow-black/20">
+      <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
             <HiOutlineSparkles className="h-4 w-4 text-white/70" />
             <span className="text-xs font-medium text-white/55">
               {snapshot.snapshotLabel}
             </span>
           </div>
 
-          <h2 className="text-2xl font-semibold tracking-tight text-white">
+          <h2 className="text-xl font-semibold tracking-tight text-white">
             Customer Memory Snapshot
           </h2>
 
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-white/45">
+          <p className="mt-1.5 max-w-3xl text-xs leading-5 text-white/45">
             Bu panel mevcut local kaynaklardan okunan readonly musteri
-            hafizasini gosterir. Kalici kayit, backend yazimi veya otomatik
-            aksiyon iddiasi tasimaz.
+            hafizasini gosterir. Kalici kayit, backend yazimi veya islem
+            yazimi iddiasi tasimaz.
           </p>
         </div>
 
@@ -62,8 +62,8 @@ export function CustomerMemorySnapshot() {
       </div>
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)]">
-        <article className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
-          <div className="mb-4 flex flex-wrap items-center gap-2">
+        <article className="rounded-[1.25rem] border border-white/10 bg-black/35 p-4">
+          <div className="mb-3 flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-black">
               <HiOutlineUserCircle className="h-3.5 w-3.5" />
               {snapshot.customerName}
@@ -101,7 +101,7 @@ export function CustomerMemorySnapshot() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="mt-4 grid gap-3 lg:grid-cols-2">
             <MemoryList
               title="Key facts"
               items={snapshot.keyFacts}
@@ -114,7 +114,7 @@ export function CustomerMemorySnapshot() {
             />
           </div>
 
-          <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.025] p-4">
+          <div className="mt-4 rounded-[1.1rem] border border-white/10 bg-white/[0.025] p-3">
             <div className="mb-3 flex items-center gap-2">
               <HiOutlineCheckCircle className="h-4 w-4 text-white/65" />
               <p className="text-sm font-semibold text-white">
@@ -128,10 +128,10 @@ export function CustomerMemorySnapshot() {
           </div>
         </article>
 
-        <aside className="space-y-4">
-          <article className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+        <aside className="space-y-3">
+          <article className="rounded-[1.25rem] border border-white/10 bg-black/35 p-4">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-2.5">
                 <HiOutlineExclamationTriangle className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -154,9 +154,9 @@ export function CustomerMemorySnapshot() {
             </div>
           </article>
 
-          <article className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+          <article className="rounded-[1.25rem] border border-white/10 bg-black/35 p-4">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-2.5">
                 <HiOutlineDocumentText className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -184,10 +184,10 @@ export function CustomerMemorySnapshot() {
         </aside>
       </div>
 
-      <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.55fr)]">
-        <article className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.55fr)]">
+        <article className="rounded-[1.25rem] border border-white/10 bg-black/35 p-4">
+          <div className="mb-3 flex items-center gap-3">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-2.5">
               <HiOutlineClock className="h-5 w-5 text-white" />
             </div>
             <div>
@@ -222,7 +222,7 @@ export function CustomerMemorySnapshot() {
           </div>
         </article>
 
-        <article className="rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-5">
+        <article className="rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-4">
           <div className="mb-3 flex items-center gap-2">
             <HiOutlineShieldCheck className="h-4 w-4 text-white/70" />
             <p className="text-sm font-semibold text-white">
@@ -248,7 +248,7 @@ export function CustomerMemorySnapshot() {
 
 function StatusPill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/45 px-4 py-3">
+    <div className="rounded-2xl border border-white/10 bg-black/45 px-3 py-2.5">
       <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
         {label}
       </p>
@@ -269,14 +269,14 @@ function MemoryMetric({
   value: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-4">
-      <div className="mb-3 inline-flex rounded-2xl border border-white/10 bg-black/45 p-2.5 text-white/70">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-3">
+      <div className="mb-2 inline-flex rounded-2xl border border-white/10 bg-black/45 p-2 text-white/70">
         {icon}
       </div>
       <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
         {label}
       </p>
-      <p className="mt-2 text-sm font-semibold leading-6 text-white">
+      <p className="mt-1.5 text-sm font-semibold leading-5 text-white">
         {value}
       </p>
     </div>
@@ -293,9 +293,9 @@ function MemoryList({
   title: string;
 }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.025] p-4">
+    <div className="rounded-[1.1rem] border border-white/10 bg-white/[0.025] p-3">
       <p className="text-sm font-semibold text-white">{title}</p>
-      <div className="mt-3 space-y-2">
+      <div className="mt-2 space-y-1.5">
         {items.length > 0 ? (
           items.slice(0, 5).map((item) => (
             <div key={item} className="flex items-start gap-2">
