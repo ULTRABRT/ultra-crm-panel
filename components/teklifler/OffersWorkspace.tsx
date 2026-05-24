@@ -21,6 +21,7 @@ import type {
   OfferSource,
   OfferStatus,
 } from "../../types/offers";
+import { ReadonlyNoLostMoneySignals } from "./ReadonlyNoLostMoneySignals";
 
 type OfferStatusFilter = OfferStatus | "all";
 type OfferPriorityFilter = OfferPriority | "all";
@@ -709,7 +710,10 @@ export function OffersWorkspace() {
             activeOfferId={activeOffer?.id ?? ""}
             onSelectOffer={setActiveOfferId}
           />
-          <OfferDetailPanel offer={activeOffer} />
+          <div className="grid min-w-0 gap-3">
+            <ReadonlyNoLostMoneySignals />
+            <OfferDetailPanel offer={activeOffer} />
+          </div>
         </div>
       </div>
     </div>
