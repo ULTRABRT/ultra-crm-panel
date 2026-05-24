@@ -190,8 +190,8 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       description:
         "Müşteri çok sıcak ve teklif bekliyor. Bugün aranmazsa satış kaybı riski oluşabilir.",
       timeLabel: "12 dk önce",
-      ownerLabel: "No Lost Lead Engine",
-      sourceLabel: "Risk Motoru",
+      ownerLabel: "Lead risk uyarısı",
+      sourceLabel: "Advisory risk kaynağı",
     },
   ],
   risks: [

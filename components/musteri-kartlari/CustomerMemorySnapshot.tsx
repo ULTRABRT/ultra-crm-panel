@@ -137,7 +137,7 @@ export function CustomerMemorySnapshot() {
               <div>
                 <p className="text-sm font-semibold text-white">Acik riskler</p>
                 <p className="mt-1 text-xs text-white/40">
-                  Advisory signal; otomatik aksiyon yok
+                  Readonly advisory signal; işlem veya kayıt yazımı yok
                 </p>
               </div>
             </div>

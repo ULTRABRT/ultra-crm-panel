@@ -35,7 +35,7 @@ export function KritikAksiyonlar() {
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
             <HiOutlineBolt className="h-4 w-4 text-white/70" />
             <span className="text-xs font-medium text-white/55">
-              No Lost Lead Engine
+              Lead risk uyarısı
             </span>
           </div>
 
