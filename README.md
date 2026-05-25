@@ -1,90 +1,116 @@
 # Arqon / Ultra CRM Panel
 
-Arqon / Ultra CRM Panel is a premium CRM command panel focused on customer operations, Ultra Inbox, and the Core Panel + Sector DNA architecture.
+Arqon / Ultra CRM Panel is a premium customer operations command panel for
+Ultra Inbox, customer memory, demand intake, lead follow-up, offers, channel
+operations, reply governance, and the Core Panel + Sector DNA architecture.
 
 ## Current Status
 
 ```text
-Status: Phase 7B resolver contract hardening completed
+Status: Phase 10B final release surface recheck GREEN
 Branch: main
-Current repo HEAD / latest implementation commit: e5b91ddf617cc67ce22f0f0ea20beec7ef95a723 refactor(dna): harden active dna resolver contract
-Latest docs metadata handoff commit: c75f68134ea970a5fca0612166e4aed18e02ee6b docs: clarify phase 7a handoff head metadata
-Phase 7A product/refactor commit: 184737c64b0a5512b7582be187fdabf279483d1e refactor(dna): resolve active dna through sector registry
-security pre-push gate: passed; no tracked env/key/private/credential files or secret pattern matches
-Tech gate: typecheck passing; build passing after Google Fonts network retry
+Latest pushed commit: 28fc7bd4ddbdcf628ca6c7dd9c435d1f726a4d14 chore(release): polish responsive surface flow
+Phase 10A trust/copy recheck: GREEN
+Phase 10A-1 trust copy cleanup: pushed
+Phase 10B visual QA: completed after focused responsive polish
+Phase 10B final recheck: GREEN
+Typecheck: passing
+Build: passing
+Working tree after latest push: clean
 ```
 
-Completed sweep items:
+Phase 10 handoff source:
 
 ```text
-QS2 responsive polish: completed
-QS3 route hygiene: completed
-QS4 activeDna tenant resolver: audited only; real resolver deferred to Phase 7
-QS5 final mobile visual polish: completed
-QS6 final technical gate: passed
+Use PHASE_10_RELEASE_HARDENING_SUMMARY.md as the current release-hardening handoff before Phase 11 planning.
+Repo terminal output remains the technical source of truth.
 ```
 
-Phase 7A completed:
+## Completed Phase Chain
 
 ```text
-activeDna source: resolveActiveDna()
-Sector registry: sectorDnaRegistry
-Initial registry contents: energyDna only
-Resolver output: SectorDna
-Missing/unknown sectorId fallback: baseline energyDna
-DnaProvider scope: route-level on / and /inbox
-TenantOverride merge: not implemented; future Phase 7 scope
-ActiveConfig runtime layer: not implemented; future Phase 7 scope
-```
-
-Phase 7B completed:
-
-```text
-Resolver contract: hardened
-sectorId normalization: trim before registry lookup
-undefined/null/empty/whitespace sectorId: baseline fallback
-unknown sectorId: baseline fallback
-known/default sectorId: registry value
-Fallback source: baselineSectorDna / energyDna
-Resolver output: SectorDna
-Resolver side effects: none
-Registry contents: energyDna only
-TenantOverride runtime: not implemented
-ActiveConfig runtime layer: not implemented
-Test package/config: not added
+Post-Phase 6 Quality Sweep: completed and pushed
+Phase 7A registry + pure resolver: completed and pushed
+Phase 7B resolver contract hardening: completed and pushed
+Phase 8 product surfaces: completed and pushed
+Phase 9A source mapping: completed
+Phase 9B readonly Customer Memory Snapshot: completed and pushed
+Phase 9C readonly lead risk advisory signals: completed and pushed
+Phase 9D readonly revenue risk advisory signals: completed and pushed
+Phase 10A/10B release hardening: completed and GREEN
 ```
 
 ## Product Focus
 
-Arqon is designed as a premium customer operations command center, not a generic CRM dashboard.
+Arqon is designed as a premium customer operations command center, not a
+generic CRM dashboard.
 
 Core areas:
 
 ```text
 - Ultra Inbox command center
-- Customer Intelligence executive brief
+- Demand intake and lead operations
+- Customer Memory readonly snapshot
+- Offers and readonly revenue risk advisory
+- Channel Management and Smart Reply governance
 - Core Panel + Sector DNA separation
 - Premium graphite / platinum SaaS interface
 ```
 
 ## Routes
 
-Current app routes include:
+Current active app routes include:
 
 ```text
 /
 /inbox
+/talep-havuzu
 /leadler
 /musteri-kartlari
-/sektor-modulleri
-/sektorel-dna
-/talep-havuzu
 /teklifler
 /kanal-yonetimi
 /akilli-yanit-ayarlari
+/sektorel-dna
+/sektor-modulleri
 ```
 
-The `/teklifler`, `/kanal-yonetimi`, and `/akilli-yanit-ayarlari` routes are roadmap placeholders. They avoid 404 trust debt but do not implement real feature workflows yet.
+Route reality:
+
+```text
+/leadler is the active lead route.
+/leader is absent and should not be used.
+/teklifler, /kanal-yonetimi, and /akilli-yanit-ayarlari are now real local MVP product surfaces, not placeholders.
+```
+
+## Trust Boundaries
+
+Current release scope is local MVP and readonly/advisory where Phase 9 signals
+are involved.
+
+```text
+No real API.
+No backend.
+No business persistence.
+No runtime action.
+No real message sending.
+No customer, lead, or offer mutation runtime.
+No task assignment runtime.
+No status-change runtime.
+No financial certainty claim.
+Readonly/advisory/local fixture surfaces only for Customer Memory and No Lost style signals.
+```
+
+## Architecture Note
+
+`activeDna` flows through `resolveActiveDna()`, `sectorDnaRegistry`, and the
+deterministic `baselineSectorDna` / `energyDna` fallback.
+
+`DnaProvider` is mounted route-level on `/` and `/inbox`; it is not mounted
+globally in `app/layout.tsx`.
+
+This is not a full multi-tenant backend. `TenantOverride` merge,
+`ActiveConfig` runtime selection, and real tenant identity resolution remain
+future explicitly scoped work.
 
 ## Development Commands
 
@@ -94,11 +120,3 @@ npm run dev
 npx tsc --noEmit
 npm run build
 ```
-
-## Architecture Note
-
-`activeDna` no longer directly exports `energyDna`; it flows through `resolveActiveDna()`, `sectorDnaRegistry`, and the deterministic `baselineSectorDna` / `energyDna` fallback.
-
-`DnaProvider` is mounted route-level on `/` and `/inbox`; it is not mounted globally in `app/layout.tsx`.
-
-This is not a full multi-tenant backend. `TenantOverride` merge, `ActiveConfig` runtime selection, and real tenant identity resolution remain future Phase 7 work.

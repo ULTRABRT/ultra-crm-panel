@@ -7,91 +7,82 @@ Project: Arqon / Ultra CRM Master Development
 ```text
 Branch: main
 Remote: https://github.com/ULTRABRT/ultra-crm-panel.git
-Current repo HEAD / latest implementation commit: e5b91ddf617cc67ce22f0f0ea20beec7ef95a723 refactor(dna): harden active dna resolver contract
-Latest docs metadata handoff commit: c75f68134ea970a5fca0612166e4aed18e02ee6b docs: clarify phase 7a handoff head metadata
-Phase 7A product/refactor commit: 184737c64b0a5512b7582be187fdabf279483d1e refactor(dna): resolve active dna through sector registry
-Post-Phase 6 handoff baseline HEAD: b23c61c4114b06b8134194ae7b4b75e053fdf5cc
-Latest repo handoff commit: b23c61c4114b06b8134194ae7b4b75e053fdf5cc docs: update post-phase 6 repo handoff
-Latest pushed product commit: e9088ecefabb9500f7d5018db95fc18e8dd08a86 fix(inbox): refine final mobile visual polish
+Latest pushed HEAD: 28fc7bd4ddbdcf628ca6c7dd9c435d1f726a4d14 chore(release): polish responsive surface flow
+Phase 10A trust/copy recheck: GREEN
+Phase 10A-1 trust copy cleanup: completed and pushed
+Phase 10B visual QA: completed after focused responsive polish
+Phase 10B final recheck: GREEN
+Working tree after latest push: clean
+Typecheck: passed
+Build: passed
+```
+
+Current handoff source:
+
+```text
+Use PHASE_10_RELEASE_HARDENING_SUMMARY.md as the primary current-state release handoff.
+Use PHASE_9_CUSTOMER_MEMORY_NO_LOST_SCOPE.md for Phase 9 scope and trust policy context.
+Repo terminal output remains the technical source of truth.
+```
+
+Completed phase chain:
+
+```text
 Post-Phase 6 Quality Sweep: completed and pushed
 Phase 7A registry + pure resolver: completed and pushed
 Phase 7B resolver contract hardening: completed and pushed
-Working tree after Phase 7B push: clean
-security pre-push gate: passed; no tracked env/key/private/credential files or secret pattern matches
-Typecheck: passed
-Build: passed after Google Fonts network retry
+Phase 8 product surfaces: completed and pushed
+Phase 9A source mapping: completed
+Phase 9B readonly Customer Memory Snapshot: completed and pushed
+Phase 9C readonly lead risk advisory signals: completed and pushed
+Phase 9D readonly revenue risk advisory signals: completed and pushed
+Phase 10A/10B release hardening: completed and GREEN
 ```
 
-Post-Phase 6 sweep outcomes:
+Route reality:
 
 ```text
-QS2 responsive polish: completed
-QS3 route hygiene: completed
-QS4 tenant resolver: audited only; real resolver deferred to Phase 7
-QS5 final mobile visual polish: completed
-QS6 final technical gate: passed
+/leadler is the active lead route.
+/leader is absent.
+/teklifler is a local premium offers MVP surface.
+/kanal-yonetimi is a local premium channel management MVP surface.
+/akilli-yanit-ayarlari is a local premium smart reply governance MVP surface.
+/musteri-kartlari includes the readonly Customer Memory Snapshot.
+/leadler includes readonly lead risk advisory signals.
+/teklifler includes readonly revenue risk advisory signals.
 ```
-
-Phase 7A outcomes:
-
-```text
-Sector DNA registry: added
-Resolver: pure resolveActiveDna() function
-activeDna source: resolveActiveDna() output
-Resolver output: SectorDna
-Initial registry contents: energyDna only
-Missing/unknown sectorId fallback: baseline energyDna
-TenantOverride merge: not implemented; future Phase 7 scope
-ActiveConfig runtime layer: not implemented; future Phase 7 scope
-Fake tenant resolver: not implemented
-```
-
-Phase 7B outcomes:
-
-```text
-Resolver contract hardening: completed
-sectorId normalization: trim before registry lookup
-undefined/null/empty/whitespace sectorId: baseline fallback
-unknown sectorId: baseline fallback
-known/default sectorId: registry value
-Fallback source: baselineSectorDna
-Resolver output: SectorDna
-Resolver side effects: none
-Registry contents: energyDna only
-DEFAULT_SECTOR_DNA_ID: preserved
-TenantOverride runtime: not implemented
-ActiveConfig runtime: not implemented
-Second Sector DNA: not added
-Test package/config: not added
-```
-
-Implemented route hygiene placeholders:
-
-```text
-/teklifler
-/kanal-yonetimi
-/akilli-yanit-ayarlari
-```
-
-These are roadmap placeholders only. They close navigation trust debt without implementing real offer management, channel management, or AI reply settings workflows.
 
 ## Source Priority
 
 Use this order when repo docs and implementation details conflict:
 
 ```text
-1. AGENTS.md
-2. Current user instruction
-3. Repo terminal output and real files
-4. README.md
-5. CLAUDE.md
-6. Archived/source-pack materials, when present
+1. Current user instruction
+2. Repo terminal output and real files
+3. PHASE_10_RELEASE_HARDENING_SUMMARY.md
+4. AGENTS.md
+5. README.md
+6. CLAUDE.md
+7. PHASE_9_CUSTOMER_MEMORY_NO_LOST_SCOPE.md for Phase 9 policy context
+8. Archived/source-pack materials, when present
 ```
 
 Main rule:
 
 ```text
 Repo output is technical truth. Current user instruction controls the active task. Docs must not override the real working tree.
+```
+
+## Roadmap And Approval Rules
+
+```text
+- Do not leave the roadmap without explicit user approval.
+- Do not start the next implementation phase without explicit user approval.
+- Do not rewrite existing good product surfaces without audit and approval.
+- In docs-only tasks, do not change code.
+- In audit-only tasks, do not change files.
+- Commit only when the user explicitly asks for a commit.
+- Push only when the user explicitly approves push.
 ```
 
 ## Architecture Guardrails
@@ -112,13 +103,12 @@ Do:
 Do not:
 
 ```text
-- Add sector === "energy" logic in Core components.
+- Add energy-specific branching in Core components.
 - Mount DnaProvider globally in app/layout.tsx.
 - Mount ChannelSignalProvider.
 - Add Mail to the canonical ChannelSignal type.
 - Implement a fake tenant resolver.
 - Add real API calls or real message sending.
-- Implement No Lost Money or No Lost Lead integrations unless explicitly scoped.
 - Claim TenantOverride merge, ActiveConfig runtime, or multi-tenant backend exists before implementation.
 - Add a new package without explicit user approval.
 ```
@@ -134,7 +124,7 @@ baselineSectorDna is the deterministic fallback.
 Missing, unknown, empty, or whitespace sectorId falls back to baselineSectorDna / energyDna.
 / and /inbox use route-level DnaProvider dna={activeDna}.
 app/layout.tsx does not mount DnaProvider globally.
-TenantOverride merge and ActiveConfig runtime remain future Phase 7 scope.
+TenantOverride merge and ActiveConfig runtime remain future explicitly scoped work.
 No real tenant identity source, auth/session resolver, or multi-tenant backend is implemented yet.
 ```
 
@@ -174,30 +164,56 @@ Ultra Inbox must preserve:
 - zero horizontal overflow
 ```
 
-## Quality Sweep Truth
+## Phase 9 And Release Trust Boundaries
 
-The Post-Phase 6 Quality Sweep is complete.
-
-Known completed items:
+Phase 9 surfaces are readonly/advisory/local fixture surfaces unless a later
+approved phase adds durable infrastructure.
 
 ```text
-- QS2 tablet/mobile responsive polish
-- QS3 minimal route hygiene placeholders
-- QS4 activeDna tenant resolver preflight
-- QS5 final mobile visual polish
-- QS6 final technical gate
-- Push to GitHub main
-- Phase 7A registry + pure resolver
-- Phase 7B resolver contract hardening
+No real API.
+No backend.
+No business persistence.
+No runtime action.
+No real message sending.
+No customer, lead, or offer mutation runtime.
+No task assignment runtime.
+No status-change runtime.
+No financial certainty claim.
+No No Lost runtime service.
 ```
 
-Known remaining debt:
+Allowed language:
 
 ```text
-- TenantOverride merge and ActiveConfig runtime layer remain future Phase 7 scope.
-- Real tenant identity source/backend/auth/session selection remains unresolved.
-- Placeholder routes are not real feature modules yet.
-- Automated resolver tests require an explicit test tooling decision; no test package/config exists yet.
+- readonly snapshot
+- advisory signal
+- local evidence snapshot
+- human approval required
+- backend required before durable action
+- potential revenue risk
+```
+
+Do not claim that the system saved, learned, synced, created records, mutated
+records, assigned work, changed status, or proved financial loss unless a
+future approved phase implements the required backend and audit trail.
+
+## Release Hardening Truth
+
+```text
+Phase 10A trust/copy gate: GREEN
+Phase 10A-1 copy cleanup: pushed
+Phase 10B visual QA: WATCH before polish
+Phase 10B-1 responsive surface polish: pushed
+Phase 10B final recheck: GREEN
+Forbidden legacy trust copy: removed from release grep
+Visual surface gate: clean for current local MVP scope
+```
+
+Known non-blocking grep context:
+
+```text
+Broad guardrail grep can still find old fixture/type/boot labels.
+Those are not new runtime actions and should be evaluated in context.
 ```
 
 ## Development Rules
