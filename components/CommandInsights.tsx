@@ -137,7 +137,7 @@ export function DnaOperationsPanel() {
           <p className="text-xs font-medium text-white/40">
             Enerji Operasyon Katmanı
           </p>
-          <h2 className="mt-1 text-xl font-semibold">Solify DNA Kartları</h2>
+          <h2 className="mt-1 text-xl font-semibold">Sektör DNA Kartları</h2>
         </div>
 
         <FiRadio className="text-xl text-white/50" />
