@@ -3,6 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --arqon-command-black: #05070a;
+  --arqon-command-graphite: #0b0f14;
+  --arqon-command-panel: #10161d;
+  --arqon-command-raised: #151c24;
+  --arqon-platinum: #f4f5f7;
+  --arqon-platinum-soft: #e9edf2;
+  --arqon-shell-border: rgba(255, 255, 255, 0.105);
+  --arqon-shell-border-soft: rgba(255, 255, 255, 0.07);
+  --arqon-shell-text: rgba(255, 255, 255, 0.92);
+  --arqon-shell-muted: rgba(255, 255, 255, 0.56);
+  --arqon-shell-faint: rgba(255, 255, 255, 0.34);
+  --arqon-shell-depth: 0 26px 72px rgba(0, 0, 0, 0.36);
+  --arqon-premium-radius: 1.15rem;
+  --arqon-premium-radius-lg: 1.45rem;
 }
 
 @theme inline {
@@ -24,7 +38,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 html,
@@ -37,7 +51,8 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   overflow: hidden;
-  background: #000;
+  background:
+    linear-gradient(180deg, #05070a 0%, #0a0d12 42%, #06080c 100%);
   color: #fff;
   overscroll-behavior: none;
 }
@@ -57,8 +72,74 @@ body {
   flex: 1 1 auto;
   flex-direction: column;
   container-type: inline-size;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 13rem),
+    var(--arqon-command-graphite);
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.arqon-command-surface {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 52%),
+    var(--arqon-command-graphite);
+  border-color: var(--arqon-shell-border);
+  box-shadow: var(--arqon-shell-depth);
+}
+
+.arqon-shell-panel {
+  border: 1px solid var(--arqon-shell-border-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.026)),
+    rgba(7, 10, 14, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 18px 44px rgba(0, 0, 0, 0.24);
+}
+
+.arqon-shell-panel-soft {
+  border: 1px solid var(--arqon-shell-border-soft);
+  background: rgba(255, 255, 255, 0.034);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.arqon-shell-kicker {
+  font-size: 0.64rem;
+  font-weight: 720;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--arqon-shell-faint);
+}
+
+.arqon-readonly-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.42rem 0.62rem;
+}
+
+.arqon-workbench-canvas {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(244, 245, 247, 0.92)),
+    var(--arqon-platinum);
+  border: 1px solid rgba(11, 13, 16, 0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 18px 48px rgba(11, 13, 16, 0.08);
+}
+
+.arqon-advisory-state {
+  border-color: rgba(11, 13, 16, 0.1);
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(11, 13, 16, 0.72);
 }
 
 .arqon-page-scroll {
@@ -168,7 +249,7 @@ body {
 
 .arqon-header-inner {
   display: grid;
-  min-height: 6.5rem;
+  min-height: 6.15rem;
   align-items: center;
   gap: clamp(0.75rem, 1.2cqi, 1rem);
   padding: clamp(0.95rem, 1.2cqi, 1.25rem) clamp(1.25rem, 1.7cqi, 2rem);
@@ -233,7 +314,7 @@ body {
 }
 
 .arqon-sidebar {
-  width: clamp(5.5rem, 18vw, 18.25rem);
+  width: clamp(5.75rem, 18vw, 18.6rem);
   container-type: inline-size;
 }
 
@@ -246,8 +327,10 @@ body {
   min-width: 0;
   align-items: center;
   gap: 0.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.86);
+  border-bottom: 1px solid var(--arqon-shell-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent),
+    rgba(5, 7, 10, 0.92);
   padding: 0.75rem 0.95rem;
   backdrop-filter: blur(20px);
 }
@@ -260,8 +343,8 @@ body {
   justify-content: center;
   gap: 0.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--arqon-shell-border);
+  background: rgba(255, 255, 255, 0.075);
   padding-inline: 0.85rem;
   font-size: 0.75rem;
   font-weight: 700;
@@ -272,8 +355,8 @@ body {
   display: none;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.45rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.92);
+  border-bottom: 1px solid var(--arqon-shell-border);
+  background: rgba(5, 7, 10, 0.96);
   padding: 0.65rem 0.95rem 0.8rem;
 }
 
@@ -286,9 +369,9 @@ body {
   min-width: 0;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.045);
+  border-radius: 0.95rem;
+  border: 1px solid var(--arqon-shell-border-soft);
+  background: rgba(255, 255, 255, 0.04);
   padding: 0.68rem 0.75rem;
   font-size: 0.78rem;
   font-weight: 650;
@@ -296,14 +379,15 @@ body {
 }
 
 .arqon-mobile-menu-link.is-active {
-  background: #fff;
-  color: #000;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: var(--arqon-platinum);
+  color: #080b0f;
 }
 
 .arqon-sidebar-shell {
   align-items: center;
   padding-inline: clamp(0.75rem, 1.8cqw, 1.5rem);
-  padding-top: clamp(1.5rem, 2.1cqw, 2rem);
+  padding-top: clamp(1.35rem, 2cqw, 1.85rem);
 }
 
 .arqon-sidebar-wordmark,
@@ -316,6 +400,7 @@ body {
 
 .arqon-sidebar-link {
   justify-content: center;
+  position: relative;
 }
 
 .arqon-sidebar-brand {
@@ -344,6 +429,26 @@ body {
   .arqon-sidebar-link {
     justify-content: flex-start;
   }
+}
+
+.arqon-sidebar-link::before {
+  position: absolute;
+  inset: 0.45rem auto 0.45rem 0.35rem;
+  width: 0.18rem;
+  border-radius: 999px;
+  background: transparent;
+  content: "";
+  transition: background-color 160ms ease-out;
+}
+
+.arqon-sidebar-link.is-active::before {
+  background: #ffffff;
+}
+
+.arqon-sidebar-link.is-active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 14px 34px rgba(0, 0, 0, 0.24);
 }
 
 @container (min-width: 17rem) {
