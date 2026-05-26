@@ -17,9 +17,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Arqon | Solify Panel",
+  title: "Arqon | Customer Operation Intelligence",
   description:
-    "Solify müşteri ilişkileri, talep yönetimi ve operasyon takip paneli.",
+    "Arqon musteri operasyon zekasi, talep ve satis sureci yonetim paneli.",
 };
 
 export default function RootLayout({
