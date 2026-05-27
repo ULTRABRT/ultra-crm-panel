@@ -314,7 +314,7 @@ body {
 }
 
 .arqon-sidebar {
-  width: clamp(5.75rem, 18vw, 18.6rem);
+  width: clamp(14.25rem, 18vw, 18.6rem);
   container-type: inline-size;
 }
 
@@ -386,8 +386,8 @@ body {
 
 .arqon-sidebar-shell {
   align-items: center;
-  padding-inline: clamp(0.75rem, 1.8cqw, 1.5rem);
-  padding-top: clamp(1.35rem, 2cqw, 1.85rem);
+  padding-inline: clamp(0.8rem, 1.65cqw, 1.35rem);
+  padding-top: clamp(1.05rem, 1.75cqw, 1.65rem);
 }
 
 .arqon-sidebar-wordmark,
@@ -451,15 +451,25 @@ body {
     0 14px 34px rgba(0, 0, 0, 0.24);
 }
 
-@container (min-width: 17rem) {
+@container (min-width: 15rem) {
   .arqon-sidebar-cards {
     display: block;
   }
 }
 
-@media (min-width: 900px) and (max-width: 1439px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   .arqon-sidebar {
-    width: 5.75rem;
+    width: clamp(15.25rem, 20vw, 16.25rem);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1120px) {
+  .arqon-sidebar {
+    width: 14.25rem;
+  }
+
+  .arqon-sidebar-cards {
+    display: none;
   }
 }
 

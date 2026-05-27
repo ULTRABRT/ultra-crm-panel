@@ -170,27 +170,27 @@ export function Sidebar() {
             </p>
           </div>
 
-          <div className="arqon-sidebar-tenant arqon-shell-panel mt-5 items-center gap-3 rounded-[1.35rem] p-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-base font-semibold text-black">
+          <div className="arqon-sidebar-tenant arqon-shell-panel mt-4 items-center gap-2.5 rounded-[1.2rem] p-2.5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[1.05rem] bg-[var(--arqon-platinum)] text-sm font-semibold text-black">
               {workspaceInitial}
             </div>
 
             <div className="min-w-0">
               <p className="arqon-shell-kicker">
-                Workspace
+                Local workspace
               </p>
-              <h2 className="mt-1 truncate text-lg font-semibold text-white">
-                Arqon Local
+              <h2 className="mt-1 truncate text-base font-semibold text-white">
+                Arqon Workspace
               </h2>
               <p className="mt-1 truncate text-xs text-white/46">
-                {activeSectorName}
+                {activeSectorName} context
               </p>
             </div>
           </div>
         </div>
 
-        <nav className="min-h-0 flex-1 overflow-y-auto px-3 pb-5 pt-2 xl:px-4 2xl:px-5 2xl:pb-6">
-          <div className="space-y-2">
+        <nav className="min-h-0 flex-1 overflow-y-auto px-2.5 pb-4 pt-1 xl:px-3 2xl:px-4 2xl:pb-5">
+          <div className="space-y-1.5">
             {menuItems.map((item) => {
               const Icon = item.icon;
               const active = isActivePath(pathname, item.href);
@@ -199,14 +199,14 @@ export function Sidebar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`arqon-sidebar-link group flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition ${
+                  className={`arqon-sidebar-link group flex items-center gap-2.5 rounded-[1.05rem] px-2.5 py-2 text-[13px] font-medium transition ${
                     active
-                      ? "is-active bg-white text-black"
+                      ? "is-active bg-[var(--arqon-platinum)] text-black"
                       : "text-white/58 hover:bg-white/[0.055] hover:text-white"
                   }`}
                 >
                   <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl transition ${
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.9rem] transition ${
                       active
                         ? "bg-black text-white"
                         : "bg-white/[0.055] text-white/58 group-hover:bg-white/[0.09] group-hover:text-white"
@@ -215,43 +215,45 @@ export function Sidebar() {
                     <Icon className="h-5 w-5" />
                   </span>
 
-                  <span className="arqon-sidebar-label truncate">{item.label}</span>
+                  <span className="arqon-sidebar-label truncate leading-tight">
+                    {item.label}
+                  </span>
                 </Link>
               );
             })}
           </div>
 
-          <div className="arqon-sidebar-cards mt-6 space-y-3">
-            <div className="arqon-shell-panel-soft rounded-[1.35rem] p-4">
-              <p className="arqon-shell-kicker">Sector DNA</p>
+          <div className="arqon-sidebar-cards mt-4 space-y-2">
+            <div className="arqon-shell-panel-soft rounded-[1.2rem] p-3">
+              <p className="arqon-shell-kicker">Context boundary</p>
 
-              <h3 className="mt-2 truncate text-base font-semibold text-white">
+              <h3 className="mt-2 truncate text-sm font-semibold text-white">
                 {activeSectorName}
               </h3>
 
-              <p className="mt-2 text-xs leading-5 text-white/48">
+              <p className="mt-1.5 text-[11px] leading-4 text-white/48">
                 Resolver ve registry bağlamı route seviyesinde okunur; shell
                 davranışı generic kalır.
               </p>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                <span className="arqon-readonly-pill">Registry</span>
-                <span className="arqon-readonly-pill">Route-level</span>
+                <span className="arqon-readonly-pill">DNA context</span>
+                <span className="arqon-readonly-pill">Readonly</span>
               </div>
             </div>
 
-            <div className="arqon-shell-panel-soft rounded-[1.35rem] p-4">
+            <div className="arqon-shell-panel-soft rounded-[1.2rem] p-3">
               <p className="arqon-shell-kicker">
-                Release surface
+                Action boundary
               </p>
 
               <div className="mt-3 flex items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold text-white">
-                    Local MVP scope
+                    Readonly surface
                   </p>
                   <p className="mt-1 text-xs leading-5 text-white/42">
-                    Readonly surfaces; durable actions require backend.
+                    Durable actions require backend.
                   </p>
                 </div>
 
