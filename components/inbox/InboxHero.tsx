@@ -59,7 +59,7 @@ export function InboxHero() {
 
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 text-xs font-medium text-white/50">
                 <HiOutlineClock className="h-4 w-4" />
-                Canlı akış
+                Readonly görünüm
               </span>
             </div>
 
@@ -144,7 +144,7 @@ export function InboxHero() {
                 <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5">
                   <HiOutlineSparkles className="h-4 w-4 text-white/70" />
                   <span className="text-xs font-medium text-white/55">
-                    Aktif Operasyon
+                    Operasyon görünümü
                   </span>
                 </div>
 
@@ -171,7 +171,7 @@ export function InboxHero() {
 
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-white">
-                    Aktif konuşma: {activeConversation.customerName}
+                    Seçili konuşma: {activeConversation.customerName}
                   </p>
 
                   <p className="mt-1 text-xs leading-5 text-white/42">

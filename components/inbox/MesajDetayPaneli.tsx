@@ -124,7 +124,7 @@ export function MesajDetayPaneli() {
                         <HiOutlineUserCircle className="h-3.5 w-3.5" />
                       )}
                       {isOutgoing
-                        ? "Solify"
+                        ? "Panel taslağı"
                         : isInternal
                           ? "İç not"
                           : "Müşteri"}
@@ -191,7 +191,7 @@ export function MesajDetayPaneli() {
 
             <button className="flex h-10 shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#0f6fff] px-5 text-sm font-semibold text-white shadow-lg shadow-[#0f6fff]/20 transition hover:bg-[#1f7cff]">
               <HiOutlinePaperAirplane className="h-4 w-4" />
-              Gönder
+              Taslağı beklet
             </button>
           </div>
 
