@@ -398,16 +398,47 @@ export function InboxWorkspace() {
 
   return (
     <section className="arqon-inbox-workspace-final w-full">
-      <TopCommandHeader
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-      />
+      <section className="rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-2 shadow-[0_18px_48px_rgba(11,13,16,0.18),inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-2.5">
+        <div className="mb-2 flex flex-col gap-1.5 px-1 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/36">
+              Arqon command frame
+            </p>
+            <h2 className="mt-1 text-base font-semibold tracking-tight text-white sm:text-lg">
+              Platinum conversation workbench
+            </h2>
+            <p className="mt-1 hidden max-w-2xl text-xs leading-5 text-white/46 sm:block">
+              Mesaj kuyruğu, AI taslakları ve müşteri kanıtı tek yerel
+              çalışma yüzeyinde okunur; kalıcı işlem için onay gerekir.
+            </p>
+          </div>
 
-      <PlatformSwitcher
-        activePlatform={activePlatform}
-        platforms={platformOptions}
-        onPlatformChange={setActivePlatform}
-      />
+          <div className="flex flex-wrap gap-1 text-[10px] font-semibold text-white/54 sm:gap-1.5 sm:text-[11px]">
+            <span className="rounded-full border border-white/10 bg-black/35 px-2 py-1 sm:px-2.5">
+              Readonly
+            </span>
+            <span className="rounded-full border border-white/10 bg-black/35 px-2 py-1 sm:px-2.5">
+              Yerel görünüm
+            </span>
+            <span className="rounded-full border border-white/10 bg-black/35 px-2 py-1 sm:px-2.5">
+              Backend yazımı yok
+            </span>
+          </div>
+        </div>
+
+        <TopCommandHeader
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+        />
+
+        <div className="mt-2">
+          <PlatformSwitcher
+            activePlatform={activePlatform}
+            platforms={platformOptions}
+            onPlatformChange={setActivePlatform}
+          />
+        </div>
+      </section>
 
       <MainCommandGrid>
         <ConversationQueue
