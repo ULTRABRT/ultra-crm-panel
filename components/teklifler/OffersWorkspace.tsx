@@ -691,6 +691,18 @@ export function OffersWorkspace() {
 
         <SelectedOfferSignal offer={activeOffer} />
 
+        <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4">
+          <OfferQueue
+            offers={filteredOffers}
+            activeOfferId={activeOffer?.id ?? ""}
+            onSelectOffer={setActiveOfferId}
+          />
+          <div className="grid min-w-0 gap-3">
+            <OfferDetailPanel offer={activeOffer} />
+            <ReadonlyNoLostMoneySignals />
+          </div>
+        </div>
+
         <KpiStrip offers={offerRecords} />
 
         <OfferFilters
@@ -703,18 +715,6 @@ export function OffersWorkspace() {
           onPriorityChange={setPriorityFilter}
           onSourceChange={setSourceFilter}
         />
-
-        <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4">
-          <OfferQueue
-            offers={filteredOffers}
-            activeOfferId={activeOffer?.id ?? ""}
-            onSelectOffer={setActiveOfferId}
-          />
-          <div className="grid min-w-0 gap-3">
-            <ReadonlyNoLostMoneySignals />
-            <OfferDetailPanel offer={activeOffer} />
-          </div>
-        </div>
       </div>
     </div>
   );
