@@ -115,7 +115,7 @@ function MessageBubble({ message }: { message: InboxMessage }) {
             ) : (
               <HiOutlineUserCircle className="h-3.5 w-3.5" />
             )}
-            {isOutgoing ? "Solify" : isInternal ? "İç not" : "Müşteri"}
+            {isOutgoing ? "Panel taslağı" : isInternal ? "İç not" : "Müşteri"}
           </span>
         </div>
 
@@ -341,7 +341,7 @@ export function ConversationView({
             className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-[0.7rem] bg-[#0B0D10] px-3 text-[11px] font-semibold text-[#FFFFFF] transition hover:bg-[#1A1D22]"
           >
             <HiOutlinePaperAirplane className="h-4 w-4" />
-            Gönder
+            Taslağı beklet
             <HiOutlineChevronDown className="h-3.5 w-3.5" />
           </button>
         </div>

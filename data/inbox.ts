@@ -78,7 +78,7 @@ export const inboxChannelStats: InboxChannelStat[] = [
     total: 22,
     unread: 2,
     hot: 3,
-    statusLabel: "Site içi canlı görüşmeler",
+    statusLabel: "Site içi görüşme görünümü",
   },
   {
     id: "forms",
@@ -195,7 +195,7 @@ export const inboxConversations: InboxConversation[] = [
       {
         id: "msg-003",
         direction: "outgoing",
-        senderName: "Solify",
+        senderName: "Panel taslağı",
         senderRole: "Satış Ekibi",
         channel: "instagram",
         channelLabel: "Instagram",
@@ -327,7 +327,7 @@ export const inboxConversations: InboxConversation[] = [
       "Aylık tüketim ve çatı alanı bilgilerini paylaşacağız. Ön teklif alabilir miyiz?",
     lastMessageTimeLabel: "1 sa önce",
     status: "assigned",
-    statusLabel: "Atandı",
+    statusLabel: "İnceleme kuyruğu",
     intent: "offerRequest",
     intentLabel: "Teklif talebi",
     priority: "normal",
@@ -401,7 +401,7 @@ export const inboxConversations: InboxConversation[] = [
       {
         id: "msg-006",
         direction: "outgoing",
-        senderName: "Solify Panel",
+        senderName: "Panel taslağı",
         senderRole: "Satış Ekibi",
         channel: "mail",
         channelLabel: "Mail",

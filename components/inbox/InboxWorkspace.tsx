@@ -208,7 +208,7 @@ function TopCommandHeader({
             className="inline-flex h-9 items-center gap-1.5 rounded-[0.7rem] bg-[#0B0D10] px-3 text-[11px] font-semibold text-[#FFFFFF] shadow-[0_10px_22px_rgba(11,13,16,0.16)] transition hover:bg-[#1A1D22]"
           >
             <HiOutlineSparkles className="h-4 w-4" />
-            AI açık
+            AI taslak modu
           </button>
         </div>
       </div>
