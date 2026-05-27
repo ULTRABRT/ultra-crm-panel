@@ -23,17 +23,37 @@ export default function LeadlerPage() {
           <div className="arqon-page-scroll">
             <LeadlerHero />
 
-            <section className="arqon-split-grid [--arqon-split-min:24rem]">
+            <section className="arqon-split-grid [--arqon-split-min:24rem] xl:items-start">
               <LeadListesi />
 
-              <LeadAksiyonPaneli />
+              <div className="grid gap-4">
+                <ReadonlyNoLostLeadSignals />
+
+                <LeadAksiyonPaneli />
+              </div>
             </section>
 
-            <ReadonlyNoLostLeadSignals />
+            <section className="pt-2">
+              <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/35">
+                    Destek katmanı
+                  </p>
+                  <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">
+                    Operasyon özetleri ve segmentler
+                  </h2>
+                </div>
 
-            <LeadStats />
+                <p className="max-w-2xl text-sm leading-6 text-white/42">
+                  KPI ve hazır segmentler cockpit kararını destekler; ana
+                  çalışma sırası üstteki lead akışında kalır.
+                </p>
+              </div>
 
-            <LeadSegmentleri />
+              <LeadStats />
+
+              <LeadSegmentleri />
+            </section>
           </div>
         </section>
       </div>
