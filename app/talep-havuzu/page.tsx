@@ -24,24 +24,22 @@ export default function TalepHavuzuPage() {
           <div className="arqon-page-scroll">
             <TalepHavuzuHero />
 
-            <section className="arqon-split-grid [--arqon-split-min:24rem]">
+            <section className="arqon-split-grid items-start [--arqon-split-min:24rem]">
               <TalepAkisi />
 
-              <aside className="space-y-5">
+              <aside className="space-y-5 lg:pt-24 xl:pt-28">
                 <KritikAksiyonlar />
                 <TalepHunisi />
               </aside>
             </section>
 
-            <TalepStats />
+            <section className="mt-5 space-y-5 opacity-90">
+              <TalepStats />
 
-            <div className="mt-5">
               <EnerjiDnaOzet />
-            </div>
 
-            <div className="mt-5">
               <KaynakPerformansi />
-            </div>
+            </section>
           </div>
         </section>
       </div>
