@@ -68,8 +68,8 @@ export function MusteriOzetBar() {
   const customer = aktifMusteriKarti.ozet;
 
   return (
-    <section className="mb-5 rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20">
-      <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+    <section className="mb-5 min-w-0 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20">
+      <div className="flex min-w-0 flex-col gap-5 2xl:flex-row 2xl:items-start 2xl:justify-between">
         <div className="flex min-w-0 gap-4">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-white text-lg font-bold text-black shadow-2xl shadow-white/10">
             {getInitials(customer.customerName)}
@@ -119,39 +119,39 @@ export function MusteriOzetBar() {
           </div>
         </div>
 
-        <div className="grid shrink-0 gap-3 sm:grid-cols-2 xl:w-[360px]">
-          <div className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2 2xl:w-[360px] 2xl:shrink-0">
+          <div className="min-w-0 rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
+            <p className="truncate text-[10px] uppercase tracking-[0.18em] text-white/35">
               İlk Kaynak
             </p>
-            <p className="mt-1 text-sm font-semibold text-white">
+            <p className="mt-1 truncate text-sm font-semibold text-white">
               {customer.firstSourceLabel}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
+          <div className="min-w-0 rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
+            <p className="truncate text-[10px] uppercase tracking-[0.18em] text-white/35">
               Son Kaynak
             </p>
-            <p className="mt-1 text-sm font-semibold text-white">
+            <p className="mt-1 truncate text-sm font-semibold text-white">
               {customer.lastSourceLabel}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
+          <div className="min-w-0 rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
+            <p className="truncate text-[10px] uppercase tracking-[0.18em] text-white/35">
               Kayıt
             </p>
-            <p className="mt-1 text-sm font-semibold text-white">
+            <p className="mt-1 truncate text-sm font-semibold text-white">
               {customer.createdAtLabel}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
+          <div className="min-w-0 rounded-2xl border border-white/10 bg-black/40 px-4 py-3">
+            <p className="truncate text-[10px] uppercase tracking-[0.18em] text-white/35">
               Son Güncelleme
             </p>
-            <p className="mt-1 text-sm font-semibold text-white">
+            <p className="mt-1 truncate text-sm font-semibold text-white">
               {customer.lastUpdateLabel}
             </p>
           </div>

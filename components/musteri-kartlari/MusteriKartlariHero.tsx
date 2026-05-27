@@ -1,7 +1,4 @@
 import {
-  HiOutlineAdjustmentsHorizontal,
-  HiOutlineArrowTrendingUp,
-  HiOutlineDocumentText,
   HiOutlineSparkles,
 } from "react-icons/hi2";
 
@@ -11,29 +8,30 @@ export function MusteriKartlariHero() {
   const customer = aktifMusteriKarti.ozet;
 
   return (
-    <section className="mb-5 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/30">
-      <div className="relative p-6 lg:p-7">
-        <div className="pointer-events-none absolute right-0 top-0 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+    <section className="mb-3 overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/30">
+      <div className="relative p-4 sm:p-5 lg:p-5">
+        <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
 
-        <div className="relative flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
+        <div className="relative flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+          <div className="max-w-2xl">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
               <HiOutlineSparkles className="h-4 w-4 text-white/70" />
               <span className="text-xs font-medium text-white/55">
-                Müşteri Hafıza Merkezi
+                Müşteri kanıt hafızası
               </span>
             </div>
 
-            <h1 className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-white lg:text-4xl">
               Müşteri Kartları
             </h1>
 
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/50 lg:text-base lg:leading-7">
+            <p className="mt-2 hidden max-w-2xl text-sm leading-6 text-white/50 sm:block">
               Müşterinin kim olduğunu, nereden geldiğini, ne istediğini, hangi
-              aşamada olduğunu ve sıradaki en doğru aksiyonu tek ekranda gösterir.
+              aşamada olduğunu ve hangi kanıtla değerlendirildiğini tek yerel
+              hafıza yüzeyinde okutur.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-xs font-medium text-white/55">
                 Aktif müşteri: {customer.customerName}
               </span>
@@ -48,21 +46,16 @@ export function MusteriKartlariHero() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-5 py-3 text-sm font-semibold text-white/75 transition hover:border-white/20 hover:bg-white/[0.04]">
-              <HiOutlineAdjustmentsHorizontal className="h-4 w-4" />
-              Müşteri Seç
-            </button>
-
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-5 py-3 text-sm font-semibold text-white/75 transition hover:border-white/20 hover:bg-white/[0.04]">
-              <HiOutlineDocumentText className="h-4 w-4" />
-              Not Ekle
-            </button>
-
-            <button className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">
-              <HiOutlineArrowTrendingUp className="h-4 w-4" />
-              Sıradaki Aksiyon
-            </button>
+          <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-white/55 xl:justify-end">
+            <span className="rounded-full border border-white/10 bg-black/35 px-2.5 py-1">
+              Readonly hafıza
+            </span>
+            <span className="rounded-full border border-white/10 bg-black/35 px-2.5 py-1">
+              Yerel kanıt
+            </span>
+            <span className="rounded-full border border-white/10 bg-black/35 px-2.5 py-1">
+              Onay gerekir
+            </span>
           </div>
         </div>
       </div>
