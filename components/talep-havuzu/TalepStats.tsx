@@ -32,7 +32,7 @@ export function TalepStats() {
               </div>
 
               <span className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[11px] font-medium text-white/50">
-                Canlı
+                Readonly
               </span>
             </div>
 

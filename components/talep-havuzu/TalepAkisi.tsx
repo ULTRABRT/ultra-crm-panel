@@ -15,7 +15,7 @@ export function TalepAkisi() {
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
             <HiOutlineInboxStack className="h-4 w-4 text-white/70" />
             <span className="text-xs font-medium text-white/55">
-              Canlı Talep Akışı
+              Readonly talep akışı
             </span>
           </div>
 
@@ -24,8 +24,8 @@ export function TalepAkisi() {
           </h2>
 
           <p className="mt-2 max-w-3xl text-sm leading-6 text-white/45">
-            AI her talebi kaynak, sıcaklık, eksik bilgi ve sonraki aksiyona göre
-            satış hafızasına işler.
+            Talep sinyalleri kaynak, sıcaklık, eksik bilgi ve sonraki inceleme
+            notuna göre yerel görünümde değerlendirilir.
           </p>
         </div>
 
