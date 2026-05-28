@@ -62,7 +62,7 @@ export default function Home() {
                           zone="boardroom_briefing"
                           eyebrow="Karar matrisi"
                           title="Dört öncelikli sinyal"
-                          description="Aktif DNA, kritik operasyon metriklerini yönetici karar setinde öne çıkarır."
+                          description="Sektör DNA görünümü, karar setindeki sektör bağlamını yerel not olarak gösterir."
                           columns={2}
                         />
                       </section>

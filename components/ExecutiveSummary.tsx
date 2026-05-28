@@ -11,7 +11,7 @@ export function ExecutiveSummary() {
         </div>
 
         <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-black">
-          CANLI
+          Readonly
         </span>
       </div>
 

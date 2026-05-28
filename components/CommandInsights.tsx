@@ -62,10 +62,10 @@ const operationCards = [
 ];
 
 const activities = [
-  "Mehmet Akgün için teklif hazırlama aksiyonu açıldı.",
-  "Instagram kanalından 3 yeni sıcak talep geldi.",
-  "Karaqaş Metal kaydı eksik bilgi nedeniyle kontrole alındı.",
-  "Batarya ilgisi olan 2 müşteri teklif listesine eklendi.",
+  "Mehmet Akgün için teklif hazırlama öneri kaydı görünüyor.",
+  "Instagram kanalında 3 sıcak talep sinyali görünüyor.",
+  "Karaqaş Metal kaydı için eksik bilgi kontrol notu var.",
+  "Batarya ilgisi olan 2 müşteri için liste sinyali görünüyor.",
 ];
 
 export function SourcePerformancePanel() {
@@ -135,7 +135,7 @@ export function DnaOperationsPanel() {
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-medium text-white/40">
-            Enerji Operasyon Katmanı
+            Sektör Operasyon Katmanı
           </p>
           <h2 className="mt-1 text-xl font-semibold">Sektör DNA Kartları</h2>
         </div>
@@ -175,7 +175,7 @@ export function ActivityLogPanel() {
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-medium text-white/40">
-            Canlı Operasyon Günlüğü
+            Yerel operasyon günlüğü
           </p>
           <h2 className="mt-1 text-xl font-semibold">Son Aktiviteler</h2>
         </div>

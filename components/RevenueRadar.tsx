@@ -2,7 +2,7 @@ const revenueCards = [
   {
     label: "Açık Teklif",
     value: "₺701K",
-    note: "aktif fırsat hacmi",
+    note: "açık fırsat hacmi",
   },
   {
     label: "Kapanma Olasılığı",
@@ -10,7 +10,7 @@ const revenueCards = [
     note: "ortalama başarı skoru",
   },
   {
-    label: "Bugünkü Aksiyon",
+    label: "Bugünkü İnceleme",
     value: "18",
     note: "öncelikli görev",
   },
@@ -19,10 +19,10 @@ const revenueCards = [
 const opportunities = [
   {
     name: "Mehmet Akgün",
-    segment: "Konut Enerji",
+    segment: "Konut segmenti",
     value: "₺185.000",
     stage: "Teklif Hazırlanıyor",
-    action: "Bugün aranmalı",
+    action: "Arama notu incelenmeli",
     score: 86,
   },
   {
@@ -30,7 +30,7 @@ const opportunities = [
     segment: "Sanayi",
     value: "₺420.000",
     stage: "Keşif Bekliyor",
-    action: "Eksik bilgi alınmalı",
+    action: "Eksik bilgi notu incelenmeli",
     score: 71,
   },
   {
@@ -38,7 +38,7 @@ const opportunities = [
     segment: "Bireysel",
     value: "₺96.000",
     stage: "Fiyatlandırma",
-    action: "Teklif gönderilmeli",
+    action: "Teklif taslağı incelenmeli",
     score: 64,
   },
 ];
@@ -55,7 +55,7 @@ export function RevenueRadar() {
         </div>
 
         <button className="rounded-full border border-white/10 px-5 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white">
-          Canlı fırsat görünümü
+          Readonly fırsat görünümü
         </button>
       </div>
 
@@ -95,7 +95,7 @@ export function RevenueRadar() {
               </div>
 
               <div>
-                <p className="text-sm text-white/40">Sıradaki Aksiyon</p>
+                <p className="text-sm text-white/40">Sıradaki İnceleme</p>
                 <p className="mt-1 font-semibold">{deal.action}</p>
               </div>
             </div>

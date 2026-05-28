@@ -17,7 +17,7 @@ export function AiBoardroomBriefing({
   const dnaContext = useDnaSafe();
   const packageLabel = dnaContext?.activeDna.meta.packageLabel
     ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
-    : "Aktif DNA";
+    : "Sektör DNA";
   const activeDnaName = dnaContext?.activeDna.meta.name
     ? resolveLabel(dnaContext.activeDna.meta.name)
     : "operasyon";
@@ -30,7 +30,7 @@ export function AiBoardroomBriefing({
         eyebrow="AI Boardroom"
         title="Günaydın, komut önceliği hazır."
         description={`${packageLabel} bugün açık talepler, bekleyen takipler ve gelir riski olan fırsatları ${activeDnaName} bağlamında öne çıkarıyor.`}
-        rightSlot={<Badge variant="strong">Canlı</Badge>}
+        rightSlot={<Badge variant="strong">Readonly</Badge>}
       />
 
       <div className="grid gap-3">
