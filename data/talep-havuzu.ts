@@ -13,19 +13,19 @@ export const talepStats: TalepStat[] = [
     id: "total-requests",
     label: "Toplam Talep",
     value: "248",
-    description: "Bugün işlenen çok kanallı kayıt",
+    description: "Bugün yerel görünümde okunan kayıt",
   },
   {
     id: "very-hot",
     label: "Çok Sıcak",
     value: "32",
-    description: "2 saat içinde temas edilmeli",
+    description: "2 saat içinde inceleme önerisi",
   },
   {
     id: "offer-waiting",
     label: "Teklif Bekleyen",
     value: "14",
-    description: "Satış ekibine aktarılmalı",
+    description: "Satış incelemesine not düşülmeli",
   },
   {
     id: "missing-info",
@@ -45,12 +45,13 @@ export const talepListesi: TalepItem[] = [
     requestDetail:
       "Aylık elektrik faturası yüksek. Batarya dahil sistem için hızlı fiyat istiyor.",
     temperature: "veryHot",
-    statusLabel: "Teklif hazırlanmalı",
+    statusLabel: "Teklif taslağı incelenmeli",
     timeLabel: "12 dk önce",
     ownerLabel: "Satış Ekibi",
     aiScore: 94,
     priority: "critical",
-    nextAction: "Bugün aranmalı, batarya ihtiyacı teklif notuna eklenmeli.",
+    nextAction:
+      "Bugün inceleme notu öncelikli; batarya ihtiyacı teklif taslağında görünür kalmalı.",
   },
   {
     id: "req-002",
@@ -61,12 +62,13 @@ export const talepListesi: TalepItem[] = [
     requestDetail:
       "Müstakil ev için tasarruf ve amortisman süresi hakkında bilgi istedi.",
     temperature: "hot",
-    statusLabel: "Keşif bilgisi istenmeli",
+    statusLabel: "Keşif bilgisi inceleme notu",
     timeLabel: "28 dk önce",
     ownerLabel: "Keşif Ekibi",
     aiScore: 82,
     priority: "high",
-    nextAction: "Çatı tipi, aylık fatura ve lokasyon bilgisi tamamlanmalı.",
+    nextAction:
+      "Çatı tipi, aylık fatura ve lokasyon bilgisi inceleme notunda eksik görünüyor.",
   },
   {
     id: "req-003",
@@ -77,12 +79,13 @@ export const talepListesi: TalepItem[] = [
     requestDetail:
       "İşletme çatısı için proje bazlı GES kurulumu hakkında ön görüşme istiyor.",
     temperature: "warm",
-    statusLabel: "Eksik bilgi tamamlanmalı",
+    statusLabel: "Eksik bilgi inceleme notu",
     timeLabel: "1 sa önce",
     ownerLabel: "Proje Ekibi",
     aiScore: 68,
     priority: "medium",
-    nextAction: "İşletme tüketimi, çatı alanı ve proje lokasyonu netleşmeli.",
+    nextAction:
+      "İşletme tüketimi, çatı alanı ve proje lokasyonu netleşmesi beklenen yerel not.",
   },
   {
     id: "req-004",
@@ -91,14 +94,15 @@ export const talepListesi: TalepItem[] = [
     sourceLabel: "Web Sohbet",
     requestTitle: "Alakasız bildirim",
     requestDetail:
-      "Satış fırsatı oluşturmayan düşük kalite temas olarak işaretlendi.",
+      "Satış fırsatı üretmeyen düşük kalite temas olarak yerel notta görünür.",
     temperature: "cold",
     statusLabel: "Yok sayıldı",
     timeLabel: "2 sa önce",
-    ownerLabel: "AI Kontrol",
+    ownerLabel: "İnceleme notu",
     aiScore: 21,
     priority: "low",
-    nextAction: "Aksiyon gerekmiyor. Kaynak kalite analizine dahil edildi.",
+    nextAction:
+      "İnceleme gerekmiyor. Kaynak kalite notunda düşük öncelik olarak görünür.",
   },
 ];
 
@@ -115,7 +119,7 @@ export const talepHunisi: TalepFunnelStep[] = [
     id: "funnel-temperature",
     label: "Sıcaklık Ölçümü",
     value: "32",
-    description: "AI skorlandı",
+    description: "AI önerisi",
     stage: "temperatureCheck",
     progress: 88,
   },
@@ -123,7 +127,7 @@ export const talepHunisi: TalepFunnelStep[] = [
     id: "funnel-offer",
     label: "Teklif Aşaması",
     value: "14",
-    description: "Satışa aktarılmalı",
+    description: "Satış incelemesine not düşülmeli",
     stage: "offerStage",
     progress: 54,
   },
@@ -140,25 +144,25 @@ export const talepHunisi: TalepFunnelStep[] = [
 export const kritikAksiyonlar: KritikAksiyon[] = [
   {
     id: "action-call-hot-leads",
-    title: "Çok sıcak talepler bugün aranmalı",
+    title: "Çok sıcak talepler bugün incelenmeli",
     description:
-      "2 saatten fazla bekleyen sıcak lead oluşmadan satış ekibi temas kurmalı.",
-    impactLabel: "Ciro riski yüksek",
+      "2 saatten fazla bekleyen sıcak talep satış inceleme notunda öncelikli görünmeli.",
+    impactLabel: "Ciro risk sinyali",
     priority: "critical",
   },
   {
     id: "action-complete-missing-info",
-    title: "Eksik bilgi bekleyen kayıtlar tamamlanmalı",
+    title: "Eksik bilgi bekleyen kayıtlar incelenmeli",
     description:
-      "Çatı tipi, lokasyon, fatura ve telefon bilgisi eksik olan kayıtlar öncelikli.",
-    impactLabel: "Teklif akışı kilitleniyor",
+      "Çatı tipi, lokasyon, fatura ve telefon bilgisi eksik olan kayıtlar yerel inceleme notunda öncelikli görünür.",
+    impactLabel: "Teklif akışı riski",
     priority: "high",
   },
   {
     id: "action-transfer-offer-stage",
-    title: "Teklif aşamasındaki müşteriler aktarılmalı",
+    title: "Teklif aşamasındaki müşteriler incelenmeli",
     description:
-      "Teklif isteyen fakat sorumlu kişiye bağlanmamış talepler satış kuyruğuna alınmalı.",
+      "Teklif isteyen ve sahiplik notu eksik talepler satış inceleme görünümünde kalmalı.",
     impactLabel: "No Lost Lead uyarısı",
     priority: "high",
   },
@@ -193,7 +197,7 @@ export const enerjiDnaMetrikleri: EnerjiDnaMetric[] = [
     id: "battery-interest",
     label: "Batarya İlgisi",
     value: "18",
-    description: "Teklif notuna eklenmesi gereken kayıtlar.",
+    description: "Teklif taslağında görünür kalması gereken kayıtlar.",
   },
   {
     id: "high-bill",
@@ -205,7 +209,7 @@ export const enerjiDnaMetrikleri: EnerjiDnaMetric[] = [
     id: "discovery-waiting",
     label: "Keşif Bekleyen",
     value: "11",
-    description: "Çatı / lokasyon bilgisi tamamlanmalı.",
+    description: "Çatı / lokasyon bilgisi inceleme notunda eksik.",
   },
 ];
 
@@ -213,7 +217,7 @@ export const sistemSagligi: SistemSagligi[] = [
   {
     id: "channel-instagram",
     channelLabel: "Instagram",
-    statusLabel: "Aktif",
+    statusLabel: "Readonly",
     status: "active",
   },
   {

@@ -40,18 +40,18 @@ export function KritikAksiyonlar() {
           </div>
 
           <h2 className="text-2xl font-semibold tracking-tight text-white">
-            Bugünün Kritik Aksiyonları
+            Bugünün inceleme öncelikleri
           </h2>
 
           <p className="mt-2 max-w-3xl text-sm leading-6 text-white/45">
-            Sistem satış kaybı oluşmadan önce bekleyen, geciken veya eksik
-            kalan işleri öne çıkarır.
+            Yerel sinyaller bekleyen, geciken veya eksik kalan kayıtların
+            olası riskini görünür kılar.
           </p>
         </div>
 
         <button className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">
           <HiOutlineCheckCircle className="h-4 w-4" />
-          Operasyon Listesine Al
+          İnceleme notu olarak beklet
         </button>
       </div>
 
@@ -92,7 +92,7 @@ export function KritikAksiyonlar() {
 
               <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.025] px-3 py-2">
                 <span className="text-xs text-white/45">
-                  Önerilen aksiyon
+                  Önerilen inceleme
                 </span>
 
                 <span className="text-xs font-semibold text-white/75">
@@ -116,8 +116,8 @@ export function KritikAksiyonlar() {
                 Kritik uyarı
               </p>
               <p className="mt-1 text-sm leading-6 text-white/45">
-                Çok sıcak talepler ve teklif bekleyen kayıtlar bugün aksiyona
-                alınmazsa satış fırsatı kaybı oluşabilir.
+                Çok sıcak talepler ve teklif bekleyen kayıtlar bugün
+                incelenmezse fırsat riski artabilir.
               </p>
             </div>
           </div>

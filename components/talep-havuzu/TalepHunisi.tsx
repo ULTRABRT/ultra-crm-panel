@@ -49,7 +49,7 @@ export function TalepHunisi() {
           </h2>
 
           <p className="mt-1 text-sm leading-6 text-white/45">
-            Talepler satış aksiyonuna göre kompakt şekilde sıralanır.
+            Talepler inceleme önceliğine göre kompakt şekilde sıralanır.
           </p>
         </div>
 
@@ -110,11 +110,11 @@ export function TalepHunisi() {
 
           <div>
             <p className="text-sm font-semibold text-white">
-              AI Öncelik Kararı
+              AI öncelik önerisi
             </p>
             <p className="mt-1 text-xs leading-5 text-white/45">
-              Bugün önce çok sıcak ve teklif bekleyen talepler kapatılmalı.
-              Eksik bilgi kayıtları ikinci sıraya alınmalı.
+              Bugün önce çok sıcak ve teklif bekleyen talepler incelenmeli.
+              Eksik bilgi kayıtları ikinci inceleme notu olarak kalmalı.
             </p>
           </div>
         </div>

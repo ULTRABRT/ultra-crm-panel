@@ -45,11 +45,11 @@ export function EnerjiDnaOzet() {
           </div>
 
           <h2 className="text-xl font-semibold tracking-tight text-white">
-            Solify Enerji DNA
+            Sektör DNA görünümü
           </h2>
 
           <p className="mt-1 text-sm leading-6 text-white/45">
-            Enerji sektörüne özel satış hafızası ve operasyon sinyalleri.
+            Enerji sektörüne özel yerel sektör notları ve talep sinyalleri.
           </p>
         </div>
 
@@ -98,9 +98,11 @@ export function EnerjiDnaOzet() {
       <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-black/45 p-4">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold text-white">Sistem Sağlığı</p>
+            <p className="text-sm font-semibold text-white">
+              Yerel kanal görünümü
+            </p>
             <p className="mt-1 text-xs text-white/40">
-              Bağlı kanalların işleme durumu
+              Bağlı kanallar için yerel özet notu
             </p>
           </div>
 

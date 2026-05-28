@@ -41,7 +41,7 @@ export function KaynakPerformansi() {
 
           <p className="mt-2 max-w-3xl text-sm leading-6 text-white/45">
             Kanallar sadece gelen talep adedine göre değil, satış kalitesi ve
-            aksiyon değerine göre izlenir.
+            inceleme değerine göre yerel görünümde karşılaştırılır.
           </p>
         </div>
 
@@ -96,8 +96,8 @@ export function KaynakPerformansi() {
 
                   <p className="text-xs leading-5 text-white/45">
                     {source.sourceLabel} kaynağı bugün takip önceliği açısından
-                    izlenmeli. Kaliteli lead oranı satış kararlarında dikkate
-                    alınmalı.
+                    değerlendirilebilir. Kaliteli lead oranı satış karar
+                    notunda dikkate alınabilir.
                   </p>
                 </div>
               </div>
