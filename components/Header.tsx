@@ -84,7 +84,7 @@ export function Header() {
     : "Arqon";
   const activePackageLabel = dnaContext?.activeDna.meta.packageLabel
     ? resolveLabel(dnaContext.activeDna.meta.packageLabel)
-    : "Aktif DNA";
+    : "Sektör DNA görünümü";
   const sectorInitial = activeSectorName.trim().charAt(0).toUpperCase() || "S";
 
   return (

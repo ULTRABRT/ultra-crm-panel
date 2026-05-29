@@ -94,7 +94,7 @@ export default function Home() {
                       zone="boardroom_right_column"
                       eyebrow="DNA destek sinyali"
                       title="Sektörel KPI destekleri"
-                      description="Aktif sektör DNA'sından gelen destek metrikleri karar yüzeyinin altında tutulur."
+                      description="Sektör DNA görünümünden gelen destek metrikleri karar yüzeyinin altında yerel not olarak tutulur."
                       columns={2}
                     />
 
