@@ -16,7 +16,7 @@ export const managedChannelRecords: ManagedChannelRecord[] = [
     statusLabel: "Stabil akis",
     riskLabel: "Yogun saatlerde takip sarkabilir",
     nextAction:
-      "Sicak talep mesajlari teklif kuyruğuna aktarilacak sekilde etiket disiplini korunmali.",
+      "Sicak talep mesajlari teklif inceleme notunda gorunur kalacak sekilde etiket disiplini korunmali.",
     integrationState: "local_mapped",
     leadQuality: 86,
     offerImpact: "Son 7 gunde 14 teklif tetikledi",
@@ -56,7 +56,7 @@ export const managedChannelRecords: ManagedChannelRecord[] = [
     statusLabel: "Izleme gerekli",
     riskLabel: "Hizli cevap verilmezse kalite dusuyor",
     nextAction:
-      "Yorumdan gelen talepler ayni gun icinde lead listesine alinmali; otomatik islem yok.",
+      "Yorumdan gelen talepler ayni gun icinde lead inceleme notunda gorunur kalmali; otomatik islem yok.",
     integrationState: "manual_review",
     leadQuality: 68,
     offerImpact: "Son 7 gunde 5 teklif baslatti",
@@ -87,7 +87,7 @@ export const managedChannelRecords: ManagedChannelRecord[] = [
     offerConversionRate: 10,
     averageResponseTime: "54 dk",
     lastSignalAt: "Dun 18:05",
-    statusLabel: "Aksiyon gerekli",
+    statusLabel: "İnceleme gerekli",
     riskLabel: "Yanitsiz talep yaslanıyor",
     nextAction:
       "Yanitsiz kalan talepler manuel kontrol edilmeli; sistem burada sadece local gorunum sunar.",
@@ -153,19 +153,19 @@ export const managedChannelRecords: ManagedChannelRecord[] = [
     todayLeads: 7,
     sevenDayLeads: 44,
     offerConversionRate: 23,
-    averageResponseTime: "Canli",
+    averageResponseTime: "Yerel temas",
     lastSignalAt: "Bugun 12:20",
     statusLabel: "Manuel not kalitesi kritik",
     riskLabel: "Eksik not teklif baglamini zayiflatiyor",
     nextAction:
-      "Telefon notlarinda lokasyon, tuketim ve karar tarihi alanlari tamamlanmali.",
+      "Telefon notlarinda lokasyon, tuketim ve karar tarihi alanlari inceleme notunda gorunur kalmali.",
     integrationState: "manual_review",
     leadQuality: 63,
     offerImpact: "Son 7 gunde 6 teklif firsati dogurdu",
     timeline: [
       {
         id: "channel-phone-frontdesk-a",
-        label: "Canli temas",
+        label: "Telefon teması",
         note: "Telefon taleplerinde niyet yuksek fakat not standardi dalgali.",
         atLabel: "Bugun",
       },

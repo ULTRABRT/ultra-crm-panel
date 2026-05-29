@@ -39,7 +39,7 @@ const typeLabels: Record<ManagedChannelType, string> = {
 const healthLabels: Record<ChannelHealthStatus, string> = {
   healthy: "Sağlıklı",
   watch: "Izlemede",
-  action_required: "Aksiyon gerekli",
+  action_required: "İnceleme gerekli",
   paused: "Duraklatıldı",
 };
 
@@ -133,7 +133,7 @@ function KpiStrip({ channels }: { channels: ManagedChannelRecord[] }) {
 
   const kpis = [
     {
-      label: "Aktif kanallar",
+      label: "İzlenen kanallar",
       value: activeChannels.length.toString(),
       detail: "Local izleme",
       Icon: HiOutlineShare,
@@ -145,7 +145,7 @@ function KpiStrip({ channels }: { channels: ManagedChannelRecord[] }) {
       Icon: HiOutlineCheckCircle,
     },
     {
-      label: "Aksiyon gerekli",
+      label: "İnceleme gerekli",
       value: actionChannels.length.toString(),
       detail: "Operasyon riski",
       Icon: HiOutlineExclamationTriangle,
