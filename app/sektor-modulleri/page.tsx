@@ -140,7 +140,7 @@ export default function SektorModulleriPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34rem),linear-gradient(135deg,rgba(255,255,255,0.055),transparent_36rem)]" />
         <div className="relative z-10 flex min-h-dvh min-w-0 flex-col">
           <div className="min-w-0 flex-1 overflow-y-auto px-3 py-4 sm:px-5 lg:px-7">
-            <div className="mx-auto flex w-full max-w-[118rem] flex-col gap-4">
+            <div className="mx-auto flex min-w-0 w-full max-w-[118rem] flex-col gap-4">
               <section className="overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.045] shadow-[0_22px_70px_rgba(0,0,0,0.32)]">
                 <div className="p-4 lg:p-5">
                   <div className="min-w-0">
@@ -166,7 +166,7 @@ export default function SektorModulleriPage() {
                 </div>
               </section>
 
-              <section className="grid gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)]">
+              <section className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)]">
                 <div className="min-w-0 rounded-[1.25rem] border border-black/[0.08] bg-[#EEF0F3] p-3 text-[#0B0D10] shadow-[0_18px_48px_rgba(0,0,0,0.22)] sm:p-4">
                   <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
                     <div className="min-w-0">
@@ -228,32 +228,32 @@ export default function SektorModulleriPage() {
                   </div>
                 </div>
 
-                <aside className="grid min-w-0 gap-3">
-                  <section className="rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-4 shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                <aside className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3">
+                  <section className="min-w-0 max-w-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-3 shadow-[0_18px_48px_rgba(0,0,0,0.22)] sm:p-4">
+                    <p className="break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
                       Zeka sınırı
                     </p>
-                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-white">
+                    <h2 className="mt-2 break-words text-xl font-semibold tracking-tight text-white">
                       Sector DNA neyi değiştirebilir?
                     </h2>
-                    <div className="mt-4 grid gap-3">
+                    <div className="mt-4 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3">
                       {boundaryNotes.map((note) => {
                         const Icon = note.Icon;
 
                         return (
                           <article
                             key={note.title}
-                            className="rounded-[1rem] border border-white/10 bg-black/35 p-3"
+                            className="min-w-0 max-w-full overflow-hidden rounded-[1rem] border border-white/10 bg-black/35 p-3"
                           >
-                            <div className="flex items-start gap-3">
-                              <div className="rounded-[0.85rem] border border-white/10 bg-white/[0.05] p-2">
+                            <div className="flex min-w-0 items-start gap-2 sm:gap-3">
+                              <div className="shrink-0 rounded-[0.85rem] border border-white/10 bg-white/[0.05] p-2">
                                 <Icon className="h-4 w-4 text-white/70" />
                               </div>
-                              <div className="min-w-0">
-                                <h3 className="text-sm font-semibold text-white">
+                              <div className="min-w-0 break-words">
+                                <h3 className="break-words text-sm font-semibold text-white">
                                   {note.title}
                                 </h3>
-                                <p className="mt-1 text-xs leading-5 text-white/48">
+                                <p className="mt-1 break-words text-xs leading-5 text-white/48">
                                   {note.body}
                                 </p>
                               </div>
@@ -264,24 +264,24 @@ export default function SektorModulleriPage() {
                     </div>
                   </section>
 
-                  <section className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
-                    <div className="flex items-center gap-2">
-                      <HiOutlineChartBarSquare className="h-5 w-5 text-white/70" />
-                      <h2 className="text-lg font-semibold tracking-tight text-white">
+                  <section className="min-w-0 max-w-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-black/40 p-3 sm:p-4">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <HiOutlineChartBarSquare className="h-5 w-5 shrink-0 text-white/70" />
+                      <h2 className="min-w-0 break-words text-lg font-semibold tracking-tight text-white">
                         Hazırlık notları
                       </h2>
                     </div>
 
-                    <div className="mt-4 grid gap-2">
+                    <div className="mt-4 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-2">
                       {readinessRows.map(([label, detail]) => (
                         <div
                           key={label}
-                          className="rounded-[0.95rem] border border-white/10 bg-white/[0.035] p-3"
+                          className="min-w-0 max-w-full overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.035] p-3"
                         >
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                          <p className="break-words text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
                             {label}
                           </p>
-                          <p className="mt-1 text-sm leading-5 text-white/55">
+                          <p className="mt-1 break-words text-sm leading-5 text-white/55">
                             {detail}
                           </p>
                         </div>
@@ -291,7 +291,7 @@ export default function SektorModulleriPage() {
                 </aside>
               </section>
 
-              <section className="grid gap-3 lg:grid-cols-3">
+              <section className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3 lg:grid-cols-3">
                 {[
                   {
                     title: "Modül runtime yok",
@@ -317,17 +317,17 @@ export default function SektorModulleriPage() {
                   return (
                     <article
                       key={item.title}
-                      className="rounded-[1.15rem] border border-white/10 bg-white/[0.035] p-4"
+                      className="min-w-0 max-w-full overflow-hidden rounded-[1.15rem] border border-white/10 bg-white/[0.035] p-3 sm:p-4"
                     >
-                      <div className="flex items-start gap-3">
-                        <div className="rounded-[0.9rem] border border-white/10 bg-white/[0.05] p-2.5">
+                      <div className="flex min-w-0 items-start gap-2 sm:gap-3">
+                        <div className="shrink-0 rounded-[0.9rem] border border-white/10 bg-white/[0.05] p-2.5">
                           <Icon className="h-5 w-5 text-white/75" />
                         </div>
-                        <div>
-                          <h2 className="text-base font-semibold text-white">
+                        <div className="min-w-0 break-words">
+                          <h2 className="break-words text-base font-semibold text-white">
                             {item.title}
                           </h2>
-                          <p className="mt-1 text-sm leading-6 text-white/48">
+                          <p className="mt-1 break-words text-sm leading-6 text-white/48">
                             {item.body}
                           </p>
                         </div>
