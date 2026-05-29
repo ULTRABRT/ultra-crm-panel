@@ -167,17 +167,17 @@ function KpiStrip({ policies }: { policies: SmartReplyPolicyRecord[] }) {
   ];
 
   return (
-    <section className="grid grid-cols-5 gap-1.5 sm:gap-2">
+    <section className="grid grid-cols-3 gap-2 md:grid-cols-5">
       {kpis.map(({ label, shortLabel, value, detail, Icon }) => (
         <div
           key={label}
           className="min-w-0 rounded-[0.85rem] border border-black/[0.08] bg-[#FFFFFF] p-2 shadow-[0_12px_28px_rgba(11,13,16,0.055),inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[0.95rem] sm:p-3"
         >
           <div className="flex items-center justify-between gap-2">
-            <p className="min-w-0 truncate text-[9px] font-semibold uppercase tracking-[0.1em] text-[#7A808A] sm:hidden">
+            <p className="min-w-0 truncate text-[9px] font-semibold uppercase tracking-[0.1em] text-[#7A808A] lg:hidden">
               {shortLabel}
             </p>
-            <p className="hidden min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7A808A] sm:block">
+            <p className="hidden min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7A808A] lg:block">
               {label}
             </p>
             <div className="hidden h-7 w-7 shrink-0 items-center justify-center rounded-[0.7rem] border border-black/[0.08] bg-[#F4F5F7] text-[#0B0D10] sm:flex">
@@ -319,7 +319,7 @@ function SelectedPolicySignal({
   }
 
   return (
-    <section className="xl:hidden rounded-[0.9rem] border border-black/[0.08] bg-[#FFFFFF] p-2.5 shadow-[0_12px_28px_rgba(11,13,16,0.055),inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[0.95rem] sm:p-3">
+    <section className="hidden rounded-[0.9rem] border border-black/[0.08] bg-[#FFFFFF] p-2.5 shadow-[0_12px_28px_rgba(11,13,16,0.055),inset_0_1px_0_rgba(255,255,255,0.95)] lg:block sm:rounded-[0.95rem] sm:p-3 xl:hidden">
       <div className="flex items-start justify-between gap-2.5">
         <div className="min-w-0">
           <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[#7A808A] sm:text-[10px] sm:tracking-[0.16em]">
@@ -359,8 +359,8 @@ function PolicyList({
   onSelectPolicy: (policyId: string) => void;
 }) {
   return (
-    <section className="min-w-0 overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-3 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)]">
-      <div className="mb-3 flex min-w-0 flex-wrap items-start justify-between gap-3 px-1">
+    <section className="min-w-0 max-w-full overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-2.5 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:p-3">
+      <div className="mb-2.5 flex min-w-0 flex-wrap items-start justify-between gap-2 px-1 sm:mb-3 sm:gap-3">
         <div className="min-w-0">
           <h2 className="text-lg font-semibold tracking-tight text-[#0B0D10]">
             Yanıt policy listesi
@@ -385,14 +385,14 @@ function PolicyList({
                 key={policy.id}
                 type="button"
                 onClick={() => onSelectPolicy(policy.id)}
-                className={`min-w-0 w-full overflow-hidden rounded-[0.95rem] border p-3 text-left transition ${
+                className={`min-w-0 w-full overflow-hidden rounded-[0.95rem] border p-2.5 text-left transition sm:p-3 ${
                   active
                     ? "border-black/[0.2] bg-[#F7F8FA] shadow-[0_12px_26px_rgba(11,13,16,0.08)]"
                     : "border-transparent bg-[#FFFFFF] hover:border-black/[0.08] hover:bg-[#F7F8FA]"
                 }`}
               >
-                <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(15rem,1fr)_7rem_8rem_7rem_8rem] xl:items-center">
-                  <div className="min-w-0">
+                <div className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-[minmax(14rem,1fr)_8rem_8rem] xl:grid-cols-[minmax(15rem,1fr)_7rem_8rem_7rem_8rem] xl:items-center xl:gap-3">
+                  <div className="col-span-2 min-w-0 sm:col-span-1">
                     <div className="flex min-w-0 flex-wrap items-center gap-2">
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.75rem] border border-black/[0.08] bg-[#F4F5F7] text-[#0B0D10]">
                         <ChannelIcon className="h-4 w-4" />
@@ -427,7 +427,7 @@ function PolicyList({
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9AA0A8]">
                       İzinli
                     </p>
-                    <p className="mt-1 line-clamp-2 text-sm font-semibold text-[#0B0D10]">
+                    <p className="mt-1 line-clamp-1 text-sm font-semibold text-[#0B0D10] sm:line-clamp-2">
                       {policy.allowedAction}
                     </p>
                   </div>
@@ -455,7 +455,7 @@ function PolicyList({
                   </div>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-black/[0.06] pt-3">
+                <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-black/[0.06] pt-2.5 sm:mt-3 sm:pt-3">
                   <p className="min-w-0 text-xs text-[#7A808A]">
                     Güvenlik:{" "}
                     <span className="font-semibold text-[#525A65]">
@@ -667,7 +667,7 @@ export function SmartReplySettingsWorkspace() {
     smartReplyPolicyRecords[0];
 
   return (
-    <div className="min-w-0 bg-[#EEF0F3] px-3 py-2.5 text-[#0B0D10] sm:px-4 lg:px-6 lg:py-4">
+    <div className="min-w-0 bg-[#EEF0F3] px-2.5 py-2.5 text-[#0B0D10] sm:px-4 lg:px-6 lg:py-4">
       <div className="mx-auto flex w-full max-w-[118rem] flex-col gap-2.5 lg:gap-3">
         <header className="rounded-[0.95rem] border border-black/[0.08] bg-[#FFFFFF] p-3 shadow-[0_16px_40px_rgba(11,13,16,0.075),inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[1rem] sm:p-4">
           <div className="flex flex-col gap-2.5 lg:flex-row lg:items-start lg:justify-between">
@@ -720,7 +720,7 @@ export function SmartReplySettingsWorkspace() {
           onRiskChange={setRiskFilter}
         />
 
-        <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4">
+        <div className="grid min-w-0 max-w-full gap-2.5 sm:gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4">
           <PolicyList
             policies={filteredPolicies}
             activePolicyId={activePolicy?.id ?? ""}
