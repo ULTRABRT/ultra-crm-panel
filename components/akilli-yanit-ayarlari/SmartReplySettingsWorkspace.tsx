@@ -55,6 +55,12 @@ const riskLabels: Record<SmartReplyRiskLevel, string> = {
   blocked: "Bloklu",
 };
 
+const policyStatusLabels: Record<SmartReplyPolicyRecord["status"], string> = {
+  active: "Görünümde",
+  watch: "İncelemede",
+  restricted: "Kısıtlı",
+};
+
 const approvalTone: Record<SmartReplyApprovalMode, string> = {
   always_review: "border-[#1F2937]/20 bg-[#111827] text-[#FFFFFF]",
   review_sensitive: "border-[#8A6A2E]/25 bg-[#F3E9D2] text-[#654A14]",
@@ -124,8 +130,8 @@ function KpiStrip({ policies }: { policies: SmartReplyPolicyRecord[] }) {
 
   const kpis = [
     {
-      label: "Aktif kurallar",
-      shortLabel: "Aktif",
+      label: "İzlenen kurallar",
+      shortLabel: "İzlenen",
       value: activePolicies.length.toString(),
       detail: "Local policy",
       Icon: HiOutlineSparkles,
@@ -544,7 +550,7 @@ function PolicyDetailPanel({
             Durum
           </p>
           <p className="mt-1 text-sm font-semibold text-[#0B0D10]">
-            {policy.status}
+            {policyStatusLabels[policy.status]}
           </p>
         </div>
         <div className="rounded-[0.9rem] border border-black/[0.08] bg-[#F7F8FA] p-3">
@@ -690,7 +696,7 @@ export function SmartReplySettingsWorkspace() {
                 disabled
                 className="inline-flex h-8 cursor-not-allowed items-center justify-center rounded-full border border-black/[0.08] bg-[#F4F5F7] px-2.5 text-xs font-semibold text-[#7A808A] sm:h-9 sm:px-3 sm:text-sm"
               >
-                Kuralları yayına al sonraki faz
+                Kural taslağı sonraki faz
               </button>
               <span className="inline-flex h-8 items-center rounded-full bg-[#0B0D10] px-2.5 text-xs font-semibold text-[#FFFFFF] sm:h-9 sm:px-3 sm:text-sm">
                 Otomatik gönderim kapalı
