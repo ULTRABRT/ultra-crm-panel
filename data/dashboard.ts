@@ -39,7 +39,7 @@ export const noLostLeadAlerts = [
     heat: "Çok sıcak",
     wait: "2 sa 18 dk",
     owner: "Satış Ekibi",
-    action: "Bugün aranmalı",
+    action: "Bugün incelenmeli",
     href: "/leadler",
   },
   {
@@ -48,7 +48,7 @@ export const noLostLeadAlerts = [
     heat: "Ilık",
     wait: "5 sa 40 dk",
     owner: "Operasyon",
-    action: "Bilgi tamamlanmalı",
+    action: "Bilgi inceleme notu",
     href: "/talep-havuzu",
   },
   {
@@ -57,7 +57,7 @@ export const noLostLeadAlerts = [
     heat: "Sıcak",
     wait: "1 sa 12 dk",
     owner: "Satış Ekibi",
-    action: "Keşif tarihi alınmalı",
+    action: "Keşif tarihi incelenmeli",
     href: "/leadler",
   },
 ] as const;
@@ -67,39 +67,39 @@ export const requests = [
     customer: "Mehmet Akgün",
     request: "Güneş paneli + lityum batarya",
     temperature: "Çok sıcak",
-    action: "Teklif hazırlanmalı",
+    action: "Teklif hazırlık notu",
   },
   {
     customer: "Ayşe Demir",
     request: "Elektrik faturası düşürme",
     temperature: "Sıcak",
-    action: "Keşif bilgisi istenmeli",
+    action: "Keşif bilgi notu",
   },
   {
     customer: "Karakaş Metal",
     request: "Üretim / sanayi talebi",
     temperature: "Ilık",
-    action: "Eksik bilgi tamamlanmalı",
+    action: "Eksik bilgi notu",
   },
   {
     customer: "Sistem Bildirimi",
     request: "Alakasız bildirim",
     temperature: "Soğuk",
-    action: "Yok sayıldı",
+    action: "Düşük öncelik notu",
   },
 ];
 
 export const channels = [
   {
     name: "Mail",
-    status: "Aktif",
+    status: "İzlenen",
     detail: "E-posta talepleri",
     icon: "mail",
     tone: "active",
   },
   {
     name: "Instagram",
-    status: "Aktif",
+    status: "İzlenen",
     detail: "DM, yorum ve reklam dönüşleri",
     icon: "instagram",
     tone: "active",
@@ -148,7 +148,7 @@ export const channels = [
   },
   {
     name: "Formlar",
-    status: "Aktif",
+    status: "İzlenen",
     detail: "Manuel ve hızlı talep formları",
     icon: "forms",
     tone: "active",
@@ -159,22 +159,22 @@ export const executiveNotes = [
   {
     title: "Kayıp talep riski",
     description:
-      "3 sıcak müşteri iki saati aştı; bugün aranmazsa teklif masası soğuyabilir.",
+      "3 sıcak müşteri iki saati aştı; bugün incelenmezse teklif masası soğuyabilir.",
   },
   {
     title: "Takip gecikmesi",
     description:
-      "4 takip satış ekibine atanmadı; açık fırsat hacminde ₺186K risk görünüyor.",
+      "4 takip yerel inceleme notunda bekliyor; açık fırsat hacminde ₺186K risk sinyali görünüyor.",
   },
   {
     title: "Teklif fırsatı",
     description:
-      "Batarya ilgisi yükseldi; 6 kayıt aynı gün teklif akışına alınmalı.",
+      "Batarya ilgisi yükseldi; 6 kayıt aynı gün teklif hazırlık notunda incelenmeli.",
   },
   {
     title: "İnsan kontrolü",
     description:
-      "9 hassas kayıt otomasyon yerine yönetici onayı bekliyor.",
+      "9 hassas kayıt yerel inceleme notunda yönetici onayı bekliyor.",
   },
 ];
 

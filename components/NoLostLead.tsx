@@ -12,19 +12,19 @@ export function NoLostLead() {
     <section className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40">
       <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-xs font-medium text-white/40">No Lost Lead Motoru</p>
+          <p className="text-xs font-medium text-white/40">Lead risk görünümü</p>
           <h2 className="mt-1 text-xl font-semibold tracking-tight">
             Kaybolma Riski Taşıyan Fırsatlar
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-5 text-white/50">
-            Sistem, teklif isteyen, keşif bekleyen veya uzun süre dönüş almayan
-            talepleri satış kaybına dönüşmeden öne çıkarır.
+            Yerel sinyaller teklif isteyen, keşif bekleyen veya uzun süre dönüş
+            almayan talepleri fırsat riski olarak görünür kılar.
           </p>
         </div>
 
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/70">
           <FiAlertTriangle />
-          <span>3 kritik aksiyon</span>
+          <span>3 inceleme notu</span>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ export function NoLostLead() {
             <div>
               <p className="flex items-center gap-2 text-sm text-white/45">
                 <FiUserCheck />
-                Önerilen Aksiyon
+                İnceleme Notu
               </p>
               <p className="mt-2 font-semibold">{alert.action}</p>
             </div>

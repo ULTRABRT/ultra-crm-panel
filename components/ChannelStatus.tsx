@@ -30,7 +30,7 @@ export function ChannelStatus() {
     <PanelCard className="p-5">
       <div className="mb-4">
         <p className="text-xs font-medium text-white/40">Kanal Yönetimi</p>
-        <h3 className="mt-1 text-xl font-semibold">Kanal Durumu</h3>
+        <h3 className="mt-1 text-xl font-semibold">Kanal görünümü</h3>
       </div>
 
       <div className="grid gap-3">

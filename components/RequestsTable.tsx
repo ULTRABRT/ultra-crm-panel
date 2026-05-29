@@ -4,7 +4,7 @@ const requests = [
     type: "Müşteri",
     request: "Güneş paneli + lityum batarya",
     temperature: "Çok sıcak",
-    action: "Teklif hazırlanmalı",
+    action: "Teklif hazırlık notu",
     score: 96,
     stage: "Teklif",
   },
@@ -13,7 +13,7 @@ const requests = [
     type: "Müşteri",
     request: "Elektrik faturası düşürme",
     temperature: "Sıcak",
-    action: "Keşif bilgisi istenmeli",
+    action: "Keşif bilgi notu",
     score: 82,
     stage: "Keşif",
   },
@@ -22,16 +22,16 @@ const requests = [
     type: "Kurumsal",
     request: "Üretim / sanayi talebi",
     temperature: "Ilık",
-    action: "Eksik bilgi tamamlanmalı",
+    action: "Eksik bilgi notu",
     score: 61,
     stage: "Bilgi",
   },
   {
     customer: "Sistem Bildirimi",
-    type: "Otomasyon",
+    type: "Düşük öncelik",
     request: "Alakasız bildirim",
     temperature: "Soğuk",
-    action: "Yok sayıldı",
+    action: "Düşük öncelik notu",
     score: 18,
     stage: "Kapandı",
   },
@@ -67,7 +67,7 @@ export function RequestsTable() {
     <div className="rounded-[2rem] border border-white/10 bg-black/40 p-5 shadow-2xl shadow-black/30">
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-medium text-white/40">Talep Kalite Motoru</p>
+          <p className="text-xs font-medium text-white/40">Talep kalite görünümü</p>
           <h2 className="mt-1 text-xl font-semibold">Son Gelen Talepler</h2>
         </div>
 
@@ -126,7 +126,7 @@ export function RequestsTable() {
           <div>
             <p className="text-sm text-white/40">Akıllı Öneri</p>
             <h3 className="mt-1 text-lg font-semibold">
-              Bugün önce çok sıcak talepler kapatılmalı.
+              Bugün önce çok sıcak talepler incelenmeli.
             </h3>
           </div>
 
@@ -136,9 +136,9 @@ export function RequestsTable() {
         </div>
 
         <p className="mt-3 max-w-2xl text-sm leading-5 text-white/50">
-          Sistem, teklif ihtimali yüksek talepleri öne çıkarır. Satış ekibi önce
-          sıcak müşterilere dönüş yapar, düşük kaliteli bildirimler otomatik
-          olarak arka plana alınır.
+          Yerel sinyaller teklif ihtimali yüksek talepleri görünür kılar.
+          Satış ekibi sıcak müşteri notlarını manuel değerlendirir; düşük
+          kaliteli bildirimler inceleme altında tutulur.
         </p>
       </div>
     </div>
