@@ -54,7 +54,7 @@ export function SatisSureciKarti() {
     },
     {
       id: "last-action",
-      label: "Son Aksiyon",
+      label: "Son İnceleme Notu",
       value: satis.lastAction,
       icon: HiOutlineClock,
     },
@@ -102,7 +102,7 @@ export function SatisSureciKarti() {
 
           <p className="mt-2 max-w-3xl text-sm leading-6 text-white/45">
             Müşterinin lead durumu, teklif aşaması, satış statüsü, takip tarihi
-            ve potansiyel ciro bilgileri burada yönetilir.
+            ve potansiyel ciro bilgileri yerel satış süreci görünümünde okunur.
           </p>
         </div>
 
@@ -200,8 +200,8 @@ export function SatisSureciKarti() {
               <HiOutlineExclamationTriangle className="mt-0.5 h-4 w-4 shrink-0 text-white/60" />
 
               <p className="text-sm leading-6 text-white/48">
-                Müşteri çok sıcak ve teklif aşamasında. Bugün takip edilmezse
-                satış fırsatı kaybı oluşabilir.
+                Müşteri çok sıcak ve teklif aşamasında. Bugün incelenmezse
+                fırsat riski artabilir.
               </p>
             </div>
           </div>
@@ -215,10 +215,10 @@ export function SatisSureciKarti() {
 
             <div>
               <p className="text-sm font-semibold text-white">
-                Hızlı Satış Aksiyonları
+                Satış destek notları
               </p>
               <p className="mt-1 text-xs text-white/40">
-                Bu müşteri için önerilen işlemler
+                Bu müşteri için görünen yerel notlar
               </p>
             </div>
           </div>
@@ -226,17 +226,17 @@ export function SatisSureciKarti() {
           <div className="space-y-2.5">
             <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">
               <HiOutlineDocumentText className="h-4 w-4" />
-              Teklif Sürecini Başlat
+              Teklif hazırlık notu
             </button>
 
             <button className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-black/45 px-5 py-3 text-sm font-semibold text-white/65 transition hover:bg-white/[0.06] hover:text-white">
               <HiOutlineCalendarDays className="h-4 w-4" />
-              Takip Tarihi Oluştur
+              Takip tarihi notu
             </button>
 
             <button className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-black/45 px-5 py-3 text-sm font-semibold text-white/65 transition hover:bg-white/[0.06] hover:text-white">
               <HiOutlineBanknotes className="h-4 w-4" />
-              Potansiyel Ciro Gir
+              Potansiyel ciro notu
             </button>
           </div>
         </article>

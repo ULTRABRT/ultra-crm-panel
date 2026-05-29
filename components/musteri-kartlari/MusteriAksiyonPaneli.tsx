@@ -74,17 +74,17 @@ export function MusteriAksiyonPaneli() {
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
               <HiOutlineSparkles className="h-4 w-4 text-white/70" />
               <span className="text-xs font-medium text-white/55">
-                AI Aksiyon Paneli
+                AI İnceleme Paneli
               </span>
             </div>
 
             <h2 className="text-xl font-semibold tracking-tight text-white">
-              Sıradaki En Doğru Aksiyon
+              Sıradaki İnceleme Önerisi
             </h2>
 
             <p className="mt-1 text-sm leading-6 text-white/45">
-              {customer.customerName} için satış kaybı oluşmadan önce yapılması
-              gereken işlem burada öne çıkar.
+              {customer.customerName} için fırsat riski yerel müşteri destek
+              notu olarak görünür.
             </p>
           </div>
 
@@ -223,16 +223,16 @@ export function MusteriAksiyonPaneli() {
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
             <HiOutlineDocumentText className="h-4 w-4 text-white/70" />
             <span className="text-xs font-medium text-white/55">
-              Hızlı İşlemler
+              Yerel Destek Notları
             </span>
           </div>
 
           <h2 className="text-xl font-semibold tracking-tight text-white">
-            Aksiyonlar
+            İnceleme notları
           </h2>
 
           <p className="mt-1 text-sm leading-6 text-white/45">
-            Satış ekibinin bu müşteri için hızlıca uygulayabileceği işlemler.
+            Satış ekibi için görünen yerel müşteri destek notları.
           </p>
         </div>
 
@@ -275,7 +275,7 @@ export function MusteriAksiyonPaneli() {
             </p>
             <p className="mt-2 text-sm leading-6 text-white/45">
               Müşteri çok sıcak, batarya ilgisi var ve keşif tarihi bekliyor.
-              Önce telefonla aranmalı, sonra teklif ve keşif akışı netleştirilmeli.
+              Önce telefon görüşmesi notu, sonra teklif ve keşif bağlamı incelenmeli.
             </p>
           </div>
         </div>

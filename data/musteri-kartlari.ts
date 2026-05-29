@@ -11,7 +11,7 @@ export const musteriKpis: MusteriKpi[] = [
     id: "open-risks",
     label: "Açık Risk",
     value: "3",
-    description: "Satış kaybı oluşmadan çözülmeli",
+    description: "Fırsat riski görünür kalmalı",
   },
   {
     id: "potential-revenue",
@@ -21,9 +21,9 @@ export const musteriKpis: MusteriKpi[] = [
   },
   {
     id: "next-action",
-    label: "Sıradaki Aksiyon",
+    label: "Sıradaki İnceleme",
     value: "Bugün",
-    description: "Telefonla aranıp keşif netleşmeli",
+    description: "Telefon görüşmesi notu ve keşif bilgisi netleşmeli",
   },
 ];
 
@@ -60,7 +60,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     summary:
       "Mehmet Akgün, Hatay / Antakya’da müstakil evi için güneş paneli ve lityum batarya sistemiyle ilgileniyor. Aylık elektrik faturası yaklaşık ₺4.800. Müşteri açık şekilde fiyat ve teklif bekliyor; batarya ihtiyacı teklif notuna ayrıca eklenmeli.",
     recommendedAction:
-      "Bugün telefonla aranmalı, çatı bilgisi ve keşif uygunluğu netleştirilmeli. Ardından batarya dahil teklif hazırlama süreci başlatılmalı.",
+      "Bugün telefon görüşmesi notu, çatı bilgisi ve keşif uygunluğu incelenmeli. Ardından batarya dahil teklif hazırlık notu görünür kalmalı.",
     reason:
       "Müşteri hem fiyat istiyor hem batarya ilgisi belirtiyor. Çok sıcak lead 2 saatten fazla beklerse kaybolma riski artar.",
     confidenceLabel: "%94 güven",
@@ -83,19 +83,19 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     technicalSupportTopic: "Teknik destek talebi yok",
     missingInfo: [
       "Çatı yönü netleşmeli",
-      "Keşif tarihi alınmalı",
-      "Batarya kapasitesi tercihi sorulmalı",
+      "Keşif tarihi notu netleşmeli",
+      "Batarya kapasitesi tercihi not edilmeli",
     ],
   },
   satisSureci: {
     leadStatus: "offerPreparing",
-    leadStatusLabel: "Teklif Hazırlanmalı",
+    leadStatusLabel: "Teklif hazırlık notu",
     temperature: "veryHot",
     priority: "urgent",
     lastAction: "Teklif hazırlık notu",
     offerStatus: "preparing",
-    offerStatusLabel: "Teklif hazırlanıyor",
-    offerDateLabel: "Bugün hazırlanmalı",
+    offerStatusLabel: "Teklif hazırlık görünümü",
+    offerDateLabel: "Bugün incelenmeli",
     offerAmountLabel: "Henüz girilmedi",
     salesStatus: "proposal",
     salesStatusLabel: "Teklif aşaması",
@@ -114,7 +114,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     appointmentTimeLabel: "Saat alınmadı",
     appointmentTypeLabel: "Yerinde keşif",
     discoveryNote:
-      "Müşteri çatı GES için keşif yapılabileceğini söyledi. Uygun gün/saat sorulmalı.",
+      "Müşteri çatı GES için keşif yapılabileceğini söyledi. Uygun gün/saat notu bekleniyor.",
     appointmentNote:
       "Telefon görüşmesinde keşif randevusu netleştirilecek.",
     discoveryOwnerLabel: "Keşif Ekibi",
@@ -164,7 +164,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       channelLabel: "Instagram",
       title: "Satış ekibi dönüş yaptı",
       description:
-        "Müşteriden telefon ve fatura bilgisi alındı. Batarya ilgisi satış notuna eklendi.",
+        "Müşteriden telefon ve fatura bilgisi alındı. Batarya ilgisi satış notunda görünür.",
       timeLabel: "Bugün 10:41",
       ownerLabel: "Satış Ekibi",
       sourceLabel: "İnsan Yanıtı",
@@ -174,7 +174,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       type: "offerNote",
       channel: "manual",
       channelLabel: "Manuel",
-      title: "Teklif notu açıldı",
+      title: "Teklif notu görünümü",
       description:
         "Güneş paneli + lityum batarya dahil teklif hazırlığı için müşteri notu görünür.",
       timeLabel: "Bugün 11:05",
@@ -188,7 +188,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       channelLabel: "Sistem",
       title: "No Lost Lead uyarısı",
       description:
-        "Müşteri çok sıcak ve teklif bekliyor. Bugün aranmazsa satış kaybı riski oluşabilir.",
+        "Müşteri çok sıcak ve teklif bekliyor. Bugün incelenmezse fırsat riski artabilir.",
       timeLabel: "12 dk önce",
       ownerLabel: "Lead risk uyarısı",
       sourceLabel: "Advisory risk kaynağı",
@@ -197,34 +197,34 @@ export const aktifMusteriKarti: MusteriKartDetay = {
   risks: [
     {
       id: "risk-001",
-      title: "Teklif istedi ama teklif tamamlanmadı",
+      title: "Teklif talebi açık notta",
       description:
-        "Müşteri açık fiyat ve teklif talebi bıraktı. Teklif süreci bugün başlatılmalı.",
+        "Müşteri açık fiyat ve teklif talebi bıraktı. Teklif hazırlık notu bugün incelenmeli.",
       level: "critical",
-      actionLabel: "Teklif hazırla",
+      actionLabel: "Teklif hazırlık notu",
     },
     {
       id: "risk-002",
-      title: "Keşif istedi ama tarih yok",
+      title: "Keşif tarihi bekleyen not",
       description:
         "Müşteri keşfe açık görünüyor fakat tarih/saat bilgisi henüz netleşmedi.",
       level: "high",
-      actionLabel: "Keşif planla",
+      actionLabel: "Keşif notu",
     },
     {
       id: "risk-003",
       title: "Batarya ilgisi teklif notuna eklenmeli",
       description:
-        "Batarya talebi yüksek değerli satış fırsatı oluşturuyor. Teklifte ayrıca işaretlenmeli.",
+        "Batarya talebi yüksek değerli fırsat sinyali olarak teklif notunda görünmeli.",
       level: "medium",
-      actionLabel: "Batarya notu ekle",
+      actionLabel: "Batarya notu",
     },
   ],
   actions: [
     {
       id: "action-call",
-      label: "Ara",
-      description: "Müşteriyi telefonla ara ve keşif uygunluğunu netleştir.",
+      label: "Telefon notu",
+      description: "Telefon görüşmesi için yerel inceleme notu.",
       type: "call",
     },
     {
@@ -241,37 +241,37 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     },
     {
       id: "action-follow-up",
-      label: "Takip oluştur",
-      description: "Bugün için satış takip görevi oluştur.",
+      label: "Takip notu",
+      description: "Bugün için satış takip notu.",
       type: "followUp",
     },
     {
       id: "action-appointment",
-      label: "Randevu planla",
-      description: "Keşif randevusu için tarih ve saat belirle.",
+      label: "Randevu notu",
+      description: "Keşif randevusu için tarih ve saat notunu incele.",
       type: "appointment",
     },
     {
       id: "action-offer",
-      label: "Teklif oluştur",
-      description: "Güneş paneli + batarya dahil teklif sürecini başlat.",
+      label: "Teklif hazırlık notu",
+      description: "Güneş paneli + batarya dahil teklif hazırlık notu.",
       type: "offer",
     },
     {
       id: "action-assign",
-      label: "Sorumlu ata",
-      description: "Satış veya keşif ekibinden sorumlu kişi ata.",
+      label: "Sahiplik notu",
+      description: "Satış veya keşif ekibi sahiplik önerisi.",
       type: "assign",
     },
     {
       id: "action-note",
-      label: "İç not ekle",
-      description: "Satış görüşmesi için iç operasyon notu ekle.",
+      label: "İç not taslağı",
+      description: "Satış görüşmesi için yerel operasyon notu.",
       type: "note",
     },
     {
       id: "action-human-review",
-      label: "İnsan kontrolüne al",
+      label: "İnsan kontrol notu",
       description: "AI kararını satış yöneticisi kontrol notunda beklet.",
       type: "humanReview",
     },
