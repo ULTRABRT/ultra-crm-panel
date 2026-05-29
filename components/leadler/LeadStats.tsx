@@ -28,7 +28,7 @@ const statHighlights: Record<string, string> = {
   "active-leads": "Tüm açık kayıtlar",
   "today-leads": "Bugünün akışı",
   "very-hot-leads": "Satışa yakın",
-  "urgent-followups": "Aksiyon gerekli",
+  "urgent-followups": "İnceleme gerekli",
   "offer-waiting": "Teklif kuyruğu",
   "discovery-waiting": "Keşif planı",
   "late-followups": "Gecikmiş işler",

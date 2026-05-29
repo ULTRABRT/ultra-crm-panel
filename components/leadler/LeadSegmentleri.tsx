@@ -64,7 +64,7 @@ export function LeadSegmentleri() {
 
         <div className="rounded-2xl border border-white/10 bg-black/45 px-4 py-3">
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
-            Aktif görünüm
+            Seçili görünüm
           </p>
           <p className="mt-1 text-sm font-semibold text-white">Tüm Leadler</p>
         </div>

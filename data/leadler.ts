@@ -71,7 +71,7 @@ export const leadSegments: LeadSegmentItem[] = [
 export const leadStats: LeadStat[] = [
   {
     id: "active-leads",
-    label: "Aktif Lead",
+    label: "Lead görünümü",
     value: "248",
     description: "Satış sürecinde açık kayıt",
   },
@@ -91,7 +91,7 @@ export const leadStats: LeadStat[] = [
     id: "urgent-followups",
     label: "Acil Takip",
     value: "7",
-    description: "Bugün aksiyon alınmalı",
+    description: "Bugün incelenmeli",
   },
   {
     id: "offer-waiting",
@@ -134,18 +134,19 @@ export const leadListesi: LeadItem[] = [
     monthlyBillLabel: "₺4.800",
     hasBatteryInterest: true,
     status: "offerPreparing",
-    statusLabel: "Teklif Hazırlanmalı",
+    statusLabel: "Teklif hazırlık notu",
     temperature: "veryHot",
     priority: "urgent",
-    lastAction: "Teklif talebi oluşturuldu",
+    lastAction: "Teklif talep notu",
     lastMessageSummary:
       "Müşteri batarya dahil güneş paneli sistemi için hızlı fiyat istedi.",
     ownerLabel: "Satış Ekibi",
     followUpDateLabel: "Bugün",
     lastUpdateLabel: "12 dk önce",
     aiScore: 94,
-    riskLabel: "Teklif gecikirse kayıp riski oluşur",
-    nextAction: "Bugün aranmalı ve teklif notuna batarya ihtiyacı eklenmeli.",
+    riskLabel: "Teklif gecikirse fırsat riski artabilir",
+    nextAction:
+      "Bugün incelenmeli ve teklif notunda batarya ihtiyacı görünür kalmalı.",
   },
   {
     id: "lead-002",
@@ -161,7 +162,7 @@ export const leadListesi: LeadItem[] = [
     monthlyBillLabel: "₺3.250",
     hasBatteryInterest: false,
     status: "discoveryRequest",
-    statusLabel: "Keşif Bilgisi İstenmeli",
+    statusLabel: "Keşif bilgi notu",
     temperature: "hot",
     priority: "high",
     lastAction: "Keşif bilgisi bekleniyor",
@@ -172,7 +173,8 @@ export const leadListesi: LeadItem[] = [
     lastUpdateLabel: "28 dk önce",
     aiScore: 82,
     riskLabel: "Çatı ve lokasyon bilgisi eksik",
-    nextAction: "Çatı tipi, aylık fatura ve lokasyon bilgisi tamamlanmalı.",
+    nextAction:
+      "Çatı tipi, aylık fatura ve lokasyon bilgisi inceleme notunda görünür kalmalı.",
   },
   {
     id: "lead-003",
@@ -188,7 +190,7 @@ export const leadListesi: LeadItem[] = [
     monthlyBillLabel: "₺28.000",
     hasBatteryInterest: false,
     status: "offerRequest",
-    statusLabel: "Eksik Bilgi Tamamlanmalı",
+    statusLabel: "Eksik bilgi notu",
     temperature: "warm",
     priority: "normal",
     lastAction: "Proje bilgisi bekleniyor",
@@ -199,7 +201,8 @@ export const leadListesi: LeadItem[] = [
     lastUpdateLabel: "1 sa önce",
     aiScore: 68,
     riskLabel: "Çatı alanı ve tüketim bilgisi eksik",
-    nextAction: "İşletme tüketimi, çatı alanı ve proje lokasyonu netleşmeli.",
+    nextAction:
+      "İşletme tüketimi, çatı alanı ve proje lokasyonu için inceleme notu bekliyor.",
   },
   {
     id: "lead-004",
@@ -226,7 +229,8 @@ export const leadListesi: LeadItem[] = [
     lastUpdateLabel: "1 sa 24 dk önce",
     aiScore: 79,
     riskLabel: "Batarya talebi teklif notuna eklenmeli",
-    nextAction: "Mevcut sistem kapasitesi ve batarya ihtiyacı sorulmalı.",
+    nextAction:
+      "Mevcut sistem kapasitesi ve batarya ihtiyacı inceleme notunda açık kalmalı.",
   },
   {
     id: "lead-005",
@@ -253,7 +257,7 @@ export const leadListesi: LeadItem[] = [
     lastUpdateLabel: "2 sa önce",
     aiScore: 88,
     riskLabel: "Proje bazlı değerlendirme notu eklenmeli",
-    nextAction: "Yönetici onayıyla proje değerlendirme notu oluşturulmalı.",
+    nextAction: "Yönetici onayıyla proje değerlendirme notu incelenmeli.",
   },
   {
     id: "lead-006",
@@ -272,38 +276,38 @@ export const leadListesi: LeadItem[] = [
     statusLabel: "Uygun Değil",
     temperature: "cold",
     priority: "low",
-    lastAction: "Yok sayıldı",
+    lastAction: "Düşük kalite notu",
     lastMessageSummary:
-      "Satış fırsatı oluşturmayan düşük kalite temas olarak işaretlendi.",
+      "Satış fırsatı sinyali vermeyen düşük kalite temas olarak notlandı.",
     ownerLabel: "AI Kontrol",
-    followUpDateLabel: "Aksiyon yok",
+    followUpDateLabel: "İnceleme yok",
     lastUpdateLabel: "2 sa önce",
     aiScore: 21,
     riskLabel: "Risk yok",
-    nextAction: "Aksiyon gerekmiyor. Kaynak kalite analizine dahil edildi.",
+    nextAction: "İnceleme gerekmiyor. Kaynak kalite analizinde yerel not olarak tutuldu.",
   },
 ];
 
 export const leadQuickInsights: LeadQuickInsight[] = [
   {
     id: "first-call",
-    title: "İlk aranacak lead",
+    title: "İlk incelenecek lead",
     value: "Mehmet Akgün",
     description:
-      "Çok sıcak, batarya ilgisi var ve teklif hazırlama aksiyonu bekliyor.",
+      "Çok sıcak, batarya ilgisi var ve teklif hazırlık notu bekliyor.",
   },
   {
     id: "highest-risk",
     title: "En yüksek risk",
     value: "7",
     description:
-      "Bugün takip edilmezse kaybolma riski taşıyan açık lead bulunuyor.",
+      "Bugün incelenmezse fırsat riski artabilecek açık lead bulunuyor.",
   },
   {
     id: "energy-focus",
     title: "Enerji DNA odağı",
     value: "18",
     description:
-      "Batarya ilgisi olan leadler teklif sürecinde ayrıca işaretlenmeli.",
+      "Batarya ilgisi olan leadler teklif sürecinde yerel notta görünür kalmalı.",
   },
 ];

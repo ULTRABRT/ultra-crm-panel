@@ -24,25 +24,25 @@ const insightIcons: Record<string, IconType> = {
 const todayActions = [
   {
     id: "call-hot-leads",
-    title: "Çok sıcak leadleri ara",
+    title: "Çok sıcak leadleri incele",
     description:
-      "Çok sıcak ve acil takip etiketli kayıtlar satış ekibinin ilk aksiyonu olmalı.",
+      "Çok sıcak ve acil takip etiketli kayıtlar satış ekibinin ilk inceleme önceliği olmalı.",
     label: "Öncelik 1",
     icon: HiOutlineFire,
   },
   {
     id: "complete-offer-notes",
-    title: "Teklif notlarını tamamla",
+    title: "Teklif notlarını gözden geçir",
     description:
-      "Batarya ilgisi ve aylık fatura bilgisi olan leadlerde teklif notu eksik bırakılmamalı.",
+      "Batarya ilgisi ve aylık fatura bilgisi olan leadlerde eksik teklif bağlamı görünür kalır.",
     label: "Öncelik 2",
     icon: HiOutlineDocumentText,
   },
   {
     id: "schedule-discovery",
-    title: "Keşifleri netleştir",
+    title: "Keşif notlarını incele",
     description:
-      "Keşif isteyen fakat tarih bilgisi olmayan leadler için randevu akışı başlatılmalı.",
+      "Keşif isteyen fakat tarih bilgisi olmayan leadler için randevu notu incelenmeli.",
     label: "Öncelik 3",
     icon: HiOutlineCalendarDays,
   },
@@ -66,8 +66,8 @@ export function LeadAksiyonPaneli() {
             </h2>
 
             <p className="mt-1 text-sm leading-6 text-white/45">
-              Sistem bugün ilk kime dönülmesi gerektiğini satış sinyallerine
-              göre öne çıkarır.
+              Yerel sinyaller bugün önce hangi kaydın incelenebileceğini
+              gösterir.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export function LeadAksiyonPaneli() {
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5">
               <HiOutlineArrowTrendingUp className="h-4 w-4 text-white/70" />
               <span className="text-xs font-medium text-white/55">
-                Bugünün Aksiyonları
+                Bugünün inceleme notları
               </span>
             </div>
 
@@ -129,7 +129,7 @@ export function LeadAksiyonPaneli() {
             </h2>
 
             <p className="mt-1 text-sm leading-6 text-white/45">
-              Günlük çalışma listesindeki ilk aksiyonlar burada netleşir.
+              Günlük çalışma listesindeki inceleme notları burada netleşir.
             </p>
           </div>
         </div>
@@ -170,7 +170,7 @@ export function LeadAksiyonPaneli() {
 
         <button className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">
           <HiOutlineCheckCircle className="h-4 w-4" />
-          Aksiyonları Çalışma Listesine Al
+          İnceleme notlarını beklet
         </button>
       </section>
 
@@ -186,7 +186,7 @@ export function LeadAksiyonPaneli() {
             </p>
             <p className="mt-1 text-sm leading-6 text-white/45">
               Teklif isteyen, keşif bekleyen ve çok sıcak olup bekleyen leadler
-              satış kaybı oluşmadan önce işaretlenir.
+              olası fırsat riski için görünür kalır.
             </p>
           </div>
         </div>
@@ -211,9 +211,9 @@ export function LeadAksiyonPaneli() {
           <div className="flex items-start gap-2">
             <HiOutlineUserGroup className="mt-0.5 h-4 w-4 shrink-0 text-white/55" />
             <p className="text-xs leading-5 text-white/45">
-              Satış ekibi bugün önce çok sıcak ve acil takip bekleyen leadlere
-              dönmeli. Batarya ilgisi olan kayıtlar teklif sürecinde ayrıca
-              işaretlenmeli.
+              Satış ekibi için çok sıcak ve acil takip bekleyen leadler
+              inceleme önceliği olarak görünür. Batarya ilgisi olan kayıtlar
+              teklif sürecinde yerel not olarak ayrıca tutulur.
             </p>
           </div>
         </div>
