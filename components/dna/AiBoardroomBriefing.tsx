@@ -28,16 +28,16 @@ export function AiBoardroomBriefing({
     >
       <SectionHeader
         eyebrow="AI Boardroom"
-        title="Günaydın, komut önceliği hazır."
-        description={`${packageLabel} bugün açık talepler, bekleyen takipler ve gelir riski olan fırsatları ${activeDnaName} bağlamında öne çıkarıyor.`}
+        title="Günaydın, karar görünümü hazır."
+        description={`${packageLabel} bugün açık talepler, bekleyen takipler ve potansiyel gelir riski taşıyan fırsatları ${activeDnaName} bağlamında yerel karar notu olarak gösterir.`}
         rightSlot={<Badge variant="strong">Readonly</Badge>}
       />
 
       <div className="grid gap-3">
         <DataRow
           label="Yönetici özeti"
-          value="Bugün önce bekleyen sıcak talepler kapatılmalı."
-          description="Sistem, satış kaybına dönüşmeden müdahale edilmesi gereken fırsatları üst sıraya aldı."
+          value="Bugün önce bekleyen sıcak talepler incelenmeli."
+          description="Yerel karar görünümü, fırsat riskini readonly sinyal olarak görünür kılar."
           rightSlot={<HiOutlineSparkles className="h-5 w-5 text-white/55" />}
         />
       </div>
