@@ -53,7 +53,7 @@ export function AiMusteriOzeti() {
                 Müşteri Durum Özeti
               </p>
               <p className="mt-1 text-xs text-white/40">
-                Satış hafızasından oluşturuldu
+                Yerel müşteri notlarından özetlendi
               </p>
             </div>
           </div>

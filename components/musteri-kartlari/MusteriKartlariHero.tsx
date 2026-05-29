@@ -33,7 +33,7 @@ export function MusteriKartlariHero() {
 
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-xs font-medium text-white/55">
-                Aktif müşteri: {customer.customerName}
+                Seçili müşteri: {customer.customerName}
               </span>
 
               <span className="rounded-full border border-white/10 bg-black/45 px-3 py-1.5 text-xs font-medium text-white/55">

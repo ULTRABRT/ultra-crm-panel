@@ -210,7 +210,7 @@ export function MusteriOzetBar() {
             <div className="mb-2 flex items-center gap-2 text-white/65">
               <HiOutlineRectangleGroup className="h-4 w-4" />
               <p className="text-sm font-semibold text-white">
-                Aktif Kanallar
+                Kanal görünümü
               </p>
             </div>
 

@@ -80,7 +80,7 @@ export function CustomerMemorySnapshot() {
 
           <div className="grid gap-3 md:grid-cols-2">
             <MemoryMetric
-              label="Aktif niyet"
+              label="Görünen niyet"
               value={snapshot.activeIntent}
               icon={<HiOutlineSparkles className="h-4 w-4" />}
             />
@@ -118,7 +118,7 @@ export function CustomerMemorySnapshot() {
             <div className="mb-3 flex items-center gap-2">
               <HiOutlineCheckCircle className="h-4 w-4 text-white/65" />
               <p className="text-sm font-semibold text-white">
-                Sonraki en iyi aksiyon
+                Sonraki öneri
               </p>
             </div>
 

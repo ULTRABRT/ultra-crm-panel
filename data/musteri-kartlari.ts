@@ -92,7 +92,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     leadStatusLabel: "Teklif Hazırlanmalı",
     temperature: "veryHot",
     priority: "urgent",
-    lastAction: "Teklif talebi oluşturuldu",
+    lastAction: "Teklif hazırlık notu",
     offerStatus: "preparing",
     offerStatusLabel: "Teklif hazırlanıyor",
     offerDateLabel: "Bugün hazırlanmalı",
@@ -126,7 +126,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       type: "leadCreated",
       channel: "instagram",
       channelLabel: "Instagram",
-      title: "Lead oluşturuldu",
+      title: "Lead notu",
       description:
         "Instagram üzerinden güneş paneli ve batarya sistemi için talep geldi.",
       timeLabel: "Bugün 10:18",
@@ -176,7 +176,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
       channelLabel: "Manuel",
       title: "Teklif notu açıldı",
       description:
-        "Güneş paneli + lityum batarya dahil teklif hazırlanması için kayıt oluşturuldu.",
+        "Güneş paneli + lityum batarya dahil teklif hazırlığı için müşteri notu görünür.",
       timeLabel: "Bugün 11:05",
       ownerLabel: "Satış Ekibi",
       sourceLabel: "Teklif Notu",
@@ -229,14 +229,14 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     },
     {
       id: "action-whatsapp",
-      label: "WhatsApp gönder",
-      description: "Fatura, çatı ve keşif bilgileri için WhatsApp mesajı gönder.",
+      label: "WhatsApp taslağı",
+      description: "Fatura, çatı ve keşif bilgileri için WhatsApp taslak notu.",
       type: "whatsapp",
     },
     {
       id: "action-mail",
-      label: "Mail gönder",
-      description: "Teklif ön bilgilendirme maili gönder.",
+      label: "Mail taslağı",
+      description: "Teklif ön bilgilendirme maili için taslak not.",
       type: "mail",
     },
     {
@@ -272,7 +272,7 @@ export const aktifMusteriKarti: MusteriKartDetay = {
     {
       id: "action-human-review",
       label: "İnsan kontrolüne al",
-      description: "AI kararını satış yöneticisi kontrolüne gönder.",
+      description: "AI kararını satış yöneticisi kontrol notunda beklet.",
       type: "humanReview",
     },
   ],
