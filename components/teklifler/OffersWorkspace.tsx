@@ -29,7 +29,7 @@ type OfferSourceFilter = OfferSource | "all";
 
 const statusLabels: Record<OfferStatus, string> = {
   draft: "Taslak",
-  sent: "Gonderildi",
+  sent: "Müşteri incelemesi",
   follow_up: "Takipte",
   negotiation: "Pazarlik",
   won: "Kazanildi",
@@ -138,7 +138,7 @@ function KpiStrip({ offers }: { offers: OfferRecord[] }) {
     {
       label: "Acik teklifler",
       value: openOffers.length.toString(),
-      detail: "Aktif karar masasi",
+      detail: "Karar görünümü",
       Icon: HiOutlineDocumentText,
     },
     {
@@ -483,7 +483,7 @@ function OfferDetailPanel({ offer }: { offer: OfferRecord | undefined }) {
           Teklif seçimi bekleniyor
         </p>
         <p className="mt-2 text-sm leading-6 text-[#7A808A]">
-          Listeden bir teklif seçildiğinde müşteri bağlamı ve satış hafızası
+          Listeden bir teklif seçildiğinde müşteri bağlamı ve yerel satış notları
           burada görünür.
         </p>
       </aside>
@@ -547,7 +547,7 @@ function OfferDetailPanel({ offer }: { offer: OfferRecord | undefined }) {
         <div className="flex items-center gap-2">
           <HiOutlineCheckCircle className="h-4 w-4 text-[#525A65]" />
           <p className="text-sm font-semibold text-[#0B0D10]">
-            Takip aksiyonu
+            Takip önerisi
           </p>
         </div>
         <p className="mt-2 text-sm leading-6 text-[#525A65]">
@@ -592,7 +592,7 @@ function OfferDetailPanel({ offer }: { offer: OfferRecord | undefined }) {
 
       <div className="mt-5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7A808A]">
-          Satış hafızası
+          Yerel satış notları
         </p>
         <div className="mt-3 space-y-3">
           {offer.timeline.map((item) => (
