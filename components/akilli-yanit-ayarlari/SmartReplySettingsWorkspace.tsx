@@ -359,7 +359,7 @@ function PolicyList({
   onSelectPolicy: (policyId: string) => void;
 }) {
   return (
-    <section className="min-w-0 max-w-full overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-2.5 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:p-3">
+    <section className="min-w-0 w-full max-w-[calc(100vw-2rem)] justify-self-start overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-2.5 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:max-w-full sm:p-3">
       <div className="mb-2.5 flex min-w-0 flex-wrap items-start justify-between gap-2 px-1 sm:mb-3 sm:gap-3">
         <div className="min-w-0">
           <h2 className="text-lg font-semibold tracking-tight text-[#0B0D10]">
@@ -493,7 +493,7 @@ function PolicyDetailPanel({
 }) {
   if (!policy) {
     return (
-      <aside className="rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-5 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)]">
+      <aside className="min-w-0 w-full max-w-[calc(100vw-2rem)] justify-self-start overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-5 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:max-w-full">
         <p className="text-sm font-semibold text-[#0B0D10]">
           Policy seçimi bekleniyor
         </p>
@@ -506,7 +506,7 @@ function PolicyDetailPanel({
   }
 
   return (
-    <aside className="rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-4 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] xl:sticky xl:top-4 xl:self-start">
+    <aside className="min-w-0 w-full max-w-[calc(100vw-2rem)] justify-self-start overflow-hidden rounded-[1rem] border border-black/[0.08] bg-[#FFFFFF] p-4 shadow-[0_18px_46px_rgba(11,13,16,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:max-w-full xl:sticky xl:top-4 xl:self-start">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7A808A]">
@@ -720,7 +720,7 @@ export function SmartReplySettingsWorkspace() {
           onRiskChange={setRiskFilter}
         />
 
-        <div className="grid min-w-0 max-w-full gap-2.5 sm:gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4">
+        <div className="grid min-w-0 w-full max-w-[calc(100vw-2rem)] gap-2.5 overflow-hidden sm:max-w-full sm:gap-3 xl:grid-cols-[minmax(0,1.45fr)_minmax(22rem,0.72fr)] xl:gap-4 xl:overflow-visible">
           <PolicyList
             policies={filteredPolicies}
             activePolicyId={activePolicy?.id ?? ""}
