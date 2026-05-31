@@ -635,8 +635,8 @@ export const inboxActions: InboxAction[] = [
   },
   {
     id: "action-create-lead",
-    label: "Lead oluştur",
-    description: "Konuşmayı satış lead kaydına dönüştür.",
+    label: "Lead hazırlık notu",
+    description: "Konuşmayı yerel lead inceleme notu olarak beklet.",
     type: "createLead",
   },
   {
